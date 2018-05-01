@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <script>
+        $(function () {
+            // DOM加载完毕立即执行
+            // 以前写作$(document).ready(function(){});
+            $('body').css({'background': '#444'});
+        });
+
+        // window(资源) 完全加载完成后执行
+        $(window).load(function () {
+            console.log($('img').attr('src'));
+        });
+    </script>
+    <style>
+        .image_div {
+            width: 250px;
+            height: 250px;
+            padding: 20px;
+            border: 10px dashed #f00;
+        }
+    </style>
+</head>
+<body>
+<div class="image_div">
+    <img src="res/firefox.png"/>
+</div>
+</body>
+<script>
+    // DOM加载完毕立即执行
+    $('body').css({'background': '#f00'});
+</script>
+</html>

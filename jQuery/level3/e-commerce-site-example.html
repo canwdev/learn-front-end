@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电商网站Demo - bilibili 市場</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <link href="e-commerce-site-example.css" rel="stylesheet">
+</head>
+<body>
+<div class="top">
+
+    <div class="top_banner">
+        <div class="center">
+            <h1><a href="#">bilibili 市場</a></h1>
+            <ul>
+                <li>主站</li>
+                <li>画友</li>
+                <li>游戏中心</li>
+                <li>直播</li>
+                <li>会员购</li>
+                <li>周边</li>
+                <li>移动端</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<div class="category">
+    <div class="center">
+        <ul>
+            <li>全部商品分类</li>
+            <li>影视</li>
+            <li>番剧</li>
+            <li>音乐</li>
+            <li>游戏</li>
+            <li>科技</li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="menu_set">
+    <div class="menu_middle">
+        <div class="menu_left">
+            <ul>
+                <li><span>电脑配件</span>
+                    <div class='menu_hover'>
+                        <h3>电脑配件</h3>
+                        <p>
+                            电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件，电脑配件</p>
+                    </div>
+                </li>
+                <li><span>福袋</span></li>
+                <li><span>高能速报</span></li>
+                <li><span>3C周边</span></li>
+                <li><span>家居宅品</span></li>
+                <li><span>毛绒萌物</span></li>
+                <li><span>酷炫衣饰</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="center">
+    <div id="info"></div>
+</div>
+</body>
+<script>
+    function addContent(MAX) {
+        // （乱七八糟的）自动为类似<li><span>福袋</span></li>的标签添加详细内容
+        var target = $('.menu_left').children().children();
+        target.not(target.eq(0)).each(function (i) {
+            $(this).children().first().after($('.menu_hover')[0].outerHTML);
+
+            var title = $(this).children().first().html();
+            $(this).find('h3').html(title);
+
+            var placehoder = '';
+            for (var i = 0; i < MAX; i++) {
+                placehoder += title + '， '
+            }
+            $(this).find('p').html(placehoder);
+        });
+    }
+
+    addContent(50);
+
+    $('.menu_left li').mouseenter(function () {
+        /*x = $(this).position().left + $(this).outerWidth();
+        y = $(this).position().top;
+        $(this).find('.menu_hover').css({'top': y + 'px', 'left': x + 'px'}).show();*/
+
+        $(this).find('.menu_hover').stop(false, false).show(100);
+        $('.menu_hover').not($(this).find('.menu_hover')).hide();
+    });
+
+    $('.menu_left li').mouseleave(function () {
+        $(this).find('.menu_hover').stop(false, false).hide(100);
+    });
+
+    function createPlaceholder(max) {
+        for (var i = 0; i < max; i++) {
+            var temp = '';
+            for (var j = 0; j < 100; j++) {
+                temp += Math.floor(Math.random() * 10);
+            }
+            var para = document.createElement('p');
+            para.innerHTML += '<span>' + i + ':' + temp + '</span>';
+            $('#info').append(para);
+        }
+    }
+
+    createPlaceholder(50);
+</script>
+</html>

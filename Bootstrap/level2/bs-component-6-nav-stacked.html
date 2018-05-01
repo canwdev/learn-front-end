@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="utf-8"/>
+    <title>Bootstrap 导航 - 胶囊是标签页也是可以垂直方向堆叠排列的</title>
+    <link rel="stylesheet" href=../bootstrap-3.3.7-dist/css/bootstrap.min.css>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+
+    <script src="../../my-demos/slides/js/holder.min.js"></script>
+    <style>
+        .content1 {
+            display: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="nav nav-pills nav-stacked nav1">
+                <li class="active"><a href="#">主站</a></li>
+                <li><a href="#">画友</a></li>
+                <li><a href="#">游戏中心</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div id="nav1-content">
+                <div class="content1">
+                    <img src="holder.js/345x150?theme=lava"/>
+                    <p>linux is very much!linux is very much!linux is very much!linux is very much!linux is very
+                        much!linux
+                        is
+                        very much!linux is very much!linux is very much!linux is very much!linux is very much!linux is
+                        very
+                        much!linux is very much!linux is very much!linux is very much!linux is very much!linux is very
+                        much!linux is very much!linux is very much!linux is very much!linux is very much!linux is very
+                        much!linux is very much!linux is very much!linux is very much!</p>
+                </div>
+
+                <div class="content1">
+                    <img src="holder.js/345x150?theme=sky">
+                    <p>php is very much!php is very much!php is very much!php is very much!php is very much!php is very
+                        much!php
+                        is very much!php is very much!php is very much!php is very much!php is very much!php is very
+                        much!php is
+                        very much!php is very much!php is very much!php is very much!php is very much!php is very
+                        much!php
+                        is
+                        very much!php is very much!php is very much!php is very much!php is very much!php is very
+                        much!</p>
+                </div>
+
+                <div class="content1">
+                    <img src="holder.js/345x150?theme=vine"/>
+                    <p>java is very much!java is very much!java is very much!java is very much!java is very much!java is
+                        very
+                        much!java is very much!java is very much!java is very much!java is very much!java is very
+                        much!java
+                        is
+                        very much!java is very much!java is very much!java is very much!java is very much!java is very
+                        much!java
+                        is very much!java is very much!java is very much!java is very much!java is very much!java is
+                        very
+                        much!java is very much!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var list = $('.nav1').children('li');
+    var listContent = $('#nav1-content').children('div');
+
+    list.mouseenter(function () {
+        $(this).addClass('active');
+        list.not($(this)).removeClass('active');
+
+        var idx = $(this).index();
+        listContent.eq(idx).stop().show(100);
+        listContent.not(listContent.eq(idx)).stop().hide(100);
+    });
+
+    listContent.eq(0).show();
+</script>
+</html>

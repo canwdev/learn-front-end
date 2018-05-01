@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="UTF-8">
+    <title>Bootstrap 幻灯片轮播</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script src="../../my-demos/slides/js/holder.min.js"></script>
+    <style>
+        .custom1 {
+            background-color: rgba(0, 0, 0, 0.35);
+            width: 100%;
+            left: 0 !important;
+            bottom: 0 !important;
+        }
+
+        .custom1 h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target="#my-bar" data-offset="150">
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <div id="my-carousel" class="carousel slide" data-ride="carousel">
+        <!--图片或内容-->
+        <div class="carousel-inner">
+            <div class="item active"><a href="#"><img data-src="holder.js/100px500?theme=lava" src=""/>
+                <div class="carousel-caption">
+                    <h3>Somewhere I'd Rather Be</h3>
+                    <p>在任何项目中使用传送带标题元素轻松地为幻灯片添加字幕，去任何地方。</p>
+                </div>
+            </a>
+            </div>
+            <div class="item"><a href="#"><img data-src="holder.js/100px500?theme=vine" src=""/>
+                <div class="carousel-caption custom1">
+                    <h3>图片新闻幻灯片1</h3>
+                    <p>在任何项目中使用传送带标题元素轻松地为幻灯片添加字幕。放置在那里的任何可选的 HTML, 它将自动对齐和格式化。</p>
+                </div>
+            </a></div>
+            <div class="item" id="custom-slide"><a href="#"><img data-src="holder.js/100px500?theme=sky" src=""/>
+                <div class="carousel-caption custom1">
+                    <h3>图片新闻幻灯片2</h3>
+                    <p>在任何项目中使用传送带标题元素轻松地为幻灯片添加字幕。放置在那里的任何可选的 HTML, 它将自动对齐和格式化。</p>
+                </div>
+            </a></div>
+        </div>
+
+        <!--指示灯-->
+        <ol class="carousel-indicators">
+            <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#my-carousel" data-slide-to="1"></li>
+            <li data-target="#my-carousel" data-slide-to="2"></li>
+        </ol>
+
+        <!--左右控制-->
+        <a href="#my-carousel" class="left carousel-control" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a href="#my-carousel" class="right carousel-control" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+
+
+</div>
+</body>
+<script>
+    var slide = $('#custom-slide');
+    slide.find('.carousel-caption').hide();
+    slide.hover(
+        function(){
+            $(this).find('.carousel-caption').stop().slideDown();
+            $('.carousel-indicators').hide(10);
+        },
+        function(){
+            $(this).find('.carousel-caption').stop().slideUp();
+            $('.carousel-indicators').show(50);
+        }
+    )
+</script>
+</html>

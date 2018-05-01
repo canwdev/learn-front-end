@@ -1,0 +1,55 @@
+<html>
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width">
+    <title>TweetShirt Canvas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="tweetshirt.js"></script>
+</head>
+<body>
+<canvas id="bgcanvas" style="position:absolute;top:0px;left:0px;z-index:-1;"></canvas>
+<br>
+<div class="can_output">
+    <canvas id="tshirtCanvas" width="600" height="200">
+        Hey you, yes YOU, upgrade your browser!!
+    </canvas>
+</div>
+<div class="con_input">
+    <form>
+        <p>
+            <label for="backgroundColor">Select background color:</label>
+            <select class="btn btn-select" id="backgroundColor">
+                <option value="white" selected="selected">White</option>
+                <option value="black">Black</option>
+            </select>
+        </p>
+        <p>
+            <label for="shape">Circles or squares?</label>
+            <select class="btn btn-select" id="shape">
+                <option value="none" selected="selected">Neither</option>
+                <option value="circles">Circles</option>
+                <option value="squares">Squares</option>
+            </select>
+        </p>
+        <p>
+            <label for="foregroundColor">Select text color:</label>
+            <select class="btn btn-select" id="foregroundColor">
+                <option value="black" selected="selected">Black</option>
+                <option value="white">White</option>
+            </select>
+        </p>
+        <p>
+            <label for="tweets">Pick a tweet:</label>
+            <select class="btn btn-select" id="tweets">
+            </select>
+        </p>
+
+        <div style="height: 50px;">
+            <input type="button" class="btn submit-btn" id="previewButton" value="Preview">
+            <!--    <input type="button" class="btn submit-btn" id="buyButton" value="Buy">-->
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

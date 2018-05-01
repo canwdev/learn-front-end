@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 字符串连接</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="demo">
+    {{strjoin}}
+</div>
+
+</body>
+
+<script>
+
+    new Vue({
+        el: '#demo',
+        data: {
+            msg: 'hello, ',
+            name: 'shiyanlou'
+        },
+        computed: {
+            strjoin: function () {
+                return this.msg + this.name;
+            }
+        }
+    })
+
+</script>
+</html>

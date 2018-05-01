@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>效果 fadeIn() / fadeOut() / fadeTo()</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        h1 {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Lorem Ipsum</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et vestibulum justo. Nullam quis volutpat libero. Morbi
+    gravida, mi a rhoncus feugiat, libero est iaculis nisi, eu porttitor nisi diam in elit. Curabitur semper nunc ac
+    nulla tempor eleifend. Vestibulum euismod magna eu risus pretium fermentum. Nullam sit amet diam at mauris vehicula
+    luctus in id justo. Sed vitae lectus sit amet ex feugiat tincidunt. Sed faucibus sagittis velit vel sagittis. In a
+    urna at urna sodales auctor. Mauris sed ornare justo, id scelerisque quam. Sed mollis mattis orci.</p>
+
+<h1>Quisque quis</h1>
+<p>Quisque quis nibh ac sem convallis lacinia. Phasellus lacinia, mi eget ultrices maximus, leo lorem venenatis quam, et
+    vehicula lorem mi sit amet sapien. Cras id dui nunc. Morbi mattis erat quis varius vehicula. Nam tempor consequat
+    condimentum. Donec luctus sodales ante, eu blandit massa malesuada sed. Aliquam erat volutpat. Nam tincidunt euismod
+    lorem tincidunt blandit. Integer tempus in justo eu lacinia. Curabitur eu varius eros. Fusce suscipit nibh vitae
+    hendrerit sodales.</p>
+</body>
+<script>
+    $('h1').click(function () {
+        $(this).next().fadeToggle();
+
+        var t = parseInt($(this).css('opacity'));
+
+        if (t === 1) {
+            $(this).fadeTo(500, 0.5);
+        } else {
+            $(this).fadeTo(500, 1);
+        }
+    });
+
+    /*$('h1').toggle(
+        function () {
+            $(this).next().fadeOut(500);
+        },
+        function () {
+            $(this).next().fadeIn(500);
+        }
+    );*/
+</script>
+</html>

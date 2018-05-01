@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="utf-8"/>
+    <title>Bootstrap 登录</title>
+
+    <link rel="stylesheet" href=../bootstrap-3.3.7-dist/css/bootstrap.min.css>
+    <script src="../bootstrap-3.3.7-dist/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bs-example.css">
+</head>
+<body>
+
+<form id="form1">
+
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="../"><span class="glyphicon glyphicon-home"
+                                                         aria-hidden="true"></span>登录</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="max-width: 400px;">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                <li role="presentation" id="login_tab_login_active" class="active"><a href="#id_tab_login" id="login_tab_head"
+                                                                                role="tab" data-toggle="tab"
+                                                                                aria-controls="id_tab_login"
+                                                                                aria-expanded="true"> <span
+                        class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>登录</a></li>
+                <li role="presentation" id="login_tab_register_active" class=""><a href="#id_tab_register" role="tab"
+                                                                                   id="register_tab_head"
+                                                                                   data-toggle="tab"
+                                                                                   aria-controls="id_tab_register"
+                                                                                   aria-expanded="false"> <span
+                        class="glyphicon glyphicon-user" aria-hidden="true"></span>注册账号</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="id_tab_login">
+                    <div class="bs-example bs-example-form">
+                        <legend>登录</legend>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"
+                                                                  aria-hidden="true"></span></span>
+                            <input id="txt_username" placeholder="用户名" class="form-control" autofocus="autofocus"/>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
+                                                                  aria-hidden="true"></span></span>
+                            <input id="txt_password" class="form-control" placeholder="密码" type="password"/>
+                        </div>
+                        <div style="text-align: right;">
+                            <button id="btn_login" class="btn">登陆</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="id_tab_register">
+                    <div class="bs-example bs-example-form">
+                        <legend>注册</legend>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"
+                                                                  aria-hidden="true"></span></span>
+                            <input id="txt_reg_username" placeholder="用户名" class="form-control" autofocus="autofocus"/>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
+                                                                  aria-hidden="true"></span></span>
+                            <input id="txt_reg_password" class="form-control" placeholder="输入密码" type="password"/>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
+                                                                  aria-hidden="true"></span></span>
+                            <input id="txt_reg_password_confirm" class="form-control" placeholder="重复密码" type="password"/>
+                        </div>
+                        <div style="text-align: right;">
+                            <button id="btn_regist" class="btn">注册</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+</body>
+<script>
+//    $('#login_tab_login_active').addClass('active');
+//    $('#id_tab_login').addClass('active in');
+</script>
+</html>

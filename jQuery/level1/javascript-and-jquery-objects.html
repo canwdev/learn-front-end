@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript & JQuery Objects</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<div>
+    <h3>DOM Object -> jQuery Object</h3>
+    <button id="btn_dom">Button</button>
+    <span>Next element</span>
+</div>
+<div>
+    <h3>jQuery Object -> DOM Object</h3>
+    <button class="btn_jq">11111</button>
+    <span>Next element</span>
+</div>
+<div>
+    <h3>jQuery 核心方法</h3>
+    <p>请打开 Console，按 <strong>F12</strong></p>
+</div>
+</body>
+<script>
+    // js对象和jquery对象的区别是什么?     jquery就是js中的new Object生成的普通对象
+    // js对象和jquery对象的方法能不能共用?   不能共用
+
+    // js对象和jquery对象能不能互换?   能
+    /*// js对象->jquery对象
+    $(dom);*/
+    var btn = document.getElementById('btn_dom');
+    /*btn.onclick = function () {};*/
+    $(btn).click(function () {
+        alert('Success');
+        $(this).next().attr({'style': 'background-color: #0f0'});
+    });
+
+    /*// jquery对象->js对象
+    $('h1')[1];
+    $('h1').get(1);
+    var arr = $('h1').get();
+    arr[0].outerHTML;*/
+    $('.btn_jq').click(
+        function () {
+            $(this).next().text($('.btn_jq')[0].outerHTML);
+        }
+    );
+
+    /*// jQuery 核心方法:
+    size();
+    length;
+    get();
+    get(index);
+ ★ each();
+ ★ index(); --> JQuery/level1/tag-effects.html
+ ★ data();*/
+    var jqCore = $('h3');
+
+    console.log(jqCore);
+    console.log(jqCore.size());
+    console.log(jqCore.length);
+    console.log(jqCore.get());
+    console.log(jqCore.get(2));
+
+    // JQuery each() 循环
+    jqCore.each(function (i) {
+        // jqCore.get()[i].textContent = (i + 1) + '. ' + jqCore[i].text();
+        $(this).html((i + 1) + '. ' + $(this).text());
+
+        /*$(this).attr({'num': i + 1});*/
+        $(this).data({'data': i + 1});
+    });
+
+    /*jqCore.click(function () {
+        var num = parseInt($(this).attr('num'));
+        if (num % 2 === 0) {
+            this.style.backgroundColor = '#0f0';
+        } else {
+            this.style.backgroundColor = '#fff';
+        }
+        $(this).attr('num', num);
+    });*/
+
+    // jQuery data() 属性
+    jqCore.click(function () {
+            var temp = $(this).html();
+            $(this).html($(this).data('data'));
+            $(this).data({'data': temp});
+        }
+    );
+</script>
+</html>

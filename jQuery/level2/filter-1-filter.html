@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤筛选</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            font-size: 110%;
+        }
+
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<span>Reference: </span><a href="selector-3-simple.html">selector-3-simple.html</a>
+
+<p>aaaaaaaaaaaaaaaaaaaaaa</p>
+<p>bbbbbbbbbbbbbbbbbbbbbb</p>
+<p>cccccccccccccccccccccc</p>
+<p>dddddddddddddddddddddd</p>
+<p>eeeeeeeeeeeeeeeeeeeeee</p>
+<p>ffffffffffffffffffffff</p>
+<p>gggggggggggggggggggggg</p>
+</body>
+<script>
+    // （从零开始的）获取第N个元素
+    // $('p').eq(0).css({'text-shadow':'0px -5px 3px #f00'});
+    $('p').not($('p').eq(0)).css({'background-color': '#d4d4d4'});
+
+    // 获取第一个元素
+    $('p').first().css({'text-shadow': '0px -5px 3px #f00'});
+
+    // 获取最后一个元素
+    $('p').last().css({'text-shadow': '0px 5px 3px #00f'});
+
+    // 选取一个匹配的子集
+    $('p').slice(1, 3).css({'border': '2px dotted #000'});
+
+</script>
+</html>

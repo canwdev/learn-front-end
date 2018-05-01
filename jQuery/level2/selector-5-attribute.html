@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            font-size: 110%;
+        }
+
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<p name="user1">aaaaaaaaaaaaaaaaaaa</p>
+<p name="js">bbbbbbbbbbbbbbbbbbb</p>
+<p name="jquery" birthday="2006-8-26">ccccccccccccccccccc</p>
+<p>ddddddddddddddddddc</p>
+
+</body>
+<script>
+
+    // p[]匹配包含给定属性的元素，此处与:not()组合使用
+    $('p:not([name])').css({'background-color': '#a0a0a0'});
+
+    // 匹配给定的属性是某个特定值的元素
+    $('p[name=js]').css({'color': '#f00'});
+
+    // 匹配所有含有指定的属性，但属性不等于特定值的元素
+    // $('p[name!=js]').css({'background-color':'#0f0'});
+
+    // 匹配给定的属性是以某些值开始的元素
+    $('p[name^=j]').css({'background-color': '#0f0'});
+
+    // 匹配给定的属性是以某些值结尾的元素
+    $('p[name$=1]').css({'background-color': '#ff0'});
+
+    // 复合属性选择器，需要同时满足多个条件时使用。
+    $('p[name][birthday]').css({'border': '5px dotted #00f'});
+
+</script>
+</html>

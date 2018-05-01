@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子元素选择器</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            font-size: 110%;
+        }
+
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <p>aaaaaaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbbbbbb</p>
+    <p>ccccccccccccccccccc</p>
+</div>
+
+<div>
+    <p>ddddddddddddddddddc</p>
+</div>
+
+</body>
+<script>
+    // 匹配第一个子元素
+    $('div p:first-child').css({'text-shadow': '0px -5px 3px #f00'});
+
+    // 匹配最后一个子元素
+    $('div p:last-child').css({'text-shadow': '0px 5px 3px #00f'});
+
+    // （从1开始的）匹配元素
+    $('div p:nth-child(2)').css({'text-shadow': '0px 0px 3px #0f0'});
+
+    // 如果某个元素是父元素中唯一的子元素，那将会被匹配
+    $('div p:only-child').css({'text-decoration': 'line-through'});
+
+</script>
+</html>

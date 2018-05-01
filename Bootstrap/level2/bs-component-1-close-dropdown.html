@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="utf-8"/>
+    <title>Bootstrap Component</title>
+    <link rel="stylesheet" href=../bootstrap-3.3.7-dist/css/bootstrap.min.css>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <!--Bootstrap/level3/bs-compo-6-alert.html-->
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>警告!</strong> 最好检查一下自己，你看起来不太好。
+    </div>
+
+    <div class="alert alert-danger">
+        <strong>错误!</strong> 最好检查一下自己，你看起来不太好。<span class='close'>&times;</span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="dropdown">
+                <button class="btn btn-success dropdown" data-toggle="dropdown">
+                    下拉菜单
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">主站</a></li>
+                    <li><a href="#">画友</a></li>
+                    <li><a href="#">游戏中心</a></li>
+                    <li><a href="#">直播</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">会员购</a></li>
+                    <li><a href="#">周边</a></li>
+                    <li><a href="#">移动端</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="dropup pull-right">
+                <button class="btn btn-success dropdown" data-toggle='dropdown'>
+                    上拉菜单
+                    <span class="caret"></span>
+
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">主站</a></li>
+                    <li><a href="#">画友</a></li>
+                    <li><a href="#">游戏中心</a></li>
+                    <li><a href="#">直播</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">会员购</a></li>
+                    <li><a href="#">周边</a></li>
+                    <li><a href="#">移动端</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script>
+    $('.close').click(function () {
+        $(this).parent().hide(500);
+    });
+</script>
+</html>

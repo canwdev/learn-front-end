@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS css</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1, .div2 {
+            width: 95%;
+            margin: 10px auto;
+            background-color: #b9b9b9;
+            padding-top: 5px;
+            text-align: center;
+        }
+
+        .img {
+            margin: 3px;
+            height: 200px;
+            width: 200px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.27);
+            border-radius: 100px;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(360deg);
+            }
+            to {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <img src="res/chrome.png" class="img">
+</div>
+</body>
+<script>
+
+    console.log($('.img').css('box-shadow'));
+
+    $('.img').css({'animation': 'rotate 15s infinite linear'});
+
+</script>
+</html>

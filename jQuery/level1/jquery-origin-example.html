@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery origin example</title>
+</head>
+<body>
+
+</body>
+<script>
+    function $(attr) {
+        obj = {};
+        obj.whoami = 'My name is ' + attr;
+        obj.say = function () {
+            document.write(this.whoami);
+            return this;    // 对象链式结构
+        };
+        obj.play = function () {
+            alert(attr + ' playing');
+        };
+        return obj;
+    }
+
+    $('Prototype').say().play();
+</script>
+</html>

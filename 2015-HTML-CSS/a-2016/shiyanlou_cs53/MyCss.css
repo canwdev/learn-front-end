@@ -1,0 +1,59 @@
+body {
+    background-color: ghostwhite;
+    background-image: url("src/way.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    font-family: cursive;
+}
+
+.container {
+    text-align: center;
+    background-image: url(src/cmd.png);
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 210px 200px;
+}
+
+h1 {
+    color: white;
+    font-size: 50px;
+}
+
+h2 {
+    color: white;
+    font-size: 40px;
+}
+
+li {
+    list-style: none;
+}
+
+li strong {
+    color: firebrick;
+    text-decoration: line-through;
+}
+
+#p_id {
+    color: blueviolet;
+}
+
+#p_id a {
+    color: green;
+}
+
+#div_id {
+    color: brown;
+}
+
+.div_class {
+    color: chocolate;
+}
+
+[test] {
+    color: cadetblue;
+}
+
+[test=te] {
+    color: aquamarine;
+}

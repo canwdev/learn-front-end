@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter query link</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            font-size: 110%;
+        }
+
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <div>
+            <h3>aaaaaaaaaaaaaaaaaaaaaa</h3>
+            <p>cccccccccccccccccccccc</p>
+            <h3>bbbbbbbbbbbbbbbbbbbbbb</h3>
+            <p>dddddddddddddddddddddd</p>
+        </div>
+    </div>
+</div>
+<hr>
+<div>
+    <div>
+        <button>jQuery it</button>
+    </div>
+</div>
+</body>
+<script>
+
+    // 查找链....
+    // 与prev()相反的是next()
+    $('button').click(function () {
+        var s = $(this).parent().parent().prev().prev().children().children().css({'color': '#0f0'});
+        console.log(s);
+    });
+
+</script>
+</html>

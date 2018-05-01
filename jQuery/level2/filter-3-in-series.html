@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter in series</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            font-size: 110%;
+        }
+
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h3>aaaaaaaaaaaaaaaaaaaaaa</h3>
+<h3>bbbbbbbbbbbbbbbbbbbbbb</h3>
+<hr>
+<p>cccccccccccccccccccccc</p>
+<p>dddddddddddddddddddddd</p>
+<hr>
+
+<div class="andSelfTest">
+    <p>eeeeeeeeeeeeeeeeeeeeee</p>
+    <p>ffffffffffffffffffffff</p>
+</div>
+<p>gggggggggggggggggggggg</p>
+</body>
+<script>
+    // 把与表达式匹配的元素添加到jQuery对象中。这个函数可以用于连接分别与两个表达式匹配的元素结果集。
+    // 等价于 $('h3, p').css();
+    $('h3').add($('p')).css({'box-shadow': '0px 0px 5px #0ff'});
+
+    // 加入先前所选的加入当前元素中
+    $('.andSelfTest').next().andSelf().css({'color': '#f00'});
+
+</script>
+</html>

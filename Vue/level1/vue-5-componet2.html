@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 组件(实例2)</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="demo">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <hr/>
+
+    <h1>{{msg}}</h1>
+    <my-compo v-bind:items="items"></my-compo>
+</div>
+
+</body>
+<script type="text/x-template" id="tmp-sc">
+    <button v-on:click="counter+=1">{{counter}}</button>
+</script>
+
+<script type="text/x-template" id="tmp-mc">
+
+    <form v-on:submit.prevent="addItem(newItem)">
+        <ol>
+            <li v-for="(item, index) in items">
+                {{item.text}}
+                <button v-on:click.prevent="removeItem(index)">&times;</button>
+            </li>
+        </ol>
+        <div>
+            <input type="text" v-model="newItem.text" placeholder="newItem.text"
+                   @keyup.enter="addItem(newItem)" onkeydown="if(event.keyCode==13)return false;">
+            <button>添加</button>
+        </div>
+    </form>
+</script>
+
+<script>
+
+    Vue.component('simple-counter', {
+        template: '#tmp-sc',
+        data: function () {
+            return {
+                counter: 0
+            }
+        }
+    });
+
+    Vue.component('my-compo', {
+        template: '#tmp-mc',
+        props:['items'],
+        data: function () {
+            return {
+                newItem:{text:''}
+            }
+        },
+        methods:{
+            addItem: function(newItem){
+                this.items.push(newItem);
+                this.newItem={text:''};
+            },
+            removeItem: function (index) {
+                this.items.splice(index, 1)
+            }
+        }
+    })
+
+    new Vue({
+        el: '#demo',
+        data: {
+            msg: 'Vuejs的一个示例',
+            items:[
+                {text:'text1'}
+            ]
+        }
+    })
+
+</script>
+</html>

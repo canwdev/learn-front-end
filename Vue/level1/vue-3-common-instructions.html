@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 常用指令</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="demo-vhtml">
+    <span v-html="msg"></span>
+</div>
+
+<hr/>
+
+<div id="demo-show">
+    <span v-show="data1">1号数据</span>
+    <span v-show="data2">2号数据</span>
+</div>
+
+<hr/>
+
+<div id="demo-if">
+    <span v-if="data1">如果data1为真，那就会显示这条语句。</span>
+    <span v-else>如果data1为假，则会显示这条语句。</span>
+    <br/>
+    <span v-if="data2">data2为假的时候不会显示。</span>
+    <span v-else-if="data3">不存在data3，所以不会显示。</span>
+    <span v-else>所有都else了，所以这条会显示。</span>
+</div>
+
+<hr/>
+
+<div id="demo-vfor">
+    <ul>
+        <li v-for="item in items">{{ item.name }}</li>
+    </ul>
+
+    <ol>
+        <li v-for="item in items">{{ item.val }}</li>
+    </ol>
+
+    <code>
+        <span v-for="item in items">{{ item }}</span>
+    </code>
+</div>
+
+<hr/>
+
+<div id="demo-von">
+    <button v-on:click="reverseMsg">{{message}}</button>
+</div>
+
+<hr/>
+
+<div id="demo-von2">
+    <!-- 方法处理器 -->
+    <button v-on:click="doThis">doThis</button>
+    <!-- 内联语句 -->
+    <button v-on:click="doThat('hello', $event)">doThat</button>
+    <!-- 缩写 -->
+    <button @click="doThis">缩写</button>
+    <!-- 停止冒泡 -->
+    <button @click.stop="doThis">停止冒泡</button>
+    <!-- 阻止默认行为 -->
+    <button @click.prevent="doThis">阻止默认行为</button>
+    <!-- 阻止默认行为，没有表达式 -->
+    <button @submit.prevent>阻止默认行为，没有表达式</button>
+    <!--  串联修饰符 -->
+    <button @click.stop.prevent="doThis">串联修饰符</button>
+    <!-- 键修饰符，键别名 -->
+    <input @keyup.enter="onEnter" placeholder="按回车键。">
+    <!-- 键修饰符，键代码 -->
+    <input @keyup.13="onEnter" placeholder="按回车键。">
+</div>
+
+</body>
+<script>
+
+    new Vue({
+        el: '#demo-vhtml',
+        data: {
+            msg: '使用<span style="color: #0b7747; font-size: 40px">Vue</span>代码控制HTML'
+        }
+    });
+
+    new Vue({
+        el: '#demo-show',
+        data: {
+            data1: true,
+            data2: false
+        }
+    });
+
+    new Vue({
+        el: '#demo-if',
+        data: {
+            data1: true,
+            data2: false,
+            data3: null
+        }
+    });
+
+    new Vue({
+        el: '#demo-vfor',
+        data: {
+            items: [
+                {name: 'windows', val: 'hello'},
+                {name: 'vuejs', val: 'hello'},
+                {name: 'javascript', val: 'hello'},
+                {name: 'html', val: 'hello'}
+            ]
+        }
+    });
+
+    new Vue({
+        el: '#demo-von',
+        data: {
+            message: 'Hello Vue.js!!'
+        },
+        methods: {
+            reverseMsg: function () {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    });
+
+    new Vue({
+        el: '#demo-von2',
+        data: {
+            msg: '点击按钮'
+        },
+        methods: {
+            doThis: function () {
+                alert('doThis');
+            },
+            doThat: function (msg, ev) {
+                alert('doThat: ' + msg + ev);
+                console.log(ev);
+            },
+            onEnter: function () {
+                alert('摁下了回车键！');
+            }
+        }
+    });
+
+
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document 外部insert</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1, .div2 {
+            height: 210px;
+            width: 650px;
+            background-color: #b9b9b9;
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <p>aaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbb</p>
+    <p>ccccccccccccccc</p>
+    <p>ddddddddddddddd</p>
+    <p>eeeeeeeeeeeeeee</p>
+</div>
+<hr/>
+<div class="div2">
+</div>
+</body>
+<script>
+
+    /*$('p').click(function () {
+        // 在每个匹配的元素之前插入内容。
+        // $('.div2').before($(this));
+        $(this).insertBefore($('.div2'));
+    });*/
+
+    $('p').click(function () {
+        // 在每个匹配的元素之后插入内容。
+        $('.div2').after($(this));
+        // $(this).insertAfter($('.div2'));
+    });
+</script>
+</html>

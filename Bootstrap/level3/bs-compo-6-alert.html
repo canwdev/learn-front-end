@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="UTF-8">
+    <title>Bootstrap 警告</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <div class="alert alert-success">
+        <span class="close" data-dismiss="alert">&times;</span>
+        <strong>做得好!</strong> 你成功的读到了这条警告信息。
+    </div>
+    <div class="alert alert-info">
+        <span class="close" id="close">&times;</span>
+        <strong>当心!</strong> 这条警告信息需要你的注意，但这不是特别重要。
+    </div>
+    <div class="alert alert-warning">
+        <strong>警告!</strong> 最好检查一下你自己，你看起来<a href="#" class="alert-link">不太好</a>。
+    </div>
+    <div class="alert alert-danger">
+        <strong>哦，快点!</strong> 改变一些东西，并尝试再次提交。
+        <a href="#" class="close alert-link">改变</a>
+    </div>
+
+</div>
+</body>
+<script>
+    $('#close').click(function () {
+//        $(this).parent().remove();
+        $(this).parent().hide(500);
+    });
+</script>
+</html>

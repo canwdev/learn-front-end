@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Built-in object</title>
+    <style>
+        html {
+            /*background-color: #242424;*/
+            color: #D9D9D9;
+        }
+    </style>
+</head>
+<body>
+<h1>JavaScript Built-in object</h1>
+<p>请打开 Console，按 <strong>F12</strong></p>
+<script>
+    // 数学对象
+    console.log('---------- 数学对象 ----------');
+    console.log(Math.PI);
+
+    // ceil
+    console.log('1.7 -> ceil -> ' + Math.ceil(1.7));
+    console.log('1.2 -> ceil -> ' + Math.ceil(1.2));
+    // floor
+    console.log('1.7 -> floor -> ' + Math.floor(1.7));
+    console.log('1.2 -> floor -> ' + Math.floor(1.2));
+    // 四舍五入
+    console.log('1.7 -> round -> ' + Math.round(1.7));
+    console.log('1.2 -> round -> ' + Math.round(1.2));
+
+    // 随机从0~1
+    console.log(Math.random());
+
+    // max min
+    console.log('max ' + Math.max());
+    console.log('min ' + Math.min());
+
+    console.log('max ' + Math.max(0, 2, 3, 7, 5, 6, 1));
+    console.log('min ' + Math.min(0, 2, 3, 7, 5, 6, 1));
+
+    // 日期对象
+    console.log('---------- 日期对象 ----------');
+    var dateObj = new Date();
+    console.log(dateObj);
+    console.log(dateObj.getFullYear());
+    console.log(dateObj.getMonth() + 1);
+    console.log(dateObj.getDate());
+    console.log(dateObj.getHours());
+    console.log(dateObj.getMinutes());
+    console.log(dateObj.getSeconds());
+
+    // 定时器无限循环
+    console.log('---------- 定时器 ----------');
+    var isBlue = false;
+    var sObj = setInterval(function () {
+        if (isBlue) {
+            document.bgColor = 'red';
+            isBlue = false;
+            console.log('TIMER##: red');
+        } else {
+            document.bgColor = 'blue';
+            isBlue = true;
+            console.log('clearInterval(sObj)');
+            console.log('TIMER##: blue');
+        }
+
+    }, 50);
+
+    // 定时器执行一次
+    var tObj = setTimeout(function () {
+        clearInterval(sObj);
+        document.bgColor = '#242424';
+        console.log('TIMER##: Stop');
+    }, 150);
+
+    // clearTimeout(tObj);
+
+    // [字符串](http://www.w3school.com.cn/jsref/jsref_split.asp)
+    console.log('---------- 字符串 ----------');
+    var str = 'Hello, Nihao, Konnichiwa';
+
+    // 字符在字符串中第一次出现的位置
+    console.log(str.indexOf('Ni'));
+
+    // 字符在字符串中最后一次出现的位置
+    console.log(str.lastIndexOf('o'));
+
+    // 从0开始截取6个字符
+    console.log(str.substr(0, 6));
+
+    // slice从哪开始到哪结束介不包含最后一个位置
+    console.log(str.slice(7, 13));
+
+    // split() 方法用于把一个字符串分割成字符串数组
+    console.log(str.split('', 10));
+    console.log(str.split(', '));
+    // 正则式
+    console.log(str.split(/\s+/));
+
+    // search() 方法用于检索字符串中指定的子字符串，
+    // 或检索与正则表达式相匹配的子字符串。
+    console.log(str.search(/Konnichiwa/));
+
+    // ★常用于正则☆ match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。
+    // 该方法类似 indexOf() 和 lastIndexOf()，
+    // 但是 match() 返回指定的值，而不是字符串的位置。
+    console.log(str.match(/Nihao/));
+
+    // replace() 方法用于在字符串中用一些字符替换另一些字符，
+    // 或替换一个与正则表达式匹配的子串。不会改变原值。
+    console.log(str.replace(/Nihao/, '你好'));
+
+    // 字符串转大写
+    console.log(str.toUpperCase());
+
+    // 字符串转小写
+    console.log(str.toLowerCase());
+
+    /* 截取字符串有哪些方法？区别？
+    slice 有两个参数，第一个是从零开始算的，第二个是从零开始算，但最后要减一（可以看做从1开始算）。
+    slice 支持以负数为单位，负数表示从字符串的末尾开始算。
+    substring 与slice主要的不同是，它不支持负数作为参数，如果参数为负数，它会从0开始算
+    substr 的第二个个参数的定义与上述两者不同，它是从第一个参数的当前位置开始算的。
+    */
+
+
+
+    // [数组对象](http://www.w3school.com.cn/jsref/jsref_obj_array.asp)
+    console.log('---------- 数组对象 ----------');
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    console.log(arr);
+
+    // 把数组连成字符串
+    console.log(arr.join('/'));
+
+    // 把数组最后一个值出栈，同时会改变原数组
+    console.log(arr.pop() + ' -> ' + arr);
+
+    // 把数组最后插入一个值，同时会改变原数组
+    console.log(arr.push(10) + ' -> ' + arr);
+
+    // 把数组最前面一个值弹出，同时会改变原数组
+    console.log(arr.shift() + ' -> ' + arr);
+
+    // 从数组最前面插入一个值，同时会改变原数组
+    console.log(arr.unshift(1) + ' -> ' + arr);
+
+    // 数组反转
+    console.log(arr.reverse() + ' -> ' + arr);
+    console.log(arr.reverse() + ' -> ' + arr);
+
+    // 数组合并，并不会改变原数组
+    var arr1 = ['a', 'b', 'c'];
+    console.log(arr.concat(arr1));  //[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "a", "b", "c"]
+
+    // 从已有的数组中返回选定的元素。
+    console.log(arr.slice(2, 4));    //[3,4]
+
+    // 排序，同时会改变原数组
+    console.log(arr.sort() + ' -> ' + arr);
+
+    // 定义排序方法
+    function sortNumber(a, b) {
+        return a - b;
+    }
+
+    console.log(arr.sort(sortNumber) + ' -> ' + arr);
+
+    // 从1开始拿走4个值，同时会改变原数组
+    console.log(arr.splice(1, 4) + ' -> ' + arr);
+</script>
+</body>
+</html>

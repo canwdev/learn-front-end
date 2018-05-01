@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="UTF-8">
+    <title>Bootstrap 折叠效果</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script src="../../my-demos/slides/js/holder.min.js"></script>
+</head>
+<body data-spy="scroll" data-target="#my-bar" data-offset="150">
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="#c1" data-toggle="collapse" data-parent="#accordion">Bootstrap标题1号</a></h4>
+            </div>
+            <div id="c1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    DA合成老生常谈的批评，对于这样的高寿命声讨特里·理查森的鱿鱼。3个月狼服务，而不是cupidatat滑板消费者早午餐。
+                    藜的餐车不知道我有多么辛劳，这样的背景下。3月狼早午餐时间，但他们把一只鸟一些鱿鱼单品咖啡不会采取肖尔迪奇。
+                    没有什么，我的灵魂阿拉伯头巾Helvetica字体，工艺啤酒名气不知道如何聪明人的事情韦斯·安德森excepteur的劳动。
+                    对于素食主义者的屠夫excepteur副LOMO。护腿黑人工艺啤酒农场到餐桌，原始牛仔的审美合成器不知道你可能没有听说过他们谴责劳动和可持续VHS。
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="#c2" data-toggle="collapse" data-parent="#accordion">Bootstrap标题2号</a></h4>
+            </div>
+            <div id="c2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    DA合成老生常谈的批评，对于这样的高寿命声讨特里·理查森的鱿鱼。3个月狼服务，而不是cupidatat滑板消费者早午餐。
+                    藜的餐车不知道我有多么辛劳，这样的背景下。3月狼早午餐时间，但他们把一只鸟一些鱿鱼单品咖啡不会采取肖尔迪奇。
+                    没有什么，我的灵魂阿拉伯头巾Helvetica字体，工艺啤酒名气不知道如何聪明人的事情韦斯·安德森excepteur的劳动。
+                    对于素食主义者的屠夫excepteur副LOMO。护腿黑人工艺啤酒农场到餐桌，原始牛仔的审美合成器不知道你可能没有听说过他们谴责劳动和可持续VHS。
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="#c3" data-toggle="collapse" data-parent="#accordion">Bootstrap标题3号</a></h4>
+            </div>
+            <div id="c3" class="panel-collapse collapse">
+            <div class="panel-body">
+                DA合成老生常谈的批评，对于这样的高寿命声讨特里·理查森的鱿鱼。3个月狼服务，而不是cupidatat滑板消费者早午餐。
+                藜的餐车不知道我有多么辛劳，这样的背景下。3月狼早午餐时间，但他们把一只鸟一些鱿鱼单品咖啡不会采取肖尔迪奇。
+                没有什么，我的灵魂阿拉伯头巾Helvetica字体，工艺啤酒名气不知道如何聪明人的事情韦斯·安德森excepteur的劳动。
+                对于素食主义者的屠夫excepteur副LOMO。护腿黑人工艺啤酒农场到餐桌，原始牛仔的审美合成器不知道你可能没有听说过他们谴责劳动和可持续VHS。
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h4 class="page-header">用jQuery实现</h4>
+
+    <div class="panel-group" id="my-collapse">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="javascript:">标题1号</a></h4>
+            </div>
+            <div class="panel-body">
+                DA合成老生常谈的<a href="#">批评</a>，对于这样的高寿命声讨特里·理查森的鱿鱼。3个月狼服务，而不是cupidatat滑板消费者早午餐。
+                藜的餐车不知道我有多么辛劳，这样的背景下。3月狼早午餐时间，但他们把一只鸟一些鱿鱼单品咖啡不会采取肖尔迪奇。
+                没有什么，我的灵魂阿拉伯头巾Helvetica字体，工艺啤酒名气不知道如何聪明人的事情韦斯·安德森excepteur的劳动。
+                对于素食主义者的屠夫excepteur副LOMO。护腿黑人工艺啤酒农场到餐桌，原始牛仔的审美合成器不知道你可能没有听说过他们谴责劳动和可持续VHS。
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="javascript:">标题2号</a></h4>
+            </div>
+            <div class="panel-body">
+                DA合成老生常谈的批评，对于这样的高寿命声讨特里·理查森的鱿鱼。3个月狼服务，而不是cupidatat滑板消费者早午餐。
+                藜的餐车不知道我有多么辛劳，这样的背景下。3月狼早午餐时间，但他们把一只鸟一些鱿鱼单品咖啡不会采取肖尔迪奇。
+                没有什么，我的灵魂阿拉伯头巾Helvetica字体，工艺啤酒名气不知道如何聪明人的事情韦斯·安德森excepteur的劳动。
+                对于素食主义者的屠夫excepteur副LOMO。护腿黑人工艺啤酒农场到餐桌，原始牛仔的审美合成器不知道你可能没有听说过他们谴责劳动和可持续VHS。
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="javascript:">标题3号</a></h4>
+            </div>
+            <div class="panel-body">
+                DA合成老生常谈的批评，对于这样的高寿命声讨特里·理查森的鱿鱼。3个月狼服务，而不是cupidatat滑板消费者早午餐。
+                藜的餐车不知道我有多么辛劳，这样的背景下。3月狼早午餐时间，但他们把一只鸟一些鱿鱼单品咖啡不会采取肖尔迪奇。
+                没有什么，我的灵魂阿拉伯头巾Helvetica字体，工艺啤酒名气不知道如何聪明人的事情韦斯·安德森excepteur的劳动。
+                对于素食主义者的屠夫excepteur副LOMO。护腿黑人工艺啤酒农场到餐桌，原始牛仔的审美合成器不知道你可能没有听说过他们谴责劳动和可持续VHS。
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+<script>
+    var colHead = $('#my-collapse').find('h4>a');
+    var colBody = colHead.parent().parent().next();
+
+    colBody.hide().first().show();
+
+    colHead.click(function () {
+        var thisBody = $(this).parent().parent().next();
+        thisBody.slideDown(250);
+        colBody.not(thisBody).slideUp(250);
+    });
+</script>
+</html>

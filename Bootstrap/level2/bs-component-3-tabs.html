@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="utf-8"/>
+    <title>Bootstrap 标签页</title>
+    <link rel="stylesheet" href=../bootstrap-3.3.7-dist/css/bootstrap.min.css>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <!--随机文字生成器-->
+    <script src="http://more.handlino.com/javascripts/moretext-1.2.js" type="text/javascript"></script>
+
+    <style>
+        .nav-tabs {
+            margin-bottom: 15px;
+        }
+
+        .tabs {
+            border: 5px dashed #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .my_content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <div class="tabs">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">主站</a></li>
+            <li><a href="#paint_friends" data-toggle="tab">画友</a></li>
+            <li><a href="#game_center" data-toggle="tab">游戏中心</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">周边<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#live" data-toggle="tab">直播</a></li>
+                    <li><a href="#">会员购</a></li>
+                    <li><a href="#">移动端</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="home">
+                <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua,
+                    retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+                    Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry
+                    richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american
+                    apparel, butcher voluptate nisi qui.</p>
+            </div>
+            <div class="tab-pane fade" id="paint_friends">
+                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation
+                    +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+                    craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
+                    ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                    Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio
+                    cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson
+                    biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed
+                    echo park.</p>
+            </div>
+            <div class="tab-pane fade" id="game_center">
+                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro
+                    fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer,
+                    iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
+                    Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles
+                    pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of
+                    them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+            </div>
+            <div class="tab-pane fade" id="live">
+                <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master
+                    cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party
+                    locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before
+                    they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade
+                    thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park
+                    vegan.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tabs">
+        <ul class="nav nav-tabs">
+            <li class="my_tab active"><a href="#">Linux</a></li>
+            <li class="my_tab"><a href="#">Java</a></li>
+            <li class="my_tab"><a href="#">PHP</a></li>
+        </ul>
+
+        <div>
+            <div class="my_content"><p><span class="lipsum"></span>Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Aenean odio libero,
+                efficitur viverra lacus eu, viverra venenatis ligula. Integer eu mauris eu purus dignissim tempor.
+                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam accumsan
+                nisi
+                sed congue vulputate. Donec pharetra tincidunt lorem nec consectetur.</p></div>
+            <div class="my_content"><p><span class="lipsum"></span>Mauris ut auctor neque. Integer porttitor at metus a
+                maximus. Duis vestibulum
+                erat neque. Nullam volutpat mollis sem sed scelerisque. Curabitur ac felis lacus. Interdum et malesuada
+                fames ac ante ipsum primis in faucibus. Suspendisse fringilla, diam sed finibus luctus, lacus dui
+                bibendum
+                velit, id feugiat sapien velit non velit. </p></div>
+            <div class="my_content"><p><span class="lipsum"></span>Vestibulum tincidunt, ante at fringilla cursus, quam
+                nisl vulputate nunc, non
+                ultricies lorem lectus faucibus elit. Sed felis quam, cursus nec viverra eu, vestibulum eu urna.
+                Maecenas
+                nec nibh scelerisque, mollis orci mattis, semper est. Donec a dolor fringilla, porttitor mauris at,
+                faucibus
+                orci. Pellentesque ut rhoncus orci, tempor efficitur enim.</p></div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    /*$('li a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show')
+    });*/
+
+    var contents = $('.my_content');
+    $('.my_tab').mouseenter(function () {
+        $(this).addClass('active');
+        $('.my_tab').not($(this)).removeClass('active');
+
+        var id = $(this).index();
+        contents.eq(id).stop(false, true).show(200);
+        contents.not(contents.eq(id)).stop(false, true).hide(200);
+    });
+    contents.eq(0).show();
+</script>
+</html>

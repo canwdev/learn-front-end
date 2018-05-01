@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document empty & remove & detach</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1, .div2 {
+            height: 210px;
+            width: 650px;
+            margin: 10px auto;
+            background-color: #b9b9b9;
+            padding-top: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <p>aaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbb</p>
+    <p>ccccccccccccccc</p>
+    <p>ddddddddddddddd</p>
+    <p>eeeeeeeeeeeeeee</p>
+</div>
+</body>
+<script>
+
+    $('p').click(function () {
+
+        // empty只是清空标签中的内容
+        // 删除匹配的元素集合中所有的子节点。
+        // $(this).empty();
+
+        // remove连带标签一起删除
+        // 从DOM中删除所有匹配的元素。
+        /*var remove = $(this).remove();
+        // $('.div1').append(remove);
+        console.log(remove);*/
+
+        // detach移除的同时保留事件
+        // 这个方法不会把匹配的元素从jQuery对象中删除
+        var detach = $(this).detach();
+        $('.div1').append(detach);
+        console.log(detach);
+    });
+
+</script>
+</html>

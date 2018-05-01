@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 组件</title>
+    <script src="../vue.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .big {
+            color: #0F9E5E;
+            font-size: xx-large;
+        }
+    </style>
+</head>
+<body>
+
+<div id="demo">
+    <span v-bind:class="{ red: isRed }">class绑定</span>
+    <span v-bind:class="[ isBlue ? 'blue':'red' ]">class绑定</span>
+
+    <hr/>
+
+    <mycomponent></mycomponent>
+
+    <hr/>
+
+    <mycompo-out></mycompo-out>
+    <mycompo-out v-bind:info="msg1"></mycompo-out>
+    <mycompo-out></mycompo-out>
+</div>
+
+</body>
+<script type="text/x-template" id="tmp-mycompo-out">
+    <div class="big">一个vuejs组件例子({{info}})</div>
+</script>
+
+<script>
+    Vue.component('mycomponent',{
+        template:'<div class="big">一个vuejs组件例子</div>'
+    });
+
+    Vue.component('mycompo-out',{
+        template:'#tmp-mycompo-out',
+        props:['info']
+    });
+
+    new Vue({
+        el: '#demo',
+        data: {
+            isRed: true,
+            isBlue: true,
+            msg1:'JavaScript'
+        }
+    })
+
+
+</script>
+</html>

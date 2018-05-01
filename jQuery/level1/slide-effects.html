@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Left sliding right slide effects</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .img_shell {
+            width: 180px;
+            overflow: hidden;
+            float: left;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img id="img_toggle" src="res/off.png" title="Toggle">
+    <img id="img_hover" src="res/off.png" title="Hover">
+</div>
+<div id="div_swipe_area">
+    <h1>Left sliding right slide effects</h1>
+    <div class="img_shell">
+        <img class='img_swipe' src="res/bili.png">
+    </div>
+</div>
+
+</body>
+<script>
+    var divImgObjs = $('.img_shell');
+    for (var i = 0; i < 13; i++)
+        $('#div_swipe_area').append(divImgObjs[0].outerHTML);
+
+    $('.img_swipe').hover(
+        function () {
+            $(this).stop(false, false).animate({
+                'margin-left': '-100px'
+            }, 200)
+        }, function () {
+            $(this).stop(false, false).animate({
+                'margin-left': '0px'
+            }, 200)
+        }
+    );
+
+    /*$('.img_swipe').mouseenter(function () {
+        $(this).animate({
+            'margin-left': '-100px'
+        }, 500)
+    });
+
+    $('.img_swipe').mouseleave(function () {
+        $(this).animate({
+            'margin-left': '0px'
+        }, 500)
+    });*/
+
+    $('#img_toggle').toggle(
+        function () {
+            this.src = 'res/on.png';
+        },
+        function () {
+            this.src = 'res/off.png';
+        }
+    );
+
+    $('#img_hover').hover(
+        function () {
+            this.src = 'res/on.png';
+        },
+        function () {
+            this.src = 'res/off.png';
+        }
+    );
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="utf-8"/>
+    <title>Bootstrap 用户中心</title>
+
+    <link rel="stylesheet" href=../bootstrap-3.3.7-dist/css/bootstrap.min.css>
+    <script src="../bootstrap-3.3.7-dist/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script src="../../my-demos/slides/js/holder.min.js"></script>
+    <link rel="stylesheet" href="bs-demo-user-center.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="page-header">Bootstrap 用户中心</h1>
+    <div class="row">
+        <div class="col-md-2">
+            <ul id="myTabs" class="nav nav-pills nav-stacked">
+                <li><a href="#" id="admin_info_show-tab" role="tab" data-toggle="tab" aria-controls="admin_info_show" class="active">概览</a></li>
+                <li><a href="#" id="admin_info_mod-tab" role="tab" data-toggle="tab" aria-controls="admin_info_mod">修改资料</a></li>
+                <li><a href="#" id="admin_pwd_mod-tab" role="tab" data-toggle="tab" aria-controls="admin_pwd_mod">修改密码</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div class="uinfo_container">
+                <div style="text-align: center">
+                    <img id="img_headimg1" src="holder.js/128x128?theme=vine" class="img-circle"/>
+                </div>
+                <div class="uinfo_main">
+                    <div style="text-align: center">
+                        <h3>
+                            <span>User1</span>
+                            <div><a href="#">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </a></div>
+                        </h3>
+                        <h5>
+                            <span>Cras sit amet nibh libero, in gravida nulla.</span>
+                        </h5>
+                    </div>
+
+                    <hr/>
+                    <ul>
+                        <li>
+                            <div>用户名</div>
+                            <span>User1</span>
+                        </li>
+                        <li>
+                            <div>id</div>
+                            <span>0001</span>
+                        </li>
+                        <li>
+                            <div>组</div>
+                            <span>admin</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

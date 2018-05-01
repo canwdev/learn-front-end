@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter query 选择器和筛选的区别</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            font-size: 110%;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        .div1 {
+            cursor: pointer;
+            background-color: #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div1">
+    <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbbbbbbbbb</p>
+    <div>
+        <p>cccccccccccccccccccccc</p>
+        <p>dddddddddddddddddddddd</p>
+    </div>
+</div>
+
+</body>
+<script>
+
+    $('.div1').toggle(
+        function () {
+            // 此时只能用筛选来实现，不能用$('this>p')选择器
+            $(this).children('p').css({'color': '#0f0'});
+        },
+        function () {
+            $(this).children('p').css({'color': '#000'});
+        }
+    );
+</script>
+</html>

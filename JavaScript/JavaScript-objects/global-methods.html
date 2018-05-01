@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global.方法</title>
+    <style>
+        html {
+            background-color: #242424;
+            color: #D9D9D9;
+        }
+    </style>
+</head>
+<body>
+<h1>window.方法</h1>
+<div>
+    <button id="alertDialog">alert()</button>
+    <button id="promptDialog">prompt()</button>
+    <button id="confirmDialog">confirm()</button>
+</div>
+<h1>Global.方法</h1>
+<p>请打开 Console，按 <strong>F12</strong></p>
+</body>
+<script>
+    var alertDialog = document.getElementById('alertDialog');
+    alertDialog.onclick = function () {
+        alert('alertDialog');
+    };
+    var promptDialog = document.getElementById('promptDialog');
+    promptDialog.onclick = function () {
+        var result = prompt('promptDialog');
+        console.log(result);
+    };
+    var confirmDialog = document.getElementById('confirmDialog');
+    confirmDialog.addEventListener('click', function () {
+        var result = confirm('confirmDialog');
+        console.log(result);
+    });
+
+    var line = function () {
+        console.log('---------------------------------');
+    };
+
+    // typeof();
+    var testTypeOf = "123.45";
+
+    if (typeof(testTypeOf) === 'string') {
+        console.log('testTypeOf is string');
+    } else {
+        console.log('testTypeOf is not string, it is ' + typeof (testTypeOf));
+    }
+
+    // parseInt();
+    // Number();
+    var numberInt = parseInt(Number(123.45));
+    console.log(numberInt);
+
+    // parseFloat();
+    var numberFloat = parseFloat(testTypeOf);
+    console.log(numberFloat);
+
+
+    // eval();
+    line();
+    var evalString = 'console.log("not only a string "+(1+1))';
+    eval(evalString);
+
+    // JSON 字符串转 JSON 对象
+    line();
+    var JsonString = "{'username':'user1','age':'20'}";
+    var obj = eval('(' + JsonString + ')');
+    console.log(obj);
+    var JsonString2 = '{"username":"user1","age":"20"}';
+    var obj2 = JSON.parse(JsonString2);
+    console.log(obj2);
+
+    // in 检查某一个属性是否是这个对象里面的
+    console.log('username' in obj);
+
+    // String();
+    line();
+    var thisIsNumber = 123456;
+    console.log(typeof(thisIsNumber) + ' -> ' + typeof(String(thisIsNumber)));
+
+    // Boolean();
+    line();
+    var testBoolean = [0, 1, '', '0', null, NaN, undefined];
+    for (var i = 0; i < testBoolean.length; i++) {
+        console.log(testBoolean[i] + ' -> ' + Boolean(testBoolean[i])
+            + ' ( ' + typeof(testBoolean[i]) + ' -> ' + typeof(Boolean(testBoolean[i])) + ' ) ');
+    }
+    line();
+
+    // delete 用于删除全局变量（不能删除用var定义的变量）
+    a = 'alive';
+    delete a;
+    console.log(a);
+</script>
+</html>

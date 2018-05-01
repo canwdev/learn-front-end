@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document 内部append</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1, .div2 {
+            height: 210px;
+            width: 650px;
+            margin: 10px auto;
+            background-color: #b9b9b9;
+            padding-top: 5px;
+            text-align: center;
+        }
+
+        .center {
+            width: 700px;
+            margin: 0px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <p>aaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbb</p>
+    <p>ccccccccccccccc</p>
+    <p>ddddddddddddddd</p>
+    <p>eeeeeeeeeeeeeee</p>
+</div>
+<div class="center">
+    <button class="btn">Toggle</button>
+</div>
+<div class="div2">
+</div>
+</body>
+<script>
+    $('.btn').toggle(
+        function () {
+            // append 向每个匹配的元素内部追加内容。
+            // prepend 向每个匹配的元素内部的前面追加内容。
+            $('.div2').append($('.div1').children());
+        },
+        function () {
+            // appendTo 把所有匹配的元素追加到另一个指定的元素元素集合中。
+            // 实际上，使用这个方法是颠倒了常规的$(A).append(B)的操作
+            $('.div2').children().appendTo($('.div1'));
+        }
+    );
+
+    $('p').click(function () {
+        // prepend 向每个匹配的元素内部前置内容。
+        $(this).prependTo($('.div2'));
+    });
+</script>
+</html>

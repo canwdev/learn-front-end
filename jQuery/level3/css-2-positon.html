@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS position</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .container {
+            width: 1150px;
+            height: 200px;
+            margin: 100px auto;
+            background-color: #dddddd;
+            padding: 10px;
+        }
+
+        .div1 {
+            width: 250px;
+            height: 70px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.44);
+            float: left;
+            margin-left: 30px;
+        }
+
+        .img {
+            width: 100%;
+        }
+
+        .up {
+            text-align: center;
+            width: 250px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="div1">
+        <img src="res/bili.png" class="img">
+    </div>
+    <div class="div1">
+        <img src="res/bili0.png" class="img">
+    </div>
+    <div class="div1">
+        <img src="res/bili.png" class="img">
+    </div>
+    <div class="div1">
+        <img src="res/bili0.png" class="img">
+    </div>
+</div>
+
+
+<div class="up">
+    <img src="res/up.png">
+</div>
+</body>
+<script>
+
+    var up = $('.up')
+    $('.div1').mouseenter(
+        function () {
+            // 获取匹配元素在当前视口的相对偏移。
+            var oLeft = $(this).offset().left;
+            var oTop = $(this).offset().top;
+            up.show(300).css({'left': oLeft + 'px', 'top': oTop + $(this).outerHeight() + 10 + 'px'});
+
+            console.log('offset: left=' + oLeft + ', top=' + oTop);
+
+            // 获取匹配元素相对父元素的偏移。
+            var pLeft = $(this).position().left;
+            var pTop = $(this).position().top;
+
+            console.log('position: left=' + pLeft + ', top=' + pTop);
+        }
+    );
+
+</script>
+</html>

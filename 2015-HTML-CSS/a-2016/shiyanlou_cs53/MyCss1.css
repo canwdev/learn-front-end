@@ -1,0 +1,78 @@
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-indent: 5em;
+}
+
+a:link {
+    color: darkgoldenrod;
+    text-decoration: none;
+}
+
+a:visited {
+    color: darkviolet;
+}
+
+a:hover {
+    color: coral;
+    background-color: aquamarine
+}
+
+a:active {
+    color: #ff7f7f;
+    background-color: black
+}
+
+ul.circle {
+    list-style-type: circle
+}
+
+ul.square {
+    list-style-type: square
+}
+
+ol.upper-roman {
+    list-style-type: upper-roman
+}
+
+ol.lower-alpha {
+    list-style: lower-alpha
+}
+
+ol.img {
+    list-style-image: url(src/call-start.png)
+}
+
+#tb th, td {
+    border: 1px solid green;
+    padding: 5px;
+}
+
+#tb {
+    border-collapse: collapse;
+    width: 500px;
+    text-align: center;
+}
+
+#tb th {
+    text-align: center;
+    color: black;
+    background-color: lightblue;
+}
+
+#tb tr.tr2 td {
+    color: black;
+    background-color: #B2FF99;
+}
+
+#p1 {
+    outline-color: aquamarine;
+    outline-style: groove;
+    outline-width: 5px
+}
+
+#p2 {
+    outline: dotted green 3px;
+}

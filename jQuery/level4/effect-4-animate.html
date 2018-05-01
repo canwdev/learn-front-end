@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>效果 animate()</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <script src="dragger.js"></script>
+    <style>
+        body {
+            background-color: #444;
+        }
+
+        .image_div {
+            margin: 0 auto;
+            width: 250px;
+            height: 250px;
+            padding: 20px;
+            border: 10px dashed #f00;
+        }
+
+        .button_div {
+            width: 99%;
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+        }
+
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="image_div">
+    <img src="res/firefox.png"/>
+</div>
+
+<div class="button_div">
+    <button class="up">上</button>
+    <button class="down">下</button>
+    <button class="left">左</button>
+    <button class="right">右</button>
+</div>
+</body>
+<script>
+
+    $('.up').click(function () {
+        $('img').animate({
+            'margin-top':'-100px',
+        },1000);
+    });
+
+    $('.down').click(function () {
+        $('img').animate({
+            'margin-top':'100px',
+        },1000);
+    });
+
+    $('.left').click(function () {
+        $('img').animate({
+            'margin-left':'-100px',
+        },1000);
+    });
+
+    $('.right').click(function () {
+        $('img').animate({
+            'margin-left':'100px',
+        },1000);
+    });
+
+
+    setDrag($('img'));
+</script>
+</html>

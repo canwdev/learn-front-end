@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="utf-8"/>
+    <title>Bootstrap 表单（水平布局）</title>
+    <link rel="stylesheet" href=../bootstrap-3.3.7-dist/css/bootstrap.min.css>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-10">
+                <input id="username" type="text" placeholder="Username" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+                <input id="password" type="password" placeholder="Password" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Static ID</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">%E7%95%99%E8%A8%80</p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+                <input class="btn btn-primary" type="submit" value="Submit">
+                <input class="btn btn-danger" type="reset" value="Reset" onclick="return confirm('Are you sure?');">
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+
+</script>
+</html>

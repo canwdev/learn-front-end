@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 安装使用</title>
+    <!--引入开发版本vue.js，在开发版本中会有很多友好的提示-->
+    <script src="../vue.js"></script>
+</head>
+<body>
+<div id="demo">
+    <h1>Hello {{msg}}</h1>
+</div>
+</body>
+<script>
+    obj = new Vue({
+        el:'#demo',
+        data: {
+            msg:'Vue.js!!'
+        }
+    })
+</script>
+</html>

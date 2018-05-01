@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单选择器</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            font-size: 110%;
+        }
+
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<span>Reference: </span><a href="filter-1-filter.html">filter-1-filter.html</a>
+
+<p>aaaaaaaaaaaaaaaaaaaaaa</p>
+<p>bbbbbbbbbbbbbbbbbbbbbb</p>
+<p>cccccccccccccccccccccc</p>
+<p>dddddddddddddddddddddd</p>
+<p>eeeeeeeeeeeeeeeeeeeeee</p>
+<p>ffffffffffffffffffffff</p>
+<p>gggggggggggggggggggggg</p>
+</body>
+<script>
+
+    // 第一个和最后一个
+    $('p:first').css({'text-shadow': '0px -5px 3px #f00'});
+    $('p:last').css({'text-shadow': '0px 5px 3px #00f'});
+
+    // 不选择()
+    $('p:not(:first):not(:last)').css({'text-shadow': '0px 0px 3px #0f0'});
+
+    // （从零开始的）偶数和奇数
+    $('p:even').css({'border': '2px dotted #000'});
+    $('p:odd').css({'border': '2px solid #000'});
+
+    // （从零开始的）等于、大于、小于
+    $('p:eq(3)').css({'background-color': '#d4d4d4'});
+    $('p:gt(3)').css({'background-color': '#a0a0a0'});
+    $('p:lt(3)').css({'background-color': '#f7f7f7'});
+</script>
+</html>

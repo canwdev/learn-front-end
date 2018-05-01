@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="UTF-8">
+    <title>Bootstrap 面板</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!--<script src="../bootstrap-3.3.7-dist/js/holder.min.js"></script>-->
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            虽然不总是必须，但是某些时候你可能需要将某些 DOM 内容放到一个盒子里。对于这种情况，可以试试面板组件。
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">带标题的面版</div>
+        <div class="panel-body">
+            虽然不总是必须，但是某些时候你可能需要将某些 DOM 内容放到一个盒子里。对于这种情况，可以试试面板组件。
+            虽然不总是必须，但是某些时候你可能需要将某些 DOM 内容放到一个盒子里。对于这种情况，可以试试面板组件。
+        </div>
+        <div class="panel-footer">
+            带脚注的面版
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">版本6.3（内部版本9600）<span class="close"
+                                                        onclick="$(this).parent().parent().hide()">&times;</span></div>
+        <div class="panel-body">
+            您对该软件的使用受您为获得该软件而签订的许可协议的条款和条件的约束。如果您是批量许可客户，
+            则您对该软件的使用应受批量许可协议的约束。如果您未从 Microsoft 或其许可的分销商处获得该软件的有效许可，则不得使用该软件。
+        </div>
+        <div class="panel-footer">
+            EULAID:WinBlue_R8_1_ED_PS_V_ZH-CN
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+        </div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">带表格的面板</h3>
+        </div>
+        <div class="panel-body">
+            这里有一些默认面板内容。 Nulla vitae elit libero，pharetra augue。 Aenean lacinia bibendum nulla sed consectetur。 Aenean
+            eu leo quam。 Pellentesque ornare sem lacinia quam venenatis vestibulum。 Nullam id dolor id nibh ultricies
+            vehicula ut id elit。
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">带表格的面板</h3>
+        </div>
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr/>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">面板与列表组组合使用</h3>
+        </div>
+        <div class="list-group">
+            <div class="list-group-item">列表组是灵活又强大的组件<span class="badge">14</span></div>
+            <div class="list-group-item">不仅能用于显示一组简单的元素<span class="badge">22</span></div>
+            <div class="list-group-item active">还能用于复杂的定制的内容</div>
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+<script>
+
+</script>
+</html>

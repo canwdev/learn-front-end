@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM H1</title>
+    <link href="default.css" rel="stylesheet">
+</head>
+<body>
+<div>
+    <h1>H1</h1>
+    <h2>
+        <a href="javascript:" id="aid">Back</a>
+    </h2>
+    <h2>
+        <a href="browser-object-model-h2.html">H2</a>
+    </h2>
+    <h3 hidden>
+        <a href="javascript:" id="aid2">Forward</a>
+    </h3>
+</div>
+</body>
+<script>
+    document.getElementById('aid').onclick = function () {
+        history.back();
+//        history.go(-1);
+    }
+
+    document.getElementById('aid').onclick = function () {
+        history.forward();
+    }
+</script>
+</html>

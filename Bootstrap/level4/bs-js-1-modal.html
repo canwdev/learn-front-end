@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="UTF-8">
+    <title>Bootstrap 模态框</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close">&times;</button>
+                <h4 class="modal-title">模态框静态实例</h4>
+            </div>
+            <div class="modal-body">
+                <p>以下模态框包含了模态框的头、体和一组放置于底部的按钮。</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default">Close</button>
+                <button class="btn btn-primary">保存修改</button>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <button class="btn btn-primary" data-toggle="modal" data-target="#my-modal">启动一个模态框</button>
+    <button class="btn btn-danger" data-toggle="modal" data-target="#my-modal" data-whatever="@canwdev">启动一个模态框
+        @canwdev
+    </button>
+
+    <div class="modal fade" id="my-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">弹出了一个模态框 <span class="badge" id="name"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p>以下模态框包含了模态框的头、体和一组放置于底部的按钮。</p>
+
+                    <!--Bootstrap/level2/bs-component-5-forms.html-->
+                    <div class="form-group">
+                        <label>选择题</label>
+                        <div class="radio"><label><input type="radio" name="select"/>游戏A</label></div>
+                        <div class="radio"><label><input type="radio" name="select"/>游戏B</label></div>
+                        <div class="radio"><label><input type="radio" name="select"/>游戏C</label></div>
+                        <div class="radio"><label><input type="radio" name="select"/>游戏D</label></div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" id="save-changes">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script>
+    $('.radio').click(function () {
+        txt = this.textContent;
+    });
+
+    var save = false;
+
+    $('#save-changes').click(function () {
+        if (typeof(txt) !== "undefined") console.log(txt);
+        $('#my-modal').modal('hide');
+
+        console.log('save:'+save);
+        save = true;
+    });
+
+    //    bootstrap 模态框关闭事件
+    $('#my-modal').on('hidden.bs.modal', function () {
+
+        console.log('close:'+save);
+        
+        if (!save) {
+            var rad = $('.radio input');
+            for (var i = 0; i < rad.length; i++) {
+                rad[i].checked = false;
+            }
+        } else {
+            save = false;
+        }
+    });
+
+
+    $('#my-modal').on('show.bs.modal', function (e) {
+        var button = $(e.relatedTarget);
+        var name = button.data('whatever');
+        $('#name').html(name);
+    })
+</script>
+</html>

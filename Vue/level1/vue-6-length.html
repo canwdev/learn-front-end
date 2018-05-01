@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js length</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="demo">
+    <my-compo v-bind:items="items"></my-compo>
+</div>
+
+</body>
+<script type="text/x-template" id="tmp-mc">
+
+    <form v-on:submit.prevent="addItem(newItem)">
+        <h1>总共有 {{items.length}} 个条目</h1>
+        <ol>
+            <li v-for="(item, index) in items">
+                {{item.text}}
+                <button v-on:click.prevent="removeItem(index)">&times;</button>
+            </li>
+        </ol>
+        <div>
+            <input type="text" v-model="newItem.text" placeholder="newItem.text"
+                   @keyup.enter="addItem(newItem)" onkeydown="if(event.keyCode==13)return false;">
+            <button>添加</button>
+        </div>
+    </form>
+</script>
+
+<script>
+
+    Vue.component('my-compo', {
+        template: '#tmp-mc',
+        props:['items'],
+        data: function () {
+            return {
+                newItem:{text:''}
+            }
+        },
+        methods:{
+            addItem: function(newItem){
+                this.items.push(newItem);
+                this.newItem={text:''};
+            },
+            removeItem: function (index) {
+                this.items.splice(index, 1)
+            }
+        }
+    })
+
+    new Vue({
+        el: '#demo',
+        data: {
+            items:[
+                {text:'text1'}
+            ]
+        }
+    })
+
+</script>
+</html>

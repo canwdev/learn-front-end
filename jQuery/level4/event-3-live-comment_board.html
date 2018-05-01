@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event 留言板</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        body {
+            background-color: #444;
+        }
+
+        .input_div {
+            border: 5px dashed #fff;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        textarea {
+            height: 100px;
+            width: 990px;
+            outline: none;
+            border-radius: 10px;
+            font-size: xx-large;
+            padding: 5px;
+        }
+
+        button {
+            width: 100px;
+            height: 30px;
+            background: #272822;
+            font-weight: bold;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            color: #fff;
+            outline: none;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        button:active {
+            background: #fff;
+            color: #272822;
+        }
+
+        .show {
+            width: 1000px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 10px;
+            border: 2px solid #272822;
+            border-radius: 10px;
+            max-height: 500px;
+            overflow: auto;
+        }
+
+        .close {
+            float: right;
+            margin-right: 10px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="input_div">
+    <textarea></textarea>
+    <br/>
+    <center>
+        <button>Submit</button>
+    </center>
+</div>
+
+<div class="message">
+    <div class="show">
+        <div class="close">×</div>
+        [Test] Hello, world
+    </div>
+</div>
+</body>
+<script>
+    $('button').click(function () {
+        var text = $('textarea').val();
+        if (text !== '') {
+            var newObj = document.createElement('div');
+            $(newObj).attr({'class': 'show'});
+            $(newObj).append("<div class='close'>&times;</div>");
+
+            var result = '[' + new Date() + ']<br/>' + text;
+            $(newObj).children().after(result);
+
+            $('.message').prepend(newObj)
+
+            $('textarea').val('');
+        }
+    });
+
+    $('.close').live('click', function () {
+        $(this).parent().remove();
+    })
+</script>
+</html>

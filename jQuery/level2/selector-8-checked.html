@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checked jQuery</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        #checkbox_area {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="checkbox_area">
+        <label>
+            <input type="checkbox">Checkbox<br/>
+        </label>
+    </div>
+
+    <div>
+        <button id="btn_all">Select All</button>
+        <button id="btn_none">Deselect All</button>
+        <button id="btn_anti">反选</button>
+        <button id="btn_confirm">确认</button>
+    </div>
+</div>
+
+<div id="results"></div>
+</body>
+<script>
+
+    function checkboxGenerator(parentObj, max) {
+        for (var i = 0; i < max; i++) {
+            var para = document.createElement('label');
+            para.innerHTML += '<input type="checkbox">Checkbox<br/>';
+            parentObj.appendChild(para);
+        }
+    }
+
+    checkboxGenerator($('#checkbox_area')[0], 10);
+
+    $('#btn_all').click(function () {
+        $(':checkbox').attr({'checked': true});
+    });
+
+    $('#btn_none').click(function () {
+        $(':checkbox').attr({'checked': false});
+    });
+
+    $('#btn_anti').click(function () {
+        $(':checkbox').each(function () {
+            this.checked = !this.checked;
+        })
+    });
+
+    $('#btn_confirm').click(function () {
+        // $(':checked').parent().clone().appendTo('#results');
+        $('#checkbox_area :checked').parent().appendTo('#results');
+    })
+</script>
+</html>

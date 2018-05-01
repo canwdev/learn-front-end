@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在HTML文件内部使用JavaScript - JS的执行顺序</title>
+
+    <!--这是外部的js文件，关于jQuery的load方法，参考jQuery/level4/event-1-load.html-->
+    <!--<script src="../jquery-1.8.3.min.js"></script>-->
+
+    <script>
+        window.onload = function () {
+            var txt = document.getElementById('content');
+            alert(txt.innerHTML);
+        };
+
+        alert("在body之前执行了");
+    </script>
+</head>
+
+<body>
+<div>
+    <p id="content">浏览器对html页面内容的加载是顺序加载，也就是在html页面中前面先加载，因此当加载到JS脚本时，JS是一种解释性的脚本，也是从上而下顺序执行。</p>
+</div>
+</body>
+<script>
+    alert("在body之后执行了");
+</script>
+</html>

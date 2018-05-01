@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="UTF-8">
+    <title>Bootstrap 按钮带JS</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script src="../../my-demos/slides/js/holder.min.js"></script>
+
+
+    <style>
+        .btn {
+            outline: none !important;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target="#my-bar" data-offset="150">
+<div class="container">
+    <h1 class="page-header">Bootstrap</h1>
+
+    <button type="button" id="myButton" data-loading-text="加载中..." class="btn btn-warning">
+        点击
+    </button>
+
+    <hr/>
+
+    <button type="button" class="btn btn-danger" data-toggle="button" aria-pressed="false">
+        单次切换
+    </button>
+
+    <hr/>
+
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="checkbox" checked> 多选 1 (预选择)
+        </label>
+        <label class="btn btn-primary">
+            <input type="checkbox"> 多选 2
+        </label>
+        <label class="btn btn-primary">
+            <input type="checkbox"> 多选 3
+        </label>
+    </div>
+
+    <hr/>
+
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+            <input type="radio" name="options" checked> 单选 1 (预选择)
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options"> 单选 2
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options"> 单选 3
+        </label>
+    </div>
+</div>
+
+
+</body>
+<script>
+    $('#myButton').click(function () {
+        var $btn = $(this).button('loading');
+        setTimeout(function () {
+            $btn.button('reset')
+        },1000);
+    })
+
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+</head>
+<body>
+<form action="javascript:" id='form1'>
+    <p>
+        <label for="user_name">Name </label><input id='user_name' type="text" value="1">
+    </p>
+    <p>
+        <label for="user_pass">Password </label><input id='user_pass' type="password" value="111">
+    </p>
+    <p><input type="submit" value="Ok"></p>
+</form>
+</body>
+<script>
+    form1 = document.getElementById('form1');
+
+    form1.onsubmit = function () {
+        var name = document.getElementById('user_name');
+        var pass = document.getElementById('user_pass');
+        if (name.value == '' || pass.value == '') {
+            alert('Input something both');
+            return false;
+        } else {
+            this.action = 'go.php';
+        }
+    }
+</script>
+</html>

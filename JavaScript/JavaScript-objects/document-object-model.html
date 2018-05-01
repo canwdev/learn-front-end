@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Object Model</title>
+    <link rel="stylesheet" href="default.css">
+</head>
+<body>
+<h1 class="test">Title</h1>
+<a name="contents"><h2>Contents</h2></a>
+<ul id="toc"></ul>
+
+<a name="plants"><h2>Plants</h2></a>
+<ol>
+    <li>Apples</li>
+    <li>Oranges</li>
+    <li>Pears</li>
+</ol>
+
+<a name="veggies"><h2>Veggies</h2></a>
+<ol>
+    <li>Carrots</li>
+    <li>Celery</li>
+    <li>Beats</li>
+</ol>
+</body>
+<script>
+    /*// 直接获取dom元素对象集合:
+    document.links;
+    document.images;
+    document.forms;
+    document.anchors;
+    tableObj.rows;
+    tableRowObj.cells;
+    selectObj.options;
+    selectObj.selectedIndex获取下拉菜单中第几个option选项被选中;*/
+
+    var names = document.anchors;
+    for (var i = 0; i < names.length; i++) {
+        li = document.createElement("li");
+        newAnchor = document.createElement('a');
+        newAnchor.href = "#" + document.anchors[i].name;
+        newAnchor.textContent = document.anchors[i].text;
+        li.appendChild(newAnchor);
+        toc.appendChild(li);
+
+        names[i].style.color = '#0f0';
+
+    }
+
+    /*// 元素对象js属性:
+    obj.tagName;
+    obj.innerHTML;
+    obj.outerHTML;
+    obj.textContent;*/
+
+    var obj = document.getElementsByTagName('li');
+    for (var i in obj) {
+        console.log(obj[i].outerHTML);
+
+    }
+
+    /*// DOM基础对象:
+    document
+    document.documentElement
+    document.head
+    document.title
+    document.body*/
+    console.log(document.head);
+
+
+    /*// 获取元素对象方法:
+ ★ document.getElementById()
+ ☆ document.getElementsByTagName()
+    document.getElementsByClassName()
+    document.getElementsByName()
+ ★ document.querySelector()
+ ★ document.querySelectorAll()*/
+    var testObj = document.querySelector('.test');
+    console.log(testObj);
+
+    /*// 元素对象标准属性:
+    // <form action='' method=''></form>
+    // 其中action和method是标准属性
+    obj.id;
+    obj.className;
+    obj.style;
+    obj.title;*/
+    console.log(testObj.style);
+
+
+    /*// 元素对象非标准属性:
+    // <form action='' method='' age='5' sex='nv' index='3'></form>
+    // 其中age、sex和index是非标准属性
+    obj.getAttribute('age');
+    obj.setAttribute('age','50');*/
+    console.log(testObj.getAttribute('class'));
+
+</script>
+</html>

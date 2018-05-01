@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择器</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>基本选择器</h1>
+    <h3 id="test_id">h3h3h3h3h3h3h3h3h3h3h3h3h3h3h3</h3>
+    <p class="test_class">ppppppppppppppppppppppppppppppppp</p>
+    <h3>h3h3h3h3h3h3h3h3h3h3h3h3h3h3h3</h3>
+    <p>ppppppppppppppppppppppppppppppppp</p>
+</div>
+</body>
+<script>
+    // 基本选择器
+    $('h1').css({'color': '#f00'});      // 标签选择器
+    $('#test_id').css({'color': '#0f0'});    // id选择器
+    $('.test_class').css({'color': '#00f'}); // class选择器
+
+    $('h1, h3').css({'box-shadow': '0px 0px 5px #0ff'}); // 标签多选
+    $('*').css({'border': '1px solid #000'});    // 全选
+</script>
+</html>

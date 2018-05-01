@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document clone 复制</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1, .div2 {
+
+            width: 95%;
+            margin: 10px auto;
+            background-color: #b9b9b9;
+            padding-top: 5px;
+            text-align: center;
+        }
+
+        .img {
+            margin: 3px;
+            animation: rotate 15s infinite linear;
+            height: 200px;
+            width: 200px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.27);
+            border-radius: 100px;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(360deg);
+            }
+            to {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <img src="res/chrome.png" class="img">
+</div>
+</body>
+<script>
+
+    $('img').click(function () {
+        // 克隆匹配的DOM元素并且选中这些克隆的副本。
+        // 带true参数的表示同时克隆其事件
+        $(this).after($(this).clone(true));
+    });
+
+    /*var infinite = setInterval(
+        function () {
+            $('img').after($('img').clone(true));
+        }, 1000
+    );
+
+    setTimeout(function () {
+        clearInterval(infinite);
+    }, 3000);*/
+</script>
+</html>

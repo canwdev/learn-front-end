@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter query find & nextAll</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        * {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+            font-size: 110%;
+        }
+
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div1">
+    <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbbbbbbbbb</p>
+    <div>
+        <p>cccccccccccccccccccccc</p>
+        <p>dddddddddddddddddddddd</p>
+    </div>
+</div>
+<p>eeeeeeeeeeeeeeeeeeee</p>
+<p>eeeeeeeeeeeeeeeeeeee</p>
+<p>eeeeeeeeeeeeeeeeeeee</p>
+
+</body>
+<script>
+
+    // find()与children()不同的是，find()可以找到其所有的后代元素。
+    $('.div1').children('p').css({'border': '2px solid #000'});
+
+    // 搜索所有与指定表达式匹配的元素。这个函数是找出正在处理的元素的后代元素的好方法。
+    $('.div1').find('p').css({'color': '#0f0'});
+
+    // 查找当前元素之后所有的同辈元素。
+    $('.div1').nextAll().css({'color': '#f00'});
+</script>
+</html>

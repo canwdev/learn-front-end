@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Sets: 复选框</title>
+    <style>
+        #checkbox_area {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="checkbox_area">
+        <label>
+            <input type="checkbox">Checkbox<br/>
+        </label>
+    </div>
+
+
+    <div>
+        <button id="btn_all">全选</button>
+        <button id="btn_none">不选</button>
+        <button id="btn_anti">反选</button>
+    </div>
+</div>
+</body>
+<script>
+    function checkboxGenerator(parentObj, max) {
+        for (var i = 0; i < max; i++) {
+            var para = document.createElement('label');
+            para.innerHTML += '<input type="checkbox">Checkbox<br/>';
+            parentObj.appendChild(para);
+        }
+    }
+
+    var area = document.getElementById('checkbox_area');
+    checkboxGenerator(area, 10);
+
+    var btn_all = document.getElementById('btn_all');
+    var btn_none = document.getElementById('btn_none');
+    var btn_anti = document.getElementById('btn_anti');
+
+    var checkboxes = document.querySelectorAll('input');
+
+    btn_all.onclick = function () {
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
+        }
+    };
+
+    btn_none.onclick = function () {
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = false;
+        }
+    };
+
+    btn_anti.onclick = function () {
+        for (var i = 0; i < checkboxes.length; i++) {
+            /*if (checkboxes[i].checked) {
+                checkboxes[i].checked = false;
+            } else {
+                checkboxes[i].checked = true;
+            }*/
+
+            // 三元运算符a?1:2;
+            // checkboxes[i].checked = checkboxes[i].checked ? false : true;
+
+            // 简化
+            checkboxes[i].checked = !checkboxes[i].checked;
+        }
+    };
+</script>
+</html>

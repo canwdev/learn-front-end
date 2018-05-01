@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frames</title>
+</head>
+<body>
+<h3>Functions</h3>
+<ul>
+    <li>
+        <button id='top'>top</button>
+    </li>
+    <li>
+        <button id='left'>left</button>
+    </li>
+    <li>
+        <button id='right'>right</button>
+    </li>
+    <li><a href="#">#######</a></li>
+    <li><a href="#">#######</a></li>
+    <li><a href="#">#######</a></li>
+</ul>
+</body>
+<script>
+    // 必须在服务端运行，否则会出现 accessing a cross-origin frame.
+    frames = window.top.frames;
+
+    document.getElementById('top').onclick = function () {
+        frames[0].document.body.style.backgroundColor = '#ff0';
+    };
+
+    document.getElementById('left').onclick = function () {
+        frames[1].document.body.style.backgroundColor = '#f0f';
+    };
+
+    document.getElementById('right').onclick = function () {
+        frames[2].document.body.style.backgroundColor = '#0ff';
+    };
+</script>
+</html>

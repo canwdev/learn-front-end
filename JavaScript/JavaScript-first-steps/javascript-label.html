@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 的标签实例</title>
+    <style rel="stylesheet">
+        body {
+            background-color: rgba(200, 156, 0, 0.21);
+        }
+    </style>
+    <link rel="stylesheet" href="javascript-label.css">
+    <script>document.write("你可以\'点击\'下面的按钮: <br/>")</script>
+    <!--<script src="script.js"></script>-->
+</head>
+<body>
+
+<p id="name">Hello, JavaScript</p>
+</body>
+
+<script>
+    // 将JavaScript代码写在body标签的末尾，以便可以直接操作网页元素。
+
+    // 一个对象，从id获取其“实例”
+    var para = document.getElementById("name");
+
+    // 设置监听
+    para.addEventListener('click', updateName);
+
+    // 方法
+    function updateName() {
+        // 弹出文本输入框
+        var name = prompt('输入一些东西');
+        if (name && name !== "") {
+            para.textContent = name;
+        } else {
+            // 弹出警告对话框
+            alert("没有输入!");
+            para.textContent = "没有输入";
+        }
+    }
+</script>
+</html>

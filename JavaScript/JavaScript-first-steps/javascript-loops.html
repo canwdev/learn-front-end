@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>循环语句实例 - Loop Statements</title>
+    <link rel="stylesheet" href="loops.css">
+</head>
+<body>
+<h1>循环语句实例</h1>
+<button class="startMachine">开机</button>
+<p>如果显示了一些CSS特效，请不要过分关注</p>
+<p>也可以打开 Console，按 <strong>F12</strong></p>
+<hr>
+</body>
+<script>
+    var btn = document.querySelector('.startMachine');
+    var txt = document.querySelector('p');
+
+    btn.addEventListener('click', updateBtn);
+
+    function updateBtn() {
+        // if 判断语句（if(条件){语句}else if(条件){语句}else{语句}）
+        if (btn.textContent === '开机') {
+            showBlocks();
+            btn.textContent = '关机';
+            txt.textContent = '已显示乘法表';
+        } else {
+            hideBlocks();
+            btn.textContent = '开机';
+            txt.textContent = '已关闭';
+        }
+    }
+
+    // switch 开关判断语句:
+    week = 5;
+    switch (week) {
+        case 1:
+            console.log('周一');
+            break;
+        case 2:
+            console.log('周二');
+            break;
+        default:
+            console.log('周日');
+            break;
+    }
+
+
+    // while 循环:
+    var i = 0;
+    output = 'while: ';
+    while (i < 3) {
+        output += i + ' ';
+        i++;
+    }
+    console.log(output);
+
+
+    // do-while 循环
+    i = 0;
+    output = 'do-while: ';
+    do {
+        output += i + ' ';
+        i++;
+    } while (i < 3);
+    console.log(output);
+
+
+    //  for 循环:
+    var array = [1, 2, 3, 4, 5];
+    output = 'for: ';
+    for (var i = 0; i < array.length; i++) {
+        output += array[i] + ' ';
+    }
+    console.log(output);
+
+
+    // for-in 循环遍历:
+    var JsonObj = obj = {'username': 'user1', 'age': '20', 'sex': 'female'};
+    output = 'for-in: ';
+    for (i in JsonObj) {
+        output += i + '=' + JsonObj[i] + '; ';
+    }
+    console.log(JsonObj);
+    console.log(output);
+
+    spans = null;
+    tInterval = null;
+    iSpan = null;
+
+    // 9*9 乘法表
+    function out99(n) {
+        for (i = 1; i <= n; i++) {
+            var para = document.createElement('div');
+            para.setAttribute("class", "div_block");
+            for (j = 1; j <= i; j++) {
+                para.innerHTML += '<span style="display: none" class="spx">' + j + '×' + i + '＝' + (j * i) + '</span>';
+            }
+            document.body.appendChild(para);
+        }
+        spans = document.querySelectorAll('.spx');
+    }
+
+    out99(9);
+
+
+    function showBlocks() {
+        if (tInterval !== null) {
+            clearInterval(tInterval);
+        }
+        iSpan = spans.length - 1;
+        tInterval = setInterval(function () {
+            if (iSpan >= 0) {
+                spans[iSpan].style.display = 'inline';
+                spans[iSpan].style.animation = 'fadeIn 1s';
+                iSpan--;
+            } else {
+                clearInterval(tInterval);
+            }
+        }, 10);
+    }
+
+    function hideBlocks() {
+        clearInterval(tInterval);
+        for (var i = 0; i < spans.length; i++) {
+            var a = document.defaultView.getComputedStyle(spans[i], null);
+            if (a.display !== 'none') {
+                iSpan = i;
+                break;
+            } else {
+                iSpan = 0;
+            }
+        }
+        console.log(iSpan);
+        var i2Span = iSpan;
+
+        tInterval = setInterval(function () {
+            if (iSpan < spans.length) {
+                spans[iSpan].style.animation = 'fadeOut 1s';
+                iSpan++;
+            } else {
+                clearInterval(tInterval);
+            }
+        }, 10);
+
+        setTimeout(function () {
+            var t2Interval = setInterval(function () {
+                if (i2Span < spans.length) {
+                    var i = i2Span;
+                    spans[i].style.display = 'none';
+                    i2Span++;
+                } else {
+                    clearInterval(t2Interval);
+                }
+            }, 10);
+        }, 900);
+        /*for (var i = 0; i < spans.length; i++) {
+            spans[i].style.display = 'none';
+        }*/
+    }
+
+
+</script>
+</html>

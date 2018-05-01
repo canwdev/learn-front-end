@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 数据双向绑定</title>
+    <script src="../vue.js"></script>
+    <style>
+        #demo span {
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    <span v-text="msg">TEST</span>
+    <h1>Hello {{msg}}</h1>
+    <label>
+        <input type="text" v-model="msg">
+    </label>
+</div>
+</body>
+<script>
+    new Vue({
+        el:'#demo',
+        data: {
+            msg:'Vue.js!!😇'
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frames</title>
+</head>
+<body>
+<h3>Information</h3>
+</body>
+<script>
+    function createPlaceholder(max) {
+        for (var i = 0; i < max; i++) {
+            var temp = '';
+            for (var j = 0; j < 100; j++) {
+
+                temp += Math.floor(Math.random() * 10);
+            }
+            var para = document.createElement('p');
+            para.innerHTML += '<span>' + i + ':' + temp + '</span>';
+            document.body.appendChild(para);
+        }
+    }
+
+    createPlaceholder(30);
+</script>
+</html>

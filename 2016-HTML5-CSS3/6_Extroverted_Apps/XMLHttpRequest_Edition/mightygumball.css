@@ -1,0 +1,24 @@
+h1 {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 80%;
+    margin: 0px auto;
+    font-size: 40px;
+    font-family: monospace;
+}
+
+.blink {
+    float: right;
+    padding: 0px;
+    margin: 0px;
+    color: white;
+}
+
+#sales {
+    min-height: 100px;
+    min-width: 10px;
+    background-color: #dbdbdb;
+}

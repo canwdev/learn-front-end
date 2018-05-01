@@ -1,0 +1,74 @@
+
+body {
+    background-color: #f2f2f2;
+    margin: 0px;
+    font-family: "Microsoft YaHei UI Light";
+}
+
+* {
+    font-size: 20px;
+
+}
+
+.con_input {
+    margin: 15px auto;
+    border: 1px solid #bfbfbf;
+    width: 550px;
+    min-height: 100px;
+    padding: 10px 25px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.72);
+
+}
+
+.can_output {
+    border: 1px solid #adadad;
+    margin: 0px auto;
+    width: 600px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+    background-color: white;
+}
+
+.btn {
+    border-radius: 2px;
+    background-color: rgba(250, 250, 250, 0.71);
+    border: 1px solid #bfbfbf;
+    box-shadow: 0px 1px 1px #a0a0a0;
+    outline: none;
+    transition: box-shadow 0.5s;
+    margin: 5px;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.btn-select {
+    float: right;
+    min-width: 100px;
+    max-width: 300px;
+}
+
+.btn:hover {
+    font-size: 105%;
+    background-color: rgba(235, 235, 235, 0.72);
+    box-shadow: 0px 1px 10px #a0a0a0;
+    transition: background-color 0.5s;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    min-width: 105px;
+}
+
+.btn:active {
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    background-color: #d6d6d6;
+    box-shadow: 0px 1px 1px #a0a0a0;
+}
+
+.submit-btn {
+    min-width: 100px;
+    float: right;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+

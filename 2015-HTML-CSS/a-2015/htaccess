@@ -1,0 +1,1 @@
+AllowOverride AllPHP_FLAG output_buffering On

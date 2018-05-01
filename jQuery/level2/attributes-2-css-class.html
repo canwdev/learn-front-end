@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attributes css class</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1 {
+            width: 500px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .img {
+            height: 200px;
+            width: 200px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.27);
+            border-radius: 100px;
+            transition: all 0.5s ease;
+        }
+
+        .imgHover {
+            animation: rotate 0.4s infinite linear;
+            box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.56);
+            height: 200px;
+            width: 200px;
+            border-radius: 100px;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(360deg);
+            }
+            to {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <img src="res/chrome.png" class="img">
+</div>
+</body>
+<script>
+    /*$('img').hover(
+        function () {
+            // 为每个匹配的元素添加指定的类名。
+            $(this).addClass('imgHover');
+        },
+        function () {
+            // 从所有匹配的元素中删除全部或者指定的类。
+            $(this).removeClass('imgHover');
+        }
+    );*/
+
+    $('img').toggle(
+        function () {
+            // 如果存在（不存在）就删除（添加）一个类。
+            $(this).toggleClass('imgHover');
+        },
+        function () {
+            $(this).toggleClass('imgHover');
+        }
+    );
+</script>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM (Browser object model)</title>
+    <link href="default.css" rel="stylesheet" id="css_change">
+</head>
+<body>
+<div>
+    <h1>window对象</h1>
+    <button id="refresh">refresh()</button>
+    <button id="alertDialog" onclick="alert('alertDialog');">alert()</button>
+    <button id="promptDialog" onclick="var result = prompt('promptDialog');
+        console.log(result);">prompt()
+    </button>
+    <button id="confirmDialog" onclick="var result = confirm('confirmDialog');
+        console.log(result);">confirm()
+    </button>
+</div>
+<div>
+    <h1>Navigator对象</h1>
+    <p id="navigator"></p>
+</div>
+<div>
+    <h1>Screen屏幕对象</h1>
+    <p id="screen"></p>
+    <p id="browser_screen"></p>
+</div>
+<div>
+    <h1>History对象</h1>
+    <a href="browser-object-model-h1.html">H1</a>
+</div>
+<div>
+    <h1>Location地址栏</h1>
+    <p id="location"></p>
+</div>
+</body>
+<script>
+    /*// window对象
+    alert();
+    confirm();
+    prompt();
+    setInterval();
+    clearInterval();
+    setTimeout();
+    clearTimeout();*/
+
+    // Navigator对象
+    var ua = navigator.userAgent;
+    // var browserName = ua.match(/chrome|firefox|trident/i);
+    document.getElementById('navigator').textContent = ua;
+
+    // screen屏幕对象
+    var scrW = screen.width;
+    var scrH = screen.height;   // availHeight: 在Windows下不被任务栏占据的剩余空间
+    var scrResolution = scrW + '*' + scrH;
+
+    document.getElementById('screen').textContent = scrResolution;
+
+    var css_change = document.getElementById('css_change');
+    if (scrW < 1024) {
+        css_change.href = 'default_small.css';
+    }
+
+    function updateWindowHW() {
+        // 可视区域的高
+        var screenHeight = document.documentElement.clientHeight;
+        // 可视区域的宽
+        var screenWidth = document.documentElement.clientWidth;
+        document.getElementById('browser_screen').textContent = screenHeight + '*' + screenWidth;
+    }
+
+    updateWindowHW();
+
+    window.onresize = function () {
+        updateWindowHW();
+    }
+
+    /*// history对象
+    history.back();
+    history.forward();
+    history.go(-2);*/
+
+    /*// location地址栏
+    hash       //获取url里的锚点#abc
+    host       //主机名
+    href       //当前的url地址
+    pathname   //index.html 页面的名称
+    protocol   //协议
+    search     //参数 ?id=10&name=user1*/
+
+    document.getElementById('location').innerHTML = location.href +
+        '<span class="bag">' + location.hash + '</span>' +
+        '<span class="bag">' + location.protocol + '</span>' +
+        '<span class="bag">' + location.search + '</span>';
+    document.getElementById('refresh').onclick = function () {
+        // location.href = location.href;
+        location.reload();
+    }
+
+</script>
+</html>

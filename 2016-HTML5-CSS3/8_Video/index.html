@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Video</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<bod>
+    <div id="tv">
+        <div id="tvConsole">
+            <div id="tv_bg">
+                <img src="src/TV.png">
+            </div>
+
+            <div id="videoDiv">
+                <video controls width="710" height="490" poster="video/prerollposter_alt.png" id="video">
+                    <!--                    <source src="video/sample.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>-->
+                    <p>Sorry, your browser doesn’t support the video element</p>
+                </video>
+                <canvas id="buffer" width="710" height="490"></canvas>
+                <canvas id="display" width="710" height="490"></canvas>
+                <p id="debug_info">version 0.1</p>
+            </div>
+            <div id="dashboard" class="dashboard">
+                <div id="effects" class="controlClass">
+                    <a class="effect" id="normal">无效果</a>
+                    <a class="effect" id="western">怀旧</a>
+                    <a class="effect" id="noir">黑白</a>
+                    <a class="effect" id="scifi">其他</a>
+                </div>
+
+                <div id="controls" class="controlClass">
+                    <a class="control" id="pause">暂停</a>
+                    <a class="control" id="play">播放</a>
+                    <a class="control" id="loop">循环</a>
+                    <a class="control" id="mute">静音</a>
+                </div>
+
+                <div id="videoSelection" class="controlClass">
+                    <a class="videoSelection" id="video1">←</a>
+                    <a class="videoSelection" id="video2">→</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</bod>
+</html>

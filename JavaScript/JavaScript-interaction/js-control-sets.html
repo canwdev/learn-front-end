@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Sets</title>
+    <style>
+        .melon {
+            width: 100px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h3>Melon Selector</h3>
+    <form action="javascript:">
+        <select id="s1" size="2" class="melon">
+            <option value="EastMelon">冬瓜</option>
+            <option value="WestMelon">西瓜</option>
+        </select>
+
+        <button id="btnToLeft"> <<</button>
+        <button id="btnToRight"> >></button>
+
+        <select id="s2" size="2" class="melon">
+            <option value="">南瓜</option>
+            <option value="">北瓜</option>
+        </select>
+    </form>
+</div>
+<div>
+    <h3>City Rank</h3>
+    <form action="javascript:" id="form_city">
+        <select id="city_select">
+            <option name="bwji" rank="1">北京</option>
+            <option name="uhhd" rank="2">上海</option>
+            <option name="tdyr" rank="20">太原</option>
+        </select>
+    </form>
+    <button id="out_city_form_button">What is the rank of city</button>
+</div>
+<div>
+    <h3>Table Edit</h3>
+    <table width="700px" border="1px" cellspacing="0" id="table1">
+        <tr>
+            <td>value</td>
+            <td>value</td>
+            <td>value</td>
+        </tr>
+        <tr>
+            <td>value</td>
+            <td>value</td>
+            <td>value</td>
+        </tr>
+        <tr>
+            <td>value</td>
+            <td>value</td>
+            <td>value</td>
+        </tr>
+    </table>
+    <form id="table_editor" action="javascript:">
+        <p>修改第 <input type="text" id="input_row" value="2"> 行，第 <input type="text" id="input_col" value="1"> 列。
+            内容 <input type="text" value="changed" id="modify_value">
+            <button id="modify_table">修改</button>
+        </p>
+    </form>
+</div>
+<div>
+    <h3>Click change color</h3>
+    <p class="clickp">Click</p>
+    <p class="clickp">Click</p>
+    <p class="clickp">Click</p>
+</div>
+<div>
+    <h3>Click hide/show p</h3>
+    <h5 class="click_hide_show">Click</h5>
+    <p class="hide_show_p">hide_show_p_hide_show_p_hide_show_p_hide_show_p_hide_show_p</p>
+    <h5 class="click_hide_show">Click</h5>
+    <p class="hide_show_p">hide_show_p_hide_show_p_hide_show_p_hide_show_p_hide_show_p</p>
+    <h5 class="click_hide_show">Click</h5>
+    <p class="hide_show_p">hide_show_p_hide_show_p_hide_show_p_hide_show_p_hide_show_p</p>
+</div>
+</body>
+<script>
+    s1 = document.getElementById('s1');
+    s2 = document.getElementById('s2');
+
+    document.getElementById('btnToLeft').onclick = function () {
+        var id = s2.selectedIndex;
+        s1.appendChild(s2.options[id]);
+    };
+
+    document.getElementById('btnToRight').onclick = function () {
+        var id = s1.selectedIndex;
+        s2.appendChild(s1.options[id]); // 移动，是的移动元素
+        // s2.innerHTML+=opts[idx].outerHTML; 复制
+    };
+
+
+    city_select = document.getElementById('city_select');
+    out_city_form_button = document.getElementById('out_city_form_button');
+
+    out_city_form_button.onclick = function () {
+//        document.getElementById('form_city').submit();
+        var id = city_select.selectedIndex;
+        var options = city_select.options;
+        alert(options[id].getAttribute('rank'));
+    };
+
+
+    modify_table = document.getElementById('modify_table');
+    modify_value = document.getElementById('modify_value');
+    tableObj = document.getElementById('table1');
+    rowObj = document.getElementById('input_row');
+    colObj = document.getElementById('input_col');
+
+    function modifyTable(row, col) {
+        var mod = tableObj.rows[row - 1].cells[col - 1];
+        mod.innerHTML = modify_value.value;
+        mod.style.backgroundColor = '#0f0'
+    }
+
+    modify_table.onclick = function () {
+        var row = rowObj.value;
+        var col = colObj.value;
+
+        modifyTable(row, col);
+    };
+
+
+    pObjs = document.querySelectorAll('.clickp');
+    console.log(pObjs);
+    for (var i = 0; i < pObjs.length; i++) {
+        pObjs[i].setAttribute('count', 0);
+
+        pObjs[i].onclick = function () {
+            var num = parseInt(this.getAttribute('count'));
+            if (num % 2 == 0) {
+                this.style.backgroundColor = '#dbdbdb';
+            } else {
+                this.style.backgroundColor = '#ffffff';
+            }
+            this.setAttribute('count', num + 1);
+        }
+    }
+
+
+    h5Objs = document.querySelectorAll('.click_hide_show');
+    pHsObjs = document.querySelectorAll('.hide_show_p');
+
+    for (var i = 0; i < h5Objs.length; i++) {
+        h5Objs[i].setAttribute('target', i);
+        pHsObjs[i].id = i;
+        h5Objs[i].setAttribute('count', 0);
+
+        h5Objs[i].onclick = function () {
+            var count = parseInt(this.getAttribute('count'));
+            var target = this.getAttribute('target');
+            var pObj = document.getElementById(target);
+
+            if (count % 2 === 0) {
+                pObj.style.display = 'none';
+            } else {
+                pObj.style.display = 'block';
+            }
+            this.setAttribute('count', count + 1);
+        }
+    }
+</script>
+</html>

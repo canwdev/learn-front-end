@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS size 三个高</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        #top {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<button id="top">Back to top</button>
+</body>
+<script>
+
+    function createPlaceholder(max) {
+        for (var i = 0; i < max; i++) {
+            var temp = '';
+            for (var j = 0; j < 130; j++) {
+                temp += Math.floor(Math.random() * 10);
+            }
+            var para = document.createElement('p');
+            para.innerHTML += '<span>' + i + ':' + temp + '</span>';
+            document.body.appendChild(para);
+        }
+    }
+
+    createPlaceholder(99);
+
+
+    var wWidth = $(window).width();
+    // 可视区域的高
+    var wHeight = $(window).height();
+    console.log('window: ' + wWidth + '*' + wHeight);
+
+
+    var dWidth = $(document).width();
+    // 文档总高度
+    var dHeight = $(document).height();
+    console.log('document: ' + dWidth + '*' + dHeight);
+
+
+    // 滚动的高
+    $(window).scroll(function () {
+        document.title = $(this).scrollTop();
+    });
+
+    $('#top').click(function () {
+        $(document).scrollTop(0);
+    });
+
+</script>
+</html>

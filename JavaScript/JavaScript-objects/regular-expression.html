@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular expression</title>
+    <style>
+        html {
+            background-color: #242424;
+            color: #D9D9D9;
+        }
+    </style>
+</head>
+<body>
+<h1>Regular expression</h1>
+<p>请打开 Console，按 <strong>F12</strong></p>
+<script>
+    // [运算符](http://www.w3school.com.cn/js/js_operators.asp)
+    // 数学运算符
+    /*
+            +,-,*,/,%
+    */
+
+    // [比较运算符 & 逻辑运算符](http://www.w3school.com.cn/js/js_comparisons.asp)
+    /*
+            >,<,==,!=,>=,<=,===,!==
+    */
+
+    // &&运算符，两边都为真则为真；||运算符，一边为真则为真
+    /*
+            &&,||,!
+    */
+
+    // [正则表达式](http://www.w3school.com.cn/js/js_obj_regexp.asp)
+
+    // 定义 RegExp
+    var reg1 = new RegExp('w');
+    var str1 = 'Hello, world!';
+
+    // test() 方法检索字符串中的指定值。返回值是 true 或 false。
+    console.log(reg1.test(str1));
+
+    // exec() 方法检索字符串中的指定值。返回值是被找到的值。如果没有发现匹配，则返回 null。
+    // 与 String.match() 相似
+    console.log(reg1.exec(str1));
+
+    // 您可以向 RegExp 对象添加第二个参数，以设定检索。
+    /* 例如，如果需要找到所有某个字符的所有存在，则可以使用 "g" 参数 ("global")。
+    i 执行对大小写不敏感的匹配。
+    g 执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。
+    m 执行多行匹配（把\n识别为多行）。
+    *   http://www.w3school.com.cn/jsref/jsref_obj_regexp.asp
+    * */
+    var reg2 = new RegExp("e", "g");
+    var str2 = 'The best things in life are free';
+    var out = '';
+    do {
+        var result = reg2.exec(str2);
+        out += result;
+    }
+    while (result != null)
+    console.log(out);
+
+    // compile() 方法用于改变 RegExp。
+    // compile() 既可以改变检索模式，也可以添加或删除第二个参数。
+    reg2.compile('h');
+    console.log(reg2.test(str2));
+
+    // 方括号用于查找某个范围内的字符：
+    /*
+        [abc]	查找方括号之间的任何字符。
+        [^abc] 查找任何不在方括号之间的字符。
+        [0-9]	查找任何从 0 至 9 的数字。
+        [a-z]	查找任何从小写 a 到小写 z 的字符。
+        [A-Z]	查找任何从大写 A 到大写 Z 的字符。
+        [A-z]	查找任何从大写 A 到小写 z 的字符。
+        [adgk] 查找给定集合内的任何字符。
+        [^adgk] 查找给定集合外的任何字符。
+        (red|blue|green)	查找任何指定的选项。
+    */
+
+    /* 元字符（Metacharacter）是拥有特殊含义的字符：
+        .	查找单个字符，除了换行和行结束符。
+        \w	查找单词字符。
+        \W	查找非单词字符。
+        \d	查找数字。
+        \D	查找非数字字符。
+        \s	查找空白字符。
+        \S	查找非空白字符。
+        \b	匹配单词边界。
+        \B	匹配非单词边界。
+        \0	查找 NUL 字符。
+        \n	查找换行符。
+        \f	查找换页符。
+        \r	查找回车符。
+        \t	查找制表符。
+        \v	查找垂直制表符。
+        \xxx	查找以八进制数 xxx 规定的字符。
+        \xdd	查找以十六进制数 dd 规定的字符。
+        \uxxxx	查找以十六进制数 xxxx 规定的 Unicode 字符。
+    */
+
+    /* 量词
+        n+	匹配任何包含至少一个 n 的字符串。
+        n*	匹配任何包含零个或多个 n 的字符串。
+        n?	匹配任何包含零个或一个 n 的字符串。
+        n{X}	匹配包含 X 个 n 的序列的字符串。
+        n{X,Y}	匹配包含 X 至 Y 个 n 的序列的字符串。
+        n{X,}	匹配包含至少 X 个 n 的序列的字符串。
+        n$	匹配任何结尾为 n 的字符串。
+        ^n	匹配任何开头为 n 的字符串。
+        ?=n	匹配任何其后紧接指定字符串 n 的字符串。
+        ?!n	匹配任何其后没有紧接指定字符串 n 的字符串。
+    */
+
+    str = 'linux and php and p p 2 and 3 and 20 and linkx and lincx and linjx and LINUX and Php and paaaaaaaaaaap and pbp andp2p and linxx pbp is lamp and p2p';
+    var multiLines = 'linux and php and and p\nlinox and linax and LINUX and Phpland p\nlinax is lamp and p2p';
+
+    // $ 代表行末
+    console.log(str.match(/p.p$/ig));   // p2p
+
+    // ^ 匹配开头
+    console.log(str.match(/^lin.x/ig));
+    date = '2016/05/11';
+
+    console.log(date.replace(/(\d+)\/(\d+)\/(\d+)/g, '$1-$2-$3'));   // 2016-05-11
+
+    // + 匹配任何包含至少一个 n 的字符串。
+    console.log(str.match(/p.+p /ig));
+
+    console.log('------.{1,5}?-------');
+    // 查找一个以上
+    console.log(str.match(/p.+?p/ig));  // str.match(/p.{1,}?p/ig)
+    console.log(str.match(/p.{1,5}?p/ig));
+
+    console.log('-------.*m------');
+    // . 查找单个字符，除了换行和行结束符。
+    console.log(str.match(/p.p/ig));
+    console.log(str.match(/p.*p/ig));
+    //    console.log(str.match(/p.?p/ig));
+    //    console.log(str.match(/p.*?p/ig));  // 更精确
+
+    // m 执行多行匹配（把\n识别为多行）。
+    console.log(multiLines.match(/^lin.x/igm));
+
+
+    console.log('-------[...]------');
+    // [^abc] 查找任何不在方括号之间的字符。
+    console.log(str.match(/lin[^ux]x/ig));
+
+    //  [0-9]	查找任何从 0 至 9 的数字。
+    console.log(str.match(/[0-9]/ig));
+
+    // [a-z]	查找任何从小写 a 到小写 z 的字符。
+    console.log(str.match(/p[a-z]p/ig));
+
+
+    console.log('------\\b\\B-------');
+    // \b	匹配单词边界。
+    console.log(str.match(/\bp.+?p\b/ig));
+
+    // \B	匹配非单词边界。
+    console.log(str.match(/\Bp.+?p\B/ig));
+
+
+    console.log('-------\\d\\D------');
+    // \d	查找数字。
+    console.log(str.match(/p\dp/ig));
+
+    // \D	查找非数字字符。
+    console.log(str.match(/p\Dp/ig));
+
+
+    console.log('-------\\w\\W------');
+    // \w	查找单词字符。
+    console.log(str.match(/p\wp/ig));
+
+    // \W	查找非单词字符。
+    console.log(str.match(/p\Wp/ig));
+
+
+    console.log('------\\s\\S-------');
+    // \s	查找空白字符。
+    console.log(str.match(/p\sp/ig));
+    // \S	查找非空白字符。
+    console.log(str.match(/p\Sp/ig));
+
+
+    console.log('------\\n-------');
+    // \n	查找换行符。
+    console.log(multiLines.match(/p\nl/ig));
+
+
+    console.log('------(?!=)-------');
+    // 圆括号的作用
+    console.log(str.match(/(p[a-z]p)|(lin[a-z]x)/ig));
+    // ?=n	匹配任何其后紧接指定字符串 n 的字符串。
+    console.log(str.match(/p.p(?= is)/ig));
+    // ?!n	匹配任何其后没有紧接指定字符串 n 的字符串。
+    console.log(str.match(/p.p(?!is)/ig));
+
+    console.log('------phone-------');
+    var phone = '18923614403';
+    if (phone.match(/^189\d{8}$/i)) {
+        console.log(phone + ' 电话号码正确!');
+    } else {
+        console.log(phone + '电话号码有误!');
+    }
+
+    console.log('------mail-------');
+    var mail = 'abcd@live.com';
+    if (mail.match(/^\w+@\w+\.\w+$/i)) {
+        console.log(mail + ' 正确');
+    } else {
+        console.log(mail + ' 有误');
+    }
+
+</script>
+</body>
+
+</html>

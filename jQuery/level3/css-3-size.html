@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS size 尺寸</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1 {
+            height: 200px;
+            width: 200px;
+            padding: 10px;
+            border: 10px solid #f00;
+        }
+
+        .img {
+            height: 200px;
+            width: 200px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.27);
+            border-radius: 100px;
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <img src="res/chrome.png" class="img">
+</div>
+</body>
+<script>
+
+    $('.img').load(function () {
+        var w = $(this).width();
+        var h = $(this).height();
+
+        console.log('.img: ' + w + '*' + h);
+    });
+
+    {
+        // 获取第一个匹配元素内部区域高度（包括补白、不包括边框）。
+        var w = $('.div1').innerWidth();
+        var h = $('.div1').innerHeight();
+
+        console.log('.div inner: ' + w + '*' + h);
+    }
+
+    {
+        // 获取第一个匹配元素外部宽度（默认包括补白和边框）。
+        var w = $('.div1').outerWidth();
+        var h = $('.div1').outerHeight();
+
+        console.log('.div outer: ' + w + '*' + h);
+    }
+
+
+</script>
+</html>

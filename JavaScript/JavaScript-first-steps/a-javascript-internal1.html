@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在HTML文件内部使用JavaScript</title>
+    <link rel="stylesheet" href="javascript-label.css">
+</head>
+<body>
+<button>点我</button>
+<button>点我</button>
+<button>点我</button>
+<button>点我</button>
+</body>
+<script>
+    var buttons = document.querySelectorAll('button');
+
+    function createParagraph() {
+        var para = document.createElement('p');
+        para.textContent = '你点击了按钮';
+        document.body.appendChild(para);
+    }
+
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', createParagraph);
+    }
+</script>
+
+</html>

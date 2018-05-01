@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse & Keyboard Event</title>
+    <style>
+        #butter_fly {
+            left: 0px;
+            top: 0px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<select id="switch1">
+    <option value="default">请选择</option>
+    <option value="on">开</option>
+    <option value="off">关</option>
+</select>
+<input type="text" placeholder="Focus and press Enter key" id="text_field">
+<span id="xy_position"></span>
+<img src="res/butter_fly.png" id="butter_fly">
+<div>
+    <img id='img_click' src="res/computer_off.png" class="computer" title="Click"/>
+    <img id='img_in_out' src="res/computer_off.png" class="computer" title="Move over/out"/>
+    <img id='img_double_click' src="res/computer_off.png" class="computer" title="Double click"/>
+</div>
+</body>
+<script>
+    IMG_OFF = 'res/computer_off.png';
+    IMG_ON = 'res/computer_on.png';
+
+    var switch1 = document.getElementById('switch1');
+    var textField = document.getElementById('text_field');
+    var xyPosition = document.getElementById('xy_position');
+    var butterfly = document.getElementById('butter_fly');
+    var img_click = document.getElementById('img_click');
+    var img_in_out = document.getElementById('img_in_out');
+    var img_double_click = document.getElementById('img_double_click');
+
+    function switchImage(obj) {
+        // 此处会返回web上的全部路径，若只需文件名，参考 JQuery/level2/attributes-1-attr.html
+        var fName = (obj.src).substr((obj.src).lastIndexOf('/') + 1);
+        if (fName === 'computer_off.png') {
+            obj.src = IMG_ON;
+        } else {
+            obj.src = IMG_OFF;
+        }
+    }
+
+    textField.addEventListener('keypress', function (event) {
+        //event.preventDefault();
+        if (event.keyCode === 13) {
+            var images = document.querySelectorAll('.computer');
+            for (var i in images) {
+                try {
+                    switchImage(images[i]);
+                } catch (e) {
+                    // Bugs?
+                }
+
+            }
+        }
+    });
+
+    switch1.onchange = function () {
+        var images = document.querySelectorAll('.computer');
+        switch (this.value) {
+            case 'on':
+                for (var i in images) {
+                    images[i].src = IMG_ON;
+                }
+                break;
+            case 'off':
+                for (var i in images) {
+                    images[i].src = IMG_OFF;
+                }
+                break;
+            default:
+                break;
+        }
+    };
+
+    textField.onfocus = function () {
+        this.style.outlineColor = '#fb00ae';
+        this.select();
+    };
+
+    textField.onblur = function () {
+        this.value = '';
+    };
+
+    textField.onkeyup = function () {
+        xyPosition.textContent = this.value;
+    }
+
+
+    img_click.onclick = function () {
+        switchImage(this);
+    };
+
+    img_in_out.onmouseout = function () {
+        this.src = IMG_OFF;
+    };
+
+    img_in_out.onmouseover = function () {
+        this.src = IMG_ON;
+    };
+
+    img_double_click.ondblclick = function () {
+        switchImage(this);
+    };
+
+    img_double_click.onerror = function () {
+        alert('图片加载失败了！');
+    }
+
+    document.onmousemove = function () {
+        x = event.clientX;
+        y = event.clientY;
+
+        xyPosition.textContent = 'x=' + x + ', y=' + y;
+        butterfly.style.left = x + 25 + 'px';
+        butterfly.style.top = y + 25 + 'px';
+    }
+</script>
+</html>

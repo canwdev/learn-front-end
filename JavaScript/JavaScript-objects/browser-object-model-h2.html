@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM H2</title>
+    <link href="default.css" rel="stylesheet">
+</head>
+<body>
+<div>
+    <h1>H2</h1>
+    <h2>
+        <a href="javascript:" id="aid">BackTwoPages</a>
+    </h2>
+</div>
+</body>
+<script>
+    document.getElementById('aid').onclick = function () {
+        history.go(-2);
+    }
+</script>
+</html>

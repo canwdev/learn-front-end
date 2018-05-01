@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" charset="UTF-8">
+    <title>Bootstrap 滚动监听</title>
+    <link rel="stylesheet" href="../bootstrap-3.3.7-dist/css/bootstrap.css"/>
+    <script src="../../my-demos/slides/js/jquery-1.12.4.min.js"></script>
+    <script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script src="../../my-demos/slides/js/holder.min.js"></script>
+    <style>
+        a.anchor {
+            display: block;
+            position: relative;
+            top: -70px;
+            visibility: hidden;
+        }
+
+        body {
+            padding-top: 70px;
+            position: relative;
+        }
+
+        #floating {
+            position: fixed;
+        }
+
+        .panel-body {
+            padding: 0px;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target="#my-bar" data-offset="150">
+<div class="container">
+
+    <nav id="top" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">商标</a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-bar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div id="my-bar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#main">主站</a></li>
+                    <li><a href="#paint">画友</a></li>
+                    <li><a href="#game">游戏</a></li>
+                    <li><a href="#live">直播</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-11">
+
+            <div class="panel panel-primary">
+                <a class="anchor" id="main"></a>
+                <div class="panel-heading">主站</div>
+                <div class="panel-body">
+                    <img src="holder.js/100px700?theme=sky">
+                </div>
+            </div>
+
+            <div class="panel panel-success">
+                <a class="anchor" id="paint"></a>
+                <div class="panel-heading">画友</div>
+                <div class="panel-body">
+                    <img src="holder.js/100px700?theme=vine">
+                </div>
+            </div>
+
+            <div class="panel panel-danger">
+                <a class="anchor" id="game"></a>
+                <div class="panel-heading">游戏</div>
+                <div class="panel-body">
+                    <img src="holder.js/100px700?theme=lava">
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <a class="anchor" id="live"></a>
+                <div class="panel-heading">直播</div>
+                <div class="panel-body">
+                    <img src="holder.js/100px700?theme=social">
+                </div>
+                <div class="panel-footer">
+                    注意：刷新页面时，navbar直接定位成“直播”，是因为holder.js的图片尚未生成。
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-1">
+            <div class="list-group " id="floating">
+                <a href="#main" class="list-group-item active">主站</a>
+                <a href="#paint" class="list-group-item">画友</a>
+                <a href="#game" class="list-group-item">游戏</a>
+                <a href="#live" class="list-group-item">直播</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script>
+    $(window).scroll(function () {
+        $('.panel').each(function () {
+            var st = $(window).scrollTop();     // 滚动至顶端的距离
+            var pt = $(this).offset().top;      // 顶端与这个元素的距离
+
+            if ((pt - st) <= 200) {
+                // console.log($(this).children('.anchor').attr('id'))
+                var idx = $(this).children('.anchor').attr('id');
+                $('#floating').children('a[href="#' + idx + '"]').addClass('active');
+                $('#floating').children('a[href!="#' + idx + '"]').removeClass('active');
+            }
+        });
+    });
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document wrap 包围</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1, .div2 {
+            height: 210px;
+            width: 650px;
+            margin: 10px auto;
+            background-color: #b9b9b9;
+            padding-top: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <p>aaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbb</p>
+    <p>ccccccccccccccc</p>
+    <p>ddddddddddddddd</p>
+    <p>eeeeeeeeeeeeeee</p>
+</div>
+</body>
+<script>
+
+    // 在p标签的内部包围
+    // $('p').wrapInner('<b></b>');
+
+    // 全部的外包围
+    $('p').wrapAll('<b></b>');
+
+    $('p').toggle(function () {
+        $(this).wrap('<i></i>');
+    }, function () {
+        $(this).unwrap();
+    });
+</script>
+</html>

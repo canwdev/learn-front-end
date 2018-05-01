@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attributes html</title>
+    <script src="../jquery-1.8.3.min.js"></script>
+    <style>
+        .div1, .div2 {
+            height: 210px;
+            width: 650px;
+            margin: 10px auto;
+            background-color: #b9b9b9;
+            padding-top: 5px;
+            border-radius: 256px;
+            text-align: center;
+        }
+
+        .center {
+            width: 700px;
+            margin: 0px auto;
+            text-align: center;
+        }
+
+        .img {
+            animation: rotate 15s infinite linear;
+            height: 200px;
+            width: 200px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.27);
+            border-radius: 100px;
+            transition: all 0.5s ease;
+        }
+
+        .imgHover {
+            animation: rotate 0.4s infinite linear;
+            height: 200px;
+            width: 200px;
+            border-radius: 100px;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(360deg);
+            }
+            to {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <img src="res/chrome.png" class="img">
+    <img src="res/chrome.png" class="img">
+    <img src="res/chrome.png" class="img">
+</div>
+<div class="center">
+    <button class="btn">Toggle</button>
+</div>
+<div class="div2">
+</div>
+
+<div class="center">
+    <span class="span1">123456789ABCDEF</span>
+    <button id="btn_span">>></button>
+    <span class="span1">000000000000000</span>
+</div>
+
+<div class="center">
+    <input value="123456789ABCDEF"/>
+    <button id="btn_input">>></button>
+    <input/>
+</div>
+</body>
+<script>
+    function refreshToggle() {
+        $('img').toggle(
+            function () {
+                // 如果存在（不存在）就删除（添加）一个类。
+                $(this).toggleClass('imgHover');
+            },
+            function () {
+                $(this).toggleClass('imgHover');
+            }
+        );
+    };
+
+    refreshToggle();
+
+    $('.btn').toggle(
+        function () {
+            $('.div2').html($('.div1').html());
+            $('.div1').children().remove();
+            refreshToggle();
+        },
+        function () {
+            $('.div1').html($('.div2').html());
+            $('.div2').children().remove();
+            refreshToggle();
+        }
+    );
+
+    /*// 用appendTo方法更好
+    $('.btn').toggle(
+        function () {
+            $('.div1').children().appendTo($('.div2'));
+        },
+        function () {
+            $('.div2').children().appendTo($('.div1'));
+        }
+    );*/
+
+    $('#btn_span').click(function () {
+        // text() 取得所有匹配元素的内容。
+        $('.span1').eq(1).text($('.span1').eq(0).text())
+    });
+
+    $('#btn_input').click(function () {
+        // val() 获得第一个匹配元素的当前值。
+        $('input').eq(1).val($('input').eq(0).val())
+    });
+</script>
+</html>

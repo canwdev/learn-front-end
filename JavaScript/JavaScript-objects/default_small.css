@@ -1,0 +1,17 @@
+html {
+    background-color: #4b0700;
+    color: #f7f7f7;
+
+}
+
+a {
+    text-decoration: none;
+    color: pink;
+}
+
+.bag {
+    background-color: #2196f3;
+    margin: 5px;
+    padding: 2px;
+    border-radius: 5px;
+}

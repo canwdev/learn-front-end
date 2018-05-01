@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>如何存储你需要的信息 — 变量</title>
+</head>
+<body>
+<button>Press me</button>
+</body>
+<script>
+    var button = document.querySelector('button');
+
+    button.onclick = function () {
+        var name = prompt('What is your name?');
+        alert('Hello ' + name + ', nice to see you!');
+    };
+
+
+    //变量类型
+
+    //Number
+    /*你可以在变量中存储数字，不论这些数字是像30（也叫整数）这样，或者像2.456这样的小数（也叫做浮点数）。
+    与其他编程语言不同，在JavaScriptYou中你不需要声明一个变量的类型。
+    当你给一个变量数字赋值时，不需要用引号括起来。*/
+
+    var myAge = 17;
+    console.log(myAge);
+
+    // String
+    /*字符串是文本的一部分。当你给一个变量赋值为字符串时，你需要用单引号或者双引号把值给包起来，
+    否则JavaScript将会把这个字符串值理解成别的变量名。*/
+
+    var dolphinGoodbye = 'So long and thanks for all the fish';
+    console.log(dolphinGoodbye);
+
+
+    // Boolean
+    /*Boolean的值有2种：true或false。它们通常被用于在适当的代码之后，测试条件是否成立。
+    举个例子，一个简单的示例如下：*/
+
+    var iAmAlive = true;
+
+    // 然而实际上通常是以下用法：
+
+    var test = 6 < 3;
+    console.log('(6 < 3) = ' + test);
+
+    /*这是使用“小于”操作符（<）来测试6小于3。正如你所料的，将会返回false，因为6并不小于3！
+    在这个课程中，以后你将会学到许多有关操作符的知识。*/
+
+    // Array
+    /*数组是一个单个对象，其中包含很多值，方括号括起来，并用逗号分隔。尝试在您的控制台输入以下行:*/
+
+    var myNameArray = ['Chris', 'Bob', 'Jim'];
+    var myNumberArrayOld = new Array(10, 15, 40);
+    var myNumberArray = [10, 15, 40];
+
+    // 当数组被定义后，您可以使用如下所示的语法来访问各自的值，例如下行:
+    /*此处的方括号包含一个索引值，该值指定要返回的值的位置。 您可能已经注意到，计算机从0开始计数，
+    而不是像我们人类那样的1。*/
+    myNameArray[0]; // should return 'Chris'
+    myNumberArray[2]; // should return 40
+
+    console.log(myNameArray);
+    // 判断变量类型
+    console.log('myNameArray\'s type = ' + typeof(myNameArray));
+    // 查询arr的构造函数
+    console.log('myNameArray\'s constructor = ' + myNameArray.constructor);
+    // 判断arr是数组类型
+    console.log('myNameArray is Array = ' + (myNameArray instanceof Array));
+
+    // Object
+
+    /*在编程中，对象是现实生活中的模型的一种代码结构。您可以有一个简单的对象，代表一个停车场，
+    并包含有关其宽度和长度的信息，或者您可以有一个代表一个人的对象，并包含有关他们的名字，
+    身高，体重，他们说什么语言，如何说你好，他们，等等。*/
+
+    var dog = {name: 'Spot', breed: 'Dalmatian'};
+
+    var JsObj = {};     // obj = new Object();
+    JsObj.username = 'user1';
+    JsObj.age = '20';
+    JsObj.sex = 'male';
+    JsObj.say = function () {
+        alert('my name is ' + this.username);
+    };
+
+    // 要检索存储在对象中的信息与调用方法，可以使用以下语法:
+
+    dog.name;
+    // JsObj.say();
+    console.log(JsObj);
+
+    // JSON Object 类型
+
+    var JsonObj = {
+        'username': 'user1',
+        'age': '20',
+        'sex': 'male',
+        'say': function () {
+            alert(this.username)
+        }
+    };
+    console.log(JsonObj);
+
+    // NaN类型: not a number
+    var str = '10a';
+    var num = Number(str);
+    console.log(num);
+
+    /*此外，还有：
+    null类型：一般用于提前规划一些变量或给变量赋初值。
+    undefined类型：变量未定义。*/
+    console.log(null);
+    console.log(undefined);
+
+</script>
+</html>

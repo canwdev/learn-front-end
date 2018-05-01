@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #FEFAEF;
+    font-family: "Microsoft YaHei UI", 微软雅黑, serif;
+}
+
+.center {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.top {
+    width: 100%;
+    height: 128px;
+    overflow: hidden;
+    margin: 0 auto;
+    background: url("res/banner.png") center;
+}
+
+.top_banner {
+    width: 100%;
+    height: 42px;
+    float: left;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.64);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+}
+
+.top_banner ul {
+    list-style: none;
+}
+
+.top_banner ul li {
+    float: left;
+    text-align: center;
+    line-height: 42px;
+    padding: 0 11px;
+}
+
+.top_banner ul li:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.82);
+}
+
+.top h1 a {
+    text-decoration: none;
+    margin-top: 62px;
+    color: #fff;
+    position: absolute;
+    text-shadow: 0px 0px 5px #000;
+    font-weight: 100;
+}
+
+.top img {
+    height: 100%;
+}
+
+.category {
+    height: 42px;
+    overflow: hidden;
+    background: #ff6097;
+    color: #fff;
+}
+
+.category ul {
+    list-style: none;
+    width: 1000px;
+}
+
+.category ul li {
+    float: left;
+    line-height: 42px;
+    padding: 0 11px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+.category ul li:first-child {
+    background-color: #fff;
+    color: #ff6097;
+}
+
+.category ul li:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #ff6097;
+}
+
+.menu_set {
+    height: 500px;
+    background: #fff url("res/bilibili_bg.jpg") 30% 30%;
+}
+
+.menu_left {
+    height: 500px;
+    width: 118px;
+    background-color: rgba(255, 255, 255, 0.84);
+}
+
+.menu_left ul {
+    list-style: none;
+}
+
+.menu_left ul li {
+    line-height: 42px;
+    padding: 0 11px;
+    cursor: pointer;
+}
+
+.menu_left ul li:hover {
+    background-color: #ff6097;
+    color: #fff;
+}
+
+.menu_middle {
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.menu_hover {
+    position: absolute;
+    height: 500px;
+    width: 900px;
+    top: 0px;
+    left: 118px;
+    padding: 0 11px;
+    cursor: default;
+    display: none;
+    background-color: rgba(255, 255, 255, 0.84);
+    color: #000;
+}
+
+.menu_hover:hover {
+    background-color: #fff;
+}
+
+#info {
+    padding: 10px;
+    background-color: #fff;
+    margin: 20px auto 40px;
+    text-align: center;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.54);
+}

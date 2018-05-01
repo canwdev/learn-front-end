@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 简单添加删除元素</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+<div id="demo">
+    <form v-on:submit.prevent="addItem(newItem)">
+        <h1>{{msg}}</h1>
+        <ol>
+            <li v-for="(item, index) in items">{{item.text}}
+                <button v-on:click.prevent="deleteItem(index)">&times;</button>
+            </li>
+        </ol>
+        <div>
+
+            <input type="text" v-model="newItem.text" placeholder="newItem.text"
+                   @keyup.enter="addItem(newItem)" onkeydown="if(event.keyCode==13)return false;">
+            <button>添加</button>
+        </div>
+    </form>
+</div>
+
+</body>
+<script>
+
+    new Vue({
+        el: '#demo',
+        data: {
+            msg: 'Vuejs的一个示例',
+            items: [
+                {text: 'helloUI'}
+            ],
+            newItem: {text: ''}
+        },
+        methods: {
+            addItem: function (newItem) {
+                this.items.push(newItem);
+                this.newItem = {text: ''}
+            },
+            deleteItem: function (index) {
+                this.items.splice(index, 1)
+                // [splice](http://www.w3school.com.cn/jsref/jsref_splice.asp)
+            }
+        }
+    });
+
+</script>
+</html>
