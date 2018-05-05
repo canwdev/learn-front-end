@@ -218,6 +218,19 @@ Object的每个实例都有以下属性和方法
 
 宿主对象：DOM和BOM中的对象。
 
+`toLocaleString()`主要将数组Number对象或Date对象转换成本地字符串
+
+```js
+today.toString()
+// "Sat May 05 2018 16:01:33 GMT+0800"
+today.toLocaleString()
+// "2018/5/5 下午4:01:33"
+money.toLocaleString()
+// "1,234.56"
+money.toString()
+// "1234.56"
+```
+
 ### 操作符
 
 #### 一元操作符：`++` , `--`
