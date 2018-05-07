@@ -201,13 +201,67 @@ console.log(arr1);      // [ "green", "blue" ]
 console.log(arr2);      // [ "black", "brown" ]
 ```
 
-`splice()`有多种用法，主要用途是向数组中部插入项。
+`splice()`有多种用法，主要用途是向数组中部插入项。会改变原数组。
 
 - 删除：只需指定2个参数：需要删除的第一项位置和需要删除的项数。例如`splice(0,2)`删除数组中的前两项。
-- 插入：提供3个或以上参数：起始位置、0（要删除的项数）、要插入的项。`splice(2,0,'red','green')`
-- 替换：
+- 插入：指定3个或以上参数：起始位置、0（要删除的项数）、要插入的项。`splice(2,0,'red','green')`。
+- 替换：指定3个或以上参数：起始位置、要删除的项数和要插入的任意数量的项。`splice(2,1,"red","green")`。
+
+```js
+var arr = ["red", "green", "blue", "yellow", "black", "brown"];
+console.log(arr);
+arr.splice(0,2);        // 删除从0开始的2个字符串
+console.log(arr);       // [ "blue", "yellow", "black", "brown" ]
+arr.splice(0,0,'red','green');      // 从第0项插入2个字符串
+console.log(arr);                   // [ "red", "green", "blue", "yellow", "black", "brown" ]
+arr.splice(0,1,'reddit');   // 替换第0个字符串内容
+console.log(arr);           // [ "reddit", "green", "blue", "yellow", "black", "brown" ]
+```
+
+splice()方法始终都会返回一个数组，该数组中包含从原始数组中删除的项
 
 ### 位置方法
+
+ES5中增加了两个位置方法：`indexOf()`和`lastIndexOf()`，都接收2个参数要查找的项目和表示查找起始位置的索引（可选）。
+前者从数组开头查找，后者从数组末尾开始查找，起始查找位置**永远都是从0开始**。在查找时都使用全等操作符，在没有找到时返回-1。第二个参数为可选参数，它的合法取值是 0 到 stringObject.length - 1。
+
+```js
+var arr =[1,2,3,4,5,4,3,2,1];
+arr.indexOf(4);     // 3
+arr.lastIndexOf(1); // 8
+arr.indexOf(1,1);   // 8
+arr.lastIndexOf(4,4)// 3
+arr.lastIndexOf(4,1)// -1，说明没有找到
+var person = {name:'urname'};
+var people = [{name:'urname'}];
+var mPeople = [person];
+people.indexOf(person)  // -1
+mPeople.indexOf(person) // 0
+```
+
+自创应用题：一个链接地址`https://www.example.com/test?arg1=123&argb=456`，用上述方法获取其域名和参数。
+
+```js
+var link = 'https://www.example.com/test?arg1=123&argb=456';
+
+var domain = link.slice(0,link.lastIndexOf('/')).split('');
+domain.splice(0,domain.lastIndexOf('/')+1);
+domain = domain.join('');
+console.log(domain)         // www.example.com
+
+var temp = link.split('');
+temp.splice(0,link.lastIndexOf('?')+1);
+var attrString = temp.join('');
+console.log(attrString);    // arg1=123&argb=456
+
+var attr = {};
+var args = attrString.split('&');
+for (var i=0;i<args.length;i++) {
+  var temp = args[i].split('=');
+  attr[temp[0]] = temp[1];
+}
+console.log(attr);      // Object { arg1: "123", argb: "456" }
+```
 
 ### 迭代方法
 
