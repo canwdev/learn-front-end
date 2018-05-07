@@ -10,11 +10,11 @@
 
 ```js
 var person = new Object();
-person.name = "千歳";
+person.name = "YourName";
 person.age = null;
 
 var person1 = {
-    name: "千歳",
+    name: "YourName",
     age: null
 }
 
@@ -133,9 +133,9 @@ arr.pop();           // 返回 "yellow"，数组内容：[ "red", "green", "blue
 
 队列是一种先进先出（FIFO）的数据结构。
 
-shift() 能够移除数组中的第一个项并返回该项，同时将数组长度减 1。
+`shift()`能够移除数组中的第一个项并返回该项，同时将数组长度减 1。
 
-结合push()方法使用。
+结合`push()`方法使用。
 
 ```js
 var arr = ['red', 'green', 'blue'];
@@ -143,7 +143,7 @@ arr.push('umi');    // 4
 arr.shift();        // "red"
 ```
 
-unshift()与 shift()的用途相反：它能在数组前端添加任意个项并返回新数组的长度。
+`unshift()`与`shift()`的用途相反：它能在数组前端添加任意个项并返回新数组的长度。
 
 ### 重排序方法
 
@@ -181,8 +181,34 @@ function compare(n1, n2) {
 
 ### 操作方法
 
+`concat()`方法：基于当前数组的所有项创建一个新数组。这个方法会先创建当前数组一个副本，然后将接收到的参数
+添加到这个副本的末尾，最后返回新构建的数组。如果传递给 concat()方法的是一或多个数组，则该方法会将这些数组中的
+每一项都添加到结果数组中。如果传递的值不是数组，这些值就会被简单地添加到结果数组的末尾。不会改变原数组。
+
+```js
+var arr = ['red','green','blue'];
+var arr2 = arr.concat('yellow',['black','brown'])
+console.log(arr2)   // [ "red", "green", "blue", "yellow", "black", "brown" ]
+```
+
+`slice()`方法能够基于当前数组中的一个或多个创建一个新的数组。接收2个参数：起始值和结束值。在只有一个参数的情况下，返回从指定位置到数组末尾的所有项。如果有两个参数，该方法返回起始到结束位置之间的项——但不包括结束位置的项。如果参数中有负数，则用数组长度加上这个负数。不会改变原数组。
+
+```js
+var arr = ["red", "green", "blue", "yellow", "black", "brown"];
+var arr1 = arr.slice(1,3);
+var arr2 = arr.slice(-2);
+console.log(arr1);      // [ "green", "blue" ]
+console.log(arr2);      // [ "black", "brown" ]
+```
+
+`splice()`有多种用法，主要用途是向数组中部插入项。
+
+- 删除：只需指定2个参数：需要删除的第一项位置和需要删除的项数。例如`splice(0,2)`删除数组中的前两项。
+- 插入：提供3个或以上参数：起始位置、0（要删除的项数）、要插入的项。`splice(2,0,'red','green')`
+- 替换：
+
 ### 位置方法
 
 ### 迭代方法
 
-### 
+### 归并方法
