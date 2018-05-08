@@ -265,7 +265,7 @@ console.log(attr);      // Object { arg1: "123", argb: "456" }
 
 ### 迭代方法
 
-ES5提供了5个迭代方法。传入这些方法中的函数会接收三个参数：数
+ES5提供了5个数组迭代方法。传入这些方法中的函数会接收三个参数：数
 组项的值、该项在数组中的位置和数组对象本身。这些方法不会修改数组中的包含的值。
 
 使用方法：`arr.every(function(item,index,array){})`，里面的函数会对数组的每一项运行，运行该函数的作用域对象影响 this 的值。
@@ -301,3 +301,82 @@ console.log(mapResult)  // [ 2, 4, 6, 8, 10, 8, 6, 4, 2 ]
 ```
 
 ### 归并方法
+
+ES5还增加了两个归并数组的方法。这两个方法都会迭代数组的所有项，然后构建一个最终返回的值。`reduce()`方法从数组的第一项开始，逐个遍历到最后。而`reduceRight()`则从数组的最后一项开始，向前遍历到第一项。这两个方法都接收两个参数：一个在每一项上调用的函数和（可选的）作为归并基础的初始值。其内部的函数接收4个参数：前一个值、当前值、项的索引和数组对象。这个函数返回的任何值都会作为第一个参数自动传给下一项。
+
+使用 reduce()还是 reduceRight()，主要取决于要从哪头开始遍历数组。除此之外，它们完全相同。
+
+```js
+// 用 reduce() 方法求和
+var arr = [1,2,3,4,5,4,3,2,1];
+var result = arr.reduce(function(prev,cur,index,array){
+  console.log([prev,cur,index,array]);
+  return prev+cur;
+});
+console.log(result);    // 25
+```
+
+## Date类型
+
+Date类型基于早期Java中的Date基础构建，使用UTC与1970年1月1日 零时开始经过的毫秒数来纪录时间。
+
+创建一个Date对象：`var now = new Date();`
+
+在调用 Date 构造函数而不传递参数的情况下，新创建的对象自动获得当前日期和时间。
+
+如果想指定Date()日期时间，必须向构造函数传递毫秒数，ES提供了两个方法：`Date.parse()`和`Date.UTC()`。
+
+Date.parse()这个方法没有定义日期格式标准，因此实现方式因区域各异。
+
+```js
+var someDate = new Date(Date.parse("May 25, 2004"));
+var someDate = new Date("May 25, 2004");    // 这两种写法相同
+```
+
+Date.UTC()的参数分别是年份、基于 0 的月份（一月是 0，二月是 1，以此类推）、月中的哪一天
+（1 到 31）、小时数（0 到 23）、分钟、秒以及毫秒数。在这些参数中，只有前两个参数（年和月）是必
+需的。
+
+Date 构造函数也会模仿 Date.UTC()，但有一点明显不同：日期和时间都基于本地时区而非 GMT 来创建。
+不过，Date 构造函数接收的参数仍然与 Date.UTC()相同。
+
+```js
+// GMT 时间 2000 年 1 月 1 日午夜零时
+var y2k = new Date(Date.UTC(2000, 0));
+
+// GMT 时间 2005 年 5 月 5 日下午 5:55:55
+var allFives = new Date(Date.UTC(2005, 4, 5, 17, 55, 55));
+
+// 本地时间 2000 年 1 月 1 日午夜零时
+var y2k = new Date(2000, 0);
+
+// 本地时间 2005 年 5 月 5 日下午 5:55:55
+var allFives = new Date(2005, 4, 5, 17, 55, 55);
+```
+
+ES5添加了`Data.now()`方法，返回表示调用这个方法时的日期和时间的毫秒数。
+
+```js
+var start = Date.now();
+for (var i=0;i<999*100;i++);
+var end = Date.now();
+var result = end - start;
+console.log('时间差：'+ result +' 毫秒');   // 时间差：76 毫秒
+```
+
+### 继承的方法
+
+Date 类型也重写了 toLocaleString()、toString()和 valueOf()。 toLocaleString()方法会按照与浏览器设置的地区相适应的格式返回日期和时间。 事实上，toLocaleString()和 toString()的这一差别仅在调试代码时比较有用，而在显示日期和时间时没有什么价值。
+
+### 日期格式化方法
+
+- toDateString()——以特定于实现的格式显示星期几、月、日和年；
+- toTimeString()——以特定于实现的格式显示时、分、秒和时区；
+- toLocaleDateString()——以特定于地区的格式显示星期几、月、日和年；
+- toLocaleTimeString()——以特定于实现的格式显示时、分、秒；
+- toUTCString()——以特定于实现的格式完整的 UTC 日期。
+
+### 日期/时间组件方法
+
+提供了很多的方法，去看文档。
+
