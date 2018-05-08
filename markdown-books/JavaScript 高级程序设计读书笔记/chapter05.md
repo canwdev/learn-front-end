@@ -265,4 +265,39 @@ console.log(attr);      // Object { arg1: "123", argb: "456" }
 
 ### 迭代方法
 
+ES5提供了5个迭代方法。传入这些方法中的函数会接收三个参数：数
+组项的值、该项在数组中的位置和数组对象本身。这些方法不会修改数组中的包含的值。
+
+使用方法：`arr.every(function(item,index,array){})`，里面的函数会对数组的每一项运行，运行该函数的作用域对象影响 this 的值。
+
+- `every()`：如果该函数对**每一项**都返回true，则返回true，否则返回false。
+- `filter()`：函数会返回**有true的项**组成的数组。
+- `forEach()`：仅仅运行函数，没有返回值。
+- `map()`：返回每次函数调用的**结果**返回的数组。
+- `some()`：如果该函数对**任一项**返回true，则返回true。
+
+```js
+var arr = [1,2,3,4,5,4,3,2,1];
+
+var everyResult = arr.every(function(item,index,array) {
+  return item > 2;
+});
+console.log(everyResult);   // false
+
+var someResult = arr.some(function(item,index,array) {
+  return item > 2;
+});
+console.log(someResult);    // ture
+
+var filterResult = arr.filter(function(item, index, array){
+    return (item > 2);
+});
+console.log(filterResult);  // [3,4,5,4,3]
+
+var mapResult = arr.map(function(item, index, array) {
+  return item*2;
+})
+console.log(mapResult)  // [ 2, 4, 6, 8, 10, 8, 6, 4, 2 ]
+```
+
 ### 归并方法
