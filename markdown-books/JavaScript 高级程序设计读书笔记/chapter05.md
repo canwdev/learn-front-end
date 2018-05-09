@@ -419,6 +419,22 @@ console.log(reg.exec(str));
 
 // 在有捕获组的情况下，第一项是与整个模式匹配的字符串，其他项是与模式中的捕获组匹配的字符串
 var text = "mom and dad and baby";
-var pattern = /mom( and dad( and baby)?)?/gi;
+var pattern = /mom( and dad( and baby)?)?/gi;   // 有两个捕获组
 console.log(pattern.exec(text))
+```
+
+对于 exec()方法而言，即使在模式中设置了全局标志（g），它每次也只会返回一个匹配项。在不
+设置全局标志的情况下，在同一个字符串上多次调用 exec()将始终返回第一个匹配项的信息。而在设
+置全局标志的情况下，每次调用 exec()则都会在字符串中继续查找新匹配项，在全局模式下lastIndex的值在每次调用
+exec()后都会增加。
+
+`test()`方法，它接收一个字符串参数。在模式与改参数匹配的情况下返回true否则返回false。
+
+```js
+var text = "000-00-0000";
+var pattern = /\d{3}-\d{2}-\d{4}/;
+
+if (pattern.test(text)){
+    alert("The pattern was matched.");
+}
 ```
