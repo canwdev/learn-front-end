@@ -380,3 +380,45 @@ Date 类型也重写了 toLocaleString()、toString()和 valueOf()。 toLocaleSt
 
 提供了很多的方法，去看文档。
 
+## RegExp类型
+
+ES通过RegExp类型支持正则表达式。写法：`var reg = /pattern/flags`。其中pattern指的是任何简单或复杂的正则表达式，flags指的是标志，可以带一个或多个标志以标明正则表达式的行为。
+
+flags:
+
+- `g` 全局模式，模式将被应用于所有字符，而非发现第一个匹配项时立即停止。
+- `i` 不区分大小写模式。
+- `m` 多行模式，到达一行文本末尾时还会继续查找下一行中是否存在与模式匹配的项。
+
+模式中的**元字符**必须转义（使用转义符`\`），这些元字符有：`( [ { } ] ) + * \ | . ^ $ ?`
+
+```js
+// 以字面量形式定义正则表达式：匹配第一个“bat”或“cat”，不区分大小写。
+var reg1 = /[bc]at/i;
+
+// 以构造函数方式定义正则表达式，与reg1作用相同。
+var reg2 = new RegExp("[bc]at", "i");
+
+// 使用转义符，匹配第一个“\[bc\]at”，不区分大小写。
+var reg3 = /\[bc\]at/i;
+```
+
+### 实例属性
+
+RegExp的每个实例都有以下属性：`global, ignoreCase, lastIndex, multiline, source`，可以用`.`来调用查看。
+
+### RegExp实例方法
+
+主要方法`exec()`，返回值包含了匹配信息的数组和两个额外属性：`index`和`input`。
+
+```js
+// 在没有捕获组的情况下，只返回包含第一个匹配项信息的数组。
+var str = 'batcatnatisstring';
+var reg = /[cb]at/gi;
+console.log(reg.exec(str));
+
+// 在有捕获组的情况下，第一项是与整个模式匹配的字符串，其他项是与模式中的捕获组匹配的字符串
+var text = "mom and dad and baby";
+var pattern = /mom( and dad( and baby)?)?/gi;
+console.log(pattern.exec(text))
+```
