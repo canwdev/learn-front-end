@@ -438,3 +438,42 @@ if (pattern.test(text)){
     alert("The pattern was matched.");
 }
 ```
+
+## Function 类型
+
+函数实际上是对象。每个函数都是Function类型的实例，而且与其他类型一样具有属性和方法。函数名实际上是指向函数对象的指针。
+
+函数声明语法：
+
+```js
+function sum (n1, n2) {
+    return n1+n2;
+}
+
+var sum1 = function (n1,n2) {
+    return n1+n2;
+};
+
+// 使用Function构造函数，不推荐
+var sum2 = new Function("n1", "n2", "return n1+n2");
+```
+
+函数名仅仅是指向函数的指针，所以一个函数可以有多个名字。使用不带圆括号的的函数名是访问函数指针，而非调用函数。
+
+### 没有重载
+
+如果声明了2个同名函数，那么后面的函数会覆盖前面的的函数。
+
+以下代码之所以会在运行期间产生错误，原因在于函数位于一个初始化语句中，而不是一个函数声
+明。
+
+```js
+alert(sum(10,10));  // TypeError: sum is not a function
+var sum = function(num1, num2){
+    return num1 + num2;
+};
+```
+
+### 作为值的函数
+
+你不仅可以像传递参数一样把函数传给另一个函数，而且可以将一个函数作为另一个函数的结果返回。
