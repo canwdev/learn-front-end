@@ -1,25 +1,26 @@
 # JavaScript 试题整理
 
 ## 声明
-- 所有试题均来源网络，部分答案是自己写的，并不一定准确。
-- 带有“!!”标志的表示未解决的问题
-- 代码块均运行过一遍
 
+- 题目来源网络，答案仅供参考。
+- “!!”标志的表示未解决问题。
+- 代码块均运行测试
 
 ### 1. 截取字符串有哪些方法
-- slice    // 有两个参数，第一个是从零开始算的，第二个是从零开始算，但最后要减一（可以看做从1开始算）。slice支持以负数为单位，负数表示从字符串的末尾开始算。
-- substring    // substring 与slice主要的不同是，它不支持负数作为参数，如果参数为负数，它会从0开始算
-- substr    // substr的第二个个参数的定义与上述两者不同，它是从第一个参数的当前位置开始算的。
 
+- slice    // 有两个参数，第一个是从零开始，第二个也是从零开始，但最后要减一（可以看做从1开始）。slice支持以负数为单位，负数表示从字符串的末尾开始。
+- substring    // substring 与slice主要的不同是，它不支持负数作为参数，如果参数为负数，它会从0开始。
+- substr    // substr的第二个个参数的定义与上述两者不同，它从第一个参数的当前位置开始。
 
 ### 2. 规避javascript多人开发函数变量重名问题
+
 - 规范变量命名规则
 - 尽量在函数中使用局部变量
 - 在变量名中加入开发者的名称// 不利于维护
 - 把函数封装在以开发者命名的类中// 不利于维护
 
-
 ### 3. 编写一个方法 求一个字符串的字节长度（假设一个中文占两个字节）
+
 ```javascript
 function len(s) {
         var l = 0;
@@ -35,9 +36,10 @@ function len(s) {
     }
 ```
 
-
 ### 4. JavaScript中如何检测一个变量是一个String/Array类型？
+
 使用 typeof 方法与 instanceof 方法。
+
 ```javascript
 var arr = [1,2,3];
 var str = '1,2,3';
@@ -47,19 +49,22 @@ console.log(arr instanceof Array);    // true
 console.log(str instanceof String);    // 由于String是基本类型，所以不可以判断，false
 ```
 
-
 ### 5. 请说出三种减低页面加载时间的方法。
+
+- 减少 DOM 操作，用变量来代替不必要的 DOM 操作
 - 压缩 CSS、JS，合并HTML与CSS、JS（CSS放head里，javascript放body后面）
 - 减少 HTTP 请求
 - 使用 CDN （ContentDeliveryNetwork，内容分发网络）
-- 减少 DOM 操作，用变量来代替不必要的 DOM 操作
 - 懒加载（预加载），压缩图像资源体积（可使用.webp格式）
-- 参见《雅虎军规》
-
+- 《雅虎军规》
 
 ### 6. 什么是闭包？
-子函数能被外部调用到，则该作用链上的所有变量都会被保存下来。
+
+解释一：闭包是一种机制，函数执行的时候形成一个私有的**作用域**，保护里面的变量不受外界变量干扰。
+
+解释二：子函数能被外部调用到，则该作用链上的所有变量都会被保存下来。
 例子：https://kb.cnblogs.com/page/110782/
+
 ```javascript
 function foo(x) {
     var tmp = 3;
@@ -71,7 +76,6 @@ var bar = foo(2);    // bar 现在是一个闭包
 bar(10);    // 16
 bar(10);    // 17
 ```
-
 
 ### 7. 你能解释一下JavaScript中的继承是如何工作的吗？
 子构造函数中执行父构造函数，并用call\apply改变this；
@@ -119,17 +123,17 @@ function Cat(name) {
     console.log(cat instanceof Cat); // true
 ```
 
-
 ### 8. javascript是面向对象的，怎么体现javascript的继承关系？
-!! 未知
 
+!!
 
 ### 9. javaScript的2种变量范围有什么不同？
+
 - 全局变量，不加var修饰符，可在当前页面有效
 - 局部变量，用var修饰，在当前方法中有效
 
-
 ### 10. 程序中捕获异常的方法(error)
+
 ```javascript
 try {
         // throw new Error("Whoops!");
@@ -138,9 +142,9 @@ try {
     }
 ```
 
-
 ### 11. documet.location.href 与 window.location.href
-表示当前打开的窗口或框架的URL信息。
+
+表示当前打开的框架或窗口的URL信息。
 
 DOM 是为了操作文档出现的 API，document 是其的一个对象；
 
@@ -148,18 +152,18 @@ BOM 是为了操作浏览器出现的 API，window 是其的一个对象。
 
 document.location was originally a read-only property, although Gecko browsers allow you to assign to it as well. For cross-browser safety, use window.location instead.
 
-
 ### 12. XMLHTTPRequest对象是什么？
+
 XMLHttpRequest 是一种浏览器对象，可用于模拟http的GET和POST请求。配合JavaScript可以实现页面数据在无刷新下的定时数据更新。
 
 XMLHttpRequest 对象用于在后台与服务器交换数据。
 
-
 ### 13. javascript的常用对象有哪些？（数据类型->#29）
+
 String, Array, Boolean, Date, Math, null, undefined
 
-
 ### 14. innerHTML，innerText，outerHTML的区别？
+
 - innerHTML 指的是从对象的起始位置到终止位置的全部内容,包括Html标签。
 - innerText 指的是从起始位置到终止位置的内容,但它去除Html标签。
 - // 同时，innerHTML 是所有浏览器都支持的，innerText 是IE浏览器和chrome 浏览器支持的，Firefox浏览器不支持。其实，innerHTML 是W3C 组织规定的属性；而innerText 属性是IE浏览器自己的属性，不过后来的浏览器部分实现这个属性罢了。
