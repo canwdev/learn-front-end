@@ -477,3 +477,65 @@ var sum = function(num1, num2){
 ### 作为值的函数
 
 你不仅可以像传递参数一样把函数传给另一个函数，而且可以将一个函数作为另一个函数的结果返回。
+
+### 函数内部的属性
+
+函数内部有两个属性：`arguments`和`this`。argument中还有一个属性`callee`，用于指向这个函数本身，可用于递归调用。
+
+```js
+function factorical(num) {
+  if (num <= 1) {
+    return 1;
+  } else {
+    return num * arguments.callee(num-1);
+  }
+}
+```
+
+this引用的是函数据以执行的环境对象。当在网页的全局作用域中调用函数时，this 对象引用的就是 window
+
+函数被谁调用时，this就指向谁
+
+```js
+var color = 'red';
+var obj = {color:'blue'};
+
+function fn() {
+  console.log(this.color);
+}
+
+fn(); // red; this是window
+
+obj.fn = fn;
+obj.fn(); // blue, this是obj
+```
+
+### 函数的属性和方法
+
+每个函数都包含两个属性：`length`和`prototype`。length属性表示函数希望接收的命名参数的个数。
+
+prototype属性是保存引用类型的实例方法的真正所在，如toString()和valueOf()。在创建自定义引用类型以及实现继承时prototype极为有用。另外，prototype属性是不可枚举的，即不能用for-in发现。
+
+函数`apply()`和`call()`，他们的作用都是从指定的作用域中调用函数，除了参数不同。apply接收两个参数：一个是作用域，另一个是参数构成的数组或arguments。call接收多个参数，第一个参数也是作用域，第二个参数及其后面的参数是可选的直接传递给call的参数们。
+
+```js
+var color = 'red';
+var obj = {color:'blue'};
+
+function fn() {
+   console.log(this.color);
+}
+
+fn.call(this);  //red
+fn.call(window);    //red
+fn.call(obj);   //blue
+```
+
+ES5还定义了一个方法`bind()`，其this值会绑定到传给bind()的值
+
+```js
+var fn2 = fn.bind(obj);
+fn2();  //blue
+```
+
+## 基本包装类型
