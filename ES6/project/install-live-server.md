@@ -1,4 +1,4 @@
-# 安装live-server
+# 安装[live-server](https://www.npmjs.com/package/live-server)
 
 这是一款带有实时重载功能的小型开发服务器。 用它来开发你的HTML / JavaScript / CSS文件，但不能用于部署最终的网站。
 

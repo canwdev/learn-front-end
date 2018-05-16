@@ -2,7 +2,7 @@
 
 为了兼容仅支持ES65的老式浏览器，我们需要搭建ES6环境。
 
-首先你需要安装`npm`命令行工具，安装了[`Node.js`](https://nodejs.org)工具会附带一个npm。
+首先你需要安装[`npm`](https://www.npmjs.com/)命令行工具，安装了[`Node.js`](https://nodejs.org)工具会附带一个npm。
 
 （可选）安装[`cnpm`](http://npm.taobao.org/)，淘宝提供的一个npm镜像，加快国内npm应用下载速度。
 在终端下执行：
