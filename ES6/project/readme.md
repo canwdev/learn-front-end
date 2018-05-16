@@ -11,6 +11,12 @@
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
+初始化环境：在你当前项目目录下执行下面命令，初始化环境，并生成一个`package.json`文件。
+
+```sh
+npm init -y
+```
+
 安装[`babel`](http://babeljs.io/)，babel是一个JavaScript编译器，可以把ES6代码转换成ES5。
 
 ```sh
