@@ -222,8 +222,10 @@ splice()方法始终都会返回一个数组，该数组中包含从原始数组
 
 ### 位置方法
 
-ES5中增加了两个位置方法：`indexOf()`和`lastIndexOf()`，都接收2个参数要查找的项目和表示查找起始位置的索引（可选）。
-前者从数组开头查找，后者从数组末尾开始查找，起始查找位置**永远都是从0开始**。在查找时都使用全等操作符，在没有找到时返回-1。第二个参数为可选参数，它的合法取值是 0 到 stringObject.length - 1。
+ES5中增加了两个位置方法：`indexOf()`和`lastIndexOf()`，都接收2个参数要查找的项目和表示查找起始位置的索引（可选）。这两种数组方法同样支持字符串。
+前者从数组开头查找，后者从数组末尾开始查找，起始查找位置**永远都是从0开始**。在查找时都使用全等操作符，在没有找到时返回-1。
+
+这两个方法都可以接收可选的第二个参数，表示从字符串中的哪个位置开始搜索。indexOf()会从该参数指定的位置向后搜索，忽略该位置之前的所有字符；而 lastIndexOf()则会从指定的位置向前搜索，忽略该位置之后的所有字符。第二个参数为可选参数，它的合法取值是 0 到 stringObject.length - 1。
 
 ```js
 var arr =[1,2,3,4,5,4,3,2,1];
@@ -560,7 +562,8 @@ charAt()和 charCodeAt()方法用于访问字符串中特定字符。charAt()方
 
 ### slice()
 
-slice()方法接收两个参数，返回从第1个参数值到第2个参数值裁剪的字符串。第1个参数是从0开始，第2个也是从0开始，但第2个参数最后要减1（可以看做从1开始）。slice支持以负数为单位，负数表示从字符串的末尾（length-n）开始。
+slice()方法接收两个参数，返回从第1个参数值到第2个参数值裁剪的字符串。第1个参数是从0开始，第2个也是从0开始，但第2个参数最后要减1（可以看做从1开始）。slice支持以负数为单位，slice()方法会将传
+入的负值与字符串的长度相加。
 
 ```js
 var str = "helloworldstring";
@@ -571,10 +574,53 @@ str.slice(-6,-1)    // "strin"
 
 ### substring()
 
-substring // substring 与slice主要的不同是，它不支持负数作为参数，如果参数为负数，它会从0开始。
+substring() 与slice主要的不同是，它不支持负数作为参数，substring()方法会把**所有**负值参数都转换为 0。
+
+```js
+var str = "helloworldstring";
+str.substring(5)    // "worldstring"
+str.substring(1,5)  // "ello"
+str.substring(5,-6)    // "hello"
+```
 
 ### substr()
 
-substr // substr的第2个个参数的定义与上述两者不同，它从第1个参数的当前位置开始。
+substr()的第2个个参数的定义与上述两者不同，它的第二个参数指定的是要返回的字符个数。substr()方法将负的第一个参数加上字符串的长度，而将负的第二个参数转换为0。
+
+```js
+var str = "helloworldstring";
+str.substr(5)    // "worldstring"
+str.substr(1,5)  // "ellow"
+str.substr(-6,-1)    // ""
+```
 
 这三个方法slice()、substr()和 substring()都不会修改字符串本身的值。
+
+### trim()
+
+`trim()`方法会创建一个字符串的副本，删除前置及后缀的所有空格，然后返回结果。
+
+```js
+var stringValue = "   hello world   ";
+var trimmedStringValue = stringValue.trim();
+alert(stringValue);            //"   hello world   "
+alert(trimmedStringValue);     //"hello world"
+```
+
+### 字符串大小写转换方法
+
+toLowerCase()、toLocaleLowerCase()、toUpperCase()和 toLocaleUpperCase()。
+
+### match()
+
+在字符串上调用match()方法，本质上与调用 RegExp 的 exec()方法相同。match()方法只接受一个参数，要么是一个正则表达式，要么是一个 RegExp 对象。match()方法返回一个数组，数组的第一项是与整个模式匹配的字符串，之后的每一项（如果有）保存着与正则表达式中的捕获组匹配的字符串。
+
+search()。这个方法的唯一参数与 match()方法的参数相同：由字
+符串或 RegExp 对象指定的一个正则表达式。search()方法返回字符串中第一个匹配项的索引；如果没
+有找到匹配项，则返回-1。而且，search()方法始终是从字符串开头向后查找模式。
+
+### replace()
+
+ replace()方法接受两个参数：第一个参数可以是一个 **RegExp对象** 或者一个 **字符串**（这个字符串不会被转换成正则表达式），第二个参数可以是一个**字符串**或者一个**函数**。如果第一个参数是字符串，那么只会替换第一个子字符串。要想替换所有子字符串，唯一的办法就是提供一个正则表达式，而且要指定全局（g）标志
+
+split()，这个方法可以基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组中。
