@@ -624,3 +624,47 @@ search()。这个方法的唯一参数与 match()方法的参数相同：由字
  replace()方法接受两个参数：第一个参数可以是一个 **RegExp对象** 或者一个 **字符串**（这个字符串不会被转换成正则表达式），第二个参数可以是一个**字符串**或者一个**函数**。如果第一个参数是字符串，那么只会替换第一个子字符串。要想替换所有子字符串，唯一的办法就是提供一个正则表达式，而且要指定全局（g）标志
 
 split()，这个方法可以基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组中。
+
+## 单体内置对象
+
+意思就是说，开发人员不必显式地实例化内置对象，因为它们已经实例化了。
+
+### Global对象
+
+Global这个对象都是“不存在”的，不属于任何其他对象的属性和方法，最终都是它的属性和方法。
+
+Global包含很多方法，诸如 isNaN()、isFinite()、parseInt()以及 parseFloat()。除此之外还包含了其他一些方法：
+
+1. URL编码方法：encodeURL()、encodeURIComponent() 和对应的 decodeURI()、decodeURIComponent()。
+    这些方法对url地址进行编码或解码。
+2. eval()方法
+    eval()方法方法就像是一个完整的 ECMAScript 解析器
+3. Global 对象的属性
+    所有原生引用类型的构造函数，像Object 和 Function，也都是 Global 对象的属性
+4. window 对象
+    在全局作用域中声明的所有变量和函数，就都成为了 window对象的属性。
+
+### Math对象
+
+1. 属性值
+    - Math对象提供一些属性值：Math.E、Math.PI。。。
+2. min()和max()方法
+    Math.min()和 Math.max()方法用于确定一组数值中的最小值和最大值。
+3. 舍入方法
+    - Math.ceil()执行向上舍入，即它总是将数值向上舍入为最接近的整数
+    - Math.floor()执行向下舍入，即它总是将数值向下舍入为最接近的整数
+    - Math.round()执行标准舍入，即它总是将数值四舍五入为最接近的整数
+4. 随机数
+    - Math.random()方法返回大于等于 0 小于 1 的一个随机数。
+    - 套用下面的公式，就可以利用 Math.random()从某个整数范围内随机选择一个值。
+    - `值 = Math.floor(Math.random() * 可能值的总数 + 第一个可能的值)`
+
+```js
+function selectFrom(lowerValue, upperValue) {
+    var choices = upperValue - lowerValue + 1;
+    return Math.floor(Math.random() * choices + lowerValue);
+}
+
+var num = selectFrom(2, 10);
+console.log(num); // 介于 2 和 10 之间（包括 2 和 10）的一个数值
+```
