@@ -77,4 +77,78 @@ function People(name, age) {
 var people1 = new People('dirfting mirai', 20);
 console.log(people1.constructor == People)  // true
 console.log(people1 instanceof People)  // true
+
+
+// 任何函数，只要通过 new 操作符来调用，那它就可以作为构造函数，如果不通过 new 操作符来调用，那它跟普通函数也不会有什么两样。
+
+People('Quokka JavaScript', 111);
+var Global = function () {
+    return this;
+}();
+console.log(Global.age);    // 111
+
+var obj = {};
+
+People.call(obj, 'Time Reverse', 0);
+
+console.log(obj.name, obj.age); // Time Reverse 0
+```
+
+构造函数的问题：
+
+```js
+function Person(name, age, job){
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.sayName = function(){  // 注意此行
+        alert(this.name);
+    };
+}
+```
+
+以这种方式创建函数，会导致不同的作用域链和标识符解析，但创建 Function 新实例的机制仍然是相同的。因此，不同实例上的同名函数是不相等的
+
+```js
+alert(person1.sayName == person2.sayName);  //false
+```
+
+通过把函数定义转移到构造函数外部来解决这个问题。
+
+```js
+function Person(name, age, job) {
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.sayName = sayName;
+}
+function sayName() {
+    alert(this.name);
+}
+```
+
+如果对象需要定义很多方法，那么就要定义很多个全局函数，于是我们这个自定义的引用类型就丝毫没有封装性可言了。好在，这些问题可以通过使用原型模式来解决。
+
+### 原型模式
+
+我们创建的每个函数都有一个 prototype（原型）属性，这个属性是一个指针，指向一个对象，
+而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。如果按照字面意思来理解，那
+么 prototype 就是通过调用构造函数而创建的那个对象实例的原型对象。
+使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。
+
+```js
+function Person(){};
+
+Person.prototype.name = 'Drifting Mirai';
+Person.prototype.age = 20;
+Person.prototype.sayName = function(){
+    console.log(this.name);
+}
+
+var person1 = new Person();
+var person2 = new Person();
+
+person1.sayName();  // ​​​​​Drifting Mirai
+
+console.log(person1.sayName == person2.sayName) // true
 ```
