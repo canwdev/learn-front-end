@@ -152,3 +152,61 @@ person1.sayName();  // ​​​​​Drifting Mirai
 
 console.log(person1.sayName == person2.sayName) // true
 ```
+
+原型最初只包含 constructor 属性
+新对象的这些属性和方法是由所有实例共享的。
+
+```js
+function Person() {};
+
+Person.prototype.name = 'ai';
+
+var person1 = new Person();
+
+console.log(typeof person1);    // object
+console.log(person1 instanceof Person); // true
+console.log(person1.name);  // ai
+console.log(person1.constructor)    // [λ: Person]
+console.log(Person.prototype)   // ​​​​​Person { name: 'ai' }​​​​​
+```
+
+![img6-1-1](res/img6-1-1.png)
+
+Person.prototype 指向了原型对象，而 Person.prototype.constructor 又指回了 Person。
+
+可以通过 isPrototypeOf()方法来确定对象之间是否存在这种关系。从本质上讲，如果[[Prototype]]指向调用 isPrototypeOf()方法的对象（Person.prototype），那么这个方法就返回 true，如下所示：
+
+ECMAScript  5 增加了一个新方法，叫 Object.getPrototypeOf()，使用 Object.getPrototypeOf() 可以方便地取得一个对象的原型
+
+```js
+console.log(Person.prototype.isPrototypeOf(person1));   // true
+console.log(Object.getPrototypeOf(person1) == Person.prototype) // true
+```
+
+虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型中的值。如果我们
+在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该
+属性将会屏蔽原型中的那个属性。
+
+```js
+function Person() {};
+Person.prototype.name = 'ai';
+var person1 = new Person();
+var person2 = new Person();
+
+person1.name = 'kizuna';
+
+// 当为对象实例添加一个属性时，这个属性就会屏蔽原型对象中保存的同名属性
+console.log(person1.name);  // kizuna
+console.log(person1.constructor.prototype.name) // ai
+console.log(person2.name)   // ai
+
+// 使用 hasOwnProperty()方法可以检测一个属性是存在于实例中，还是存在于原型中。
+console.log(person1.hasOwnProperty('name'));  // true 来自实例
+console.log(person2.hasOwnProperty('name'));  // false 来自原型
+
+// 使用 delete 操作符则可以完全删除实例属性，从而让我们能够重新访问原型中的属性
+delete person1.name;
+console.log(person1.name);  // ai
+console.log(person1.hasOwnProperty('name'));  // false 来自原型
+
+```
