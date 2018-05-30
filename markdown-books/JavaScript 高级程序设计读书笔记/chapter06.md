@@ -107,6 +107,7 @@ function Person(name, age, job){
 }
 ```
 
+使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍。
 以这种方式创建函数，会导致不同的作用域链和标识符解析，但创建 Function 新实例的机制仍然是相同的。因此，不同实例上的同名函数是不相等的
 
 ```js
@@ -201,12 +202,65 @@ console.log(person1.constructor.prototype.name) // ai
 console.log(person2.name)   // ai
 
 // 使用 hasOwnProperty()方法可以检测一个属性是存在于实例中，还是存在于原型中。
-console.log(person1.hasOwnProperty('name'));  // true 来自实例
-console.log(person2.hasOwnProperty('name'));  // false 来自原型
+console.log(person1.hasOwnProperty('name'));  // true, name来自实例
+console.log(person2.hasOwnProperty('name'));  // false, name来自原型
 
 // 使用 delete 操作符则可以完全删除实例属性，从而让我们能够重新访问原型中的属性
 delete person1.name;
 console.log(person1.name);  // ai
-console.log(person1.hasOwnProperty('name'));  // false 来自原型
+console.log(person1.hasOwnProperty('name'));  // false, name来自原型
 
+console.log(Object.getOwnPropertyDescriptor(person1, 'name'));
+/*
+​​​​​{ value: 'kizuna',​​​​​
+​​​​​  writable: true,​​​​​
+​​​​​  enumerable: true,​​​​​
+​​​​​  configurable: true }​​​​​
+*/
+```
+
+有两种方式使用 in 操作符：单独使用和在 for-in 循环中使用。在单独使用时，in 操作符会在通
+过对象能够访问给定属性时返回 true，无论该属性存在于实例中还是原型中。
+
+```js
+function Person() {};
+Person.prototype.name = 'ai';
+Person.prototype.age = 18;
+Person.prototype.say = function say() {
+    console.log('Hello world');
+}
+
+var person1 = new Person();
+var person2 = new Person();
+
+person1.name = 'kizuna';
+
+console.log(person1.hasOwnProperty('name')) // true
+console.log(person2.hasOwnProperty('name')) // false
+console.log('name' in person1); // true
+console.log('name' in person2); // true
+
+// 要取得对象上所有可枚举的实例属性，可以使用 ECMAScript 5 的 Object.keys()方法，返回一个数组。
+var keys = Object.keys(Person.prototype);
+console.log(keys);  // ​​​​​[ 'name', 'age', 'say' ]​​​​​
+
+var p1Keys = Object.keys(person1);
+console.log(p1Keys);    // ​​​​​[ 'name', 'age' ]​​​​​ 
+
+// 想要得到所有实例属性，无论它是否**可枚举**，都可以使用 Object.getOwnPropertyNames()方法。
+var p1AllKeys = Object.getOwnPropertyNames(Person.prototype);
+console.log(p1AllKeys); // ​​​​​[ 'constructor', 'name', 'age', 'say' ]​​​​​
+```
+
+更简单的原型语法，不过这个语法有一个例外：constructor 属性不再指向 Person 了，而指向 Object。
+
+```js
+function Person(){};
+Person.prototype = {
+    name: 'ai',
+    age: 18,
+    say: function () {
+        console.log('Hello world');
+    }
+}
 ```
