@@ -94,7 +94,7 @@ People.call(obj, 'Time Reverse', 0);
 console.log(obj.name, obj.age); // Time Reverse 0
 ```
 
-构造函数的问题：
+#### 构造函数的问题
 
 ```js
 function Person(name, age, job){
@@ -245,14 +245,14 @@ var keys = Object.keys(Person.prototype);
 console.log(keys);  // ​​​​​[ 'name', 'age', 'say' ]​​​​​
 
 var p1Keys = Object.keys(person1);
-console.log(p1Keys);    // ​​​​​[ 'name', 'age' ]​​​​​ 
+console.log(p1Keys);    // ​​​​​[ 'name', 'age' ]​​​​​
 
 // 想要得到所有实例属性，无论它是否**可枚举**，都可以使用 Object.getOwnPropertyNames()方法。
 var p1AllKeys = Object.getOwnPropertyNames(Person.prototype);
 console.log(p1AllKeys); // ​​​​​[ 'constructor', 'name', 'age', 'say' ]​​​​​
 ```
 
-更简单的原型语法，不过这个语法有一个例外：constructor 属性不再指向 Person 了，而指向 Object。
+### 更简单的原型语法
 
 ```js
 function Person(){};
@@ -263,4 +263,168 @@ Person.prototype = {
         console.log('Hello world');
     }
 }
+
+var person1 = new Person();
+console.log(person1.constructor)    // Object
 ```
+
+不过这个语法有一个例外：constructor 属性不再指向 Person 了，而指向 Object。
+
+```js
+function Person(){};
+Person.prototype = {
+    constructor: Person,
+    name: 'ai',
+    age: 18,
+    say: function () {
+        console.log('Hello world');
+    }
+}
+
+var person1 = new Person();
+console.log(person1.constructor)    // Person
+```
+
+#### 原型的动态性
+
+在原型中查找值是一次搜索，因此对原型对象做的任何修改都可以立即从实例上反应出来，即使是先创建了实例后修改原型也是如此。
+
+当我们调用实例中的某个方法（属性）时，首先会在实例中搜索，在没有找到的情况下，会继续搜索原型。实例中的指针仅指向原型，而不指向构造函数。
+
+```js
+function Person() {};
+var friend = new Person();
+Person.prototype.name = 'ai';
+console.log(friend.name);   // ai
+```
+
+重写原型对象切断了现有原型与任何之前已经存在的对象实例之间的联系；它们引用的仍然是最初的原型。
+
+```js
+function Person() {};
+var friend = new Person();
+Person.prototype = {
+    constructor: Person,
+    name: 'ai'
+}
+console.log(friend.name); // undefineed
+```
+
+通过原生对象的原型，不仅可以取得所有默认方法的引用，**而且也可以定义新方法**。可以像修改自定义对象的原型一样**修改原生对象的原型**，因此可以随时添加方法。
+
+```js
+String.prototype.startsWith = function(str){
+    console.log('重写的startsWith函数');
+    return this.indexOf(str) == 0;
+};
+
+var str = 'Hello world!';
+console.log(str.startsWith('Hello'));   // 重写的startsWith函数 true
+```
+
+但我们不推荐在产品化的程序中修改/添加原生对象的原型函数，因为这样可能导致命名冲突。
+
+#### 原型对象的问题
+
+原型模式省略了为构造函数传递初始化参数这样环节，结果所有实例默认情况下都将取得相同的属性值。
+但最大的问题是：原型模式的共享性本质，对于引用类型，看下面的例子：
+
+```js
+function Person() {};
+Person.prototype = {
+    constructor: Person,
+    name: 'Xiaomi',
+    age: 8,
+    friends:['Apple','Google'],
+    printFriends: function(){
+        console.log(this.friends);
+    }
+};
+var person1 = new Person();
+var person2 = new Person();
+person1.friends.push('Huawei');
+person1.printFriends();     // ​​​​​[ 'Apple', 'Google', 'Huawei' ]​​​​​
+person2.printFriends();     // ​​​​​[ 'Apple', 'Google', 'Huawei' ]​​​​​
+console.log(person1.friends == person2.friends);    // true
+```
+
+而这个问题正是我们很少看到有人单独使用原型模式的原因所在。
+
+而使用构造函数模式/工厂模式不会有这种问题。
+
+```js
+function Person() {
+    this.name = 'Xiaomi';
+    this.age = 8;
+    this.friends = ['Apple', 'Google'];
+    this.printFriends = function () {
+        console.log(this.friends);
+    };
+}
+
+var person1 = new Person();
+var person2 = new Person();
+
+person1.friends.push('Huawei');
+
+person1.printFriends(); // ​​​​​[ 'Apple', 'Google', 'Huawei' ]​​​​​
+person2.printFriends(); // ​​​​​[ 'Apple', 'Google' ]​​​​​
+```
+
+#### 组合使用构造函数模式和原型模式
+
+组合使用构造函数模式与原型模式。构造函数模式用于定义实例属性，而原型模式用于定义方法和共享的属性。
+每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度地节省了内存。另外，这种混成模式还支持向构造函数传递参数；可谓是集两种模式之长。
+
+这种构造函数与原型混成的模式，是目前在 ECMAScript 中使用最广泛、认同度最高的一种创建自
+定义类型的方法。可以说，这是用来定义引用类型的一种默认模式。
+
+```js
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.friends = ['Apple', 'Google'];
+}
+
+Person.prototype = {
+    constructor: Person,
+    printFriends: function () {
+        console.log(this.friends);
+    }
+}
+
+var person1 = new Person('Xiaomi',8);
+var person2 = new Person('Smarts',8);
+
+person1.friends.push('Huawei');
+
+person1.printFriends(); // ​​​​​[ 'Apple', 'Google', 'Huawei' ]​​​​​
+person2.printFriends(); // ​​​​​[ 'Apple', 'Google' ]​​​​​
+
+console.log(person1.friends == person2.friends);  // false
+console.log(person1.printFriends == person2.printFriends);  // true
+```
+
+#### 动态原型模式
+
+动态原型模式，它把所有信息都封装在了构造函数中
+
+```js
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    // 不必用一大堆 if 语句检查每个属性和每个方法；只要检查其中一个即可。
+    if ((typeof this.sayName) != 'function') {
+        // 这里只在 sayName()方法不存在的情况下，才会将它添加到原型中。这段代码只会在初次调用构造函数时才会执行。
+        Person.prototype.sayName = function () {
+            console.log(this.name);
+        }
+    }
+}
+var person1 = new Person('ai', 18);
+person1.sayName();
+console.log(person1.constructor);   // Person
+```
+
+## 继承
+
