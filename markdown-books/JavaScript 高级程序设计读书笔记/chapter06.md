@@ -252,6 +252,13 @@ var p1AllKeys = Object.getOwnPropertyNames(Person.prototype);
 console.log(p1AllKeys); // ​​​​​[ 'constructor', 'name', 'age', 'say' ]​​​​​
 ```
 
+```js
+// 检测改属性是否只在原型中而不在对象中
+function hasPubProperty(obj, attr) {
+    return (attr in obj) && !obj.hasOwnProperty(attr);
+}
+```
+
 ### 更简单的原型语法
 
 ```js
@@ -428,3 +435,48 @@ console.log(person1.constructor);   // Person
 
 ## 继承
 
+由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且其实现继承主要是依靠**原型链**来实现的。
+
+### 原型链（原型链继承）
+
+```js
+function SuperType() {
+    this.property = true;
+}
+
+SuperType.prototype = {
+    getSuperValue: function () {
+        return this.property;
+    }
+};
+
+function SubType() {
+    this.subproperty = false;
+}
+
+// 继承了SuperType
+// SubType.prototype = SuperType.prototype;
+SubType.prototype = new SuperType();
+
+SubType.prototype.getSubValue = function () {
+    return this.subproperty;
+}
+
+var instance = new SubType();
+
+console.log(instance.getSuperValue());  //true
+```
+
+SubType 继承了 SuperType，而继承是通过创建 SuperType 的实例，并将该实例赋给
+SubType.prototype 实现的。实现的本质是重写原型对象，代之以一个新类型的实例。
+
+SubType 新原型不仅具有作为一个 SuperType 的实例所拥有的全部属性和方法，
+而且其内部还有一个指针，指向了 SuperType 的原型。
+
+![原型链继承](res/img6-4.png)
+
+但 property 则位于 SubType.prototype 中。这是因为 property 是一
+个实例属性，而 getSuperValue()则是一个原型方法。
+
+要注意 instance.constructor 现在指向的
+是 SuperType，这是因为原来 SubType.prototype 中的 constructor 被重写了的缘故。
