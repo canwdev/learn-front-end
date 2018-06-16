@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+.main {
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-wrap {
+    float: left;
+    width: 70%;
+    height: 100%;
+}
+
+.video-list {
+    width: 30%;
+    background: rgb(54, 54, 54);
+    color: #fff;
+    float: left;
+    height: 100%;
+    position: relative;
+}
+
+.video-list li:nth-child(2n) {
+    background-color: rgba(255, 255, 255, 0.055);
+}
+
+.video-list li {
+    display: block;
+    line-height: 45px;
+    padding-left: 20px;
+    cursor: pointer;
+    transition: all .1s;
+}
+
+.video-list li.active,
+.video-list li.active:hover {
+    background-color: #ffeb3b;
+    color: black;
+}
+
+.video-list li:hover {
+    background-color: rgba(255, 235, 59, 0.341);
+}
+
+.list-header h3 {
+    text-align: center;
+    line-height: 45px;
+    color: #ffeb3b;
+}
+
+.list-input-url {
+    margin-bottom: 5px;
+}
+
+.list-input-url input,
+.list-input-url button {
+    float: left;
+    display: block;
+    height: 32px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 0 4px;
+}
+
+.list-input-url input:focus,.list-input-url button:focus {
+    /* border-color: #FFEB3B; */
+    outline-color: #FFEB3B;
+}
+
+.list-input-url input {
+    width: 80%;
+    border-right: none;
+}
+
+.list-input-url button {
+    width: 20%;
+    cursor: pointer;
+    transition: all .2s
+}
+
+.list-input-url button:hover {
+    background: #ffeb3b;
+    color: #000;
+}
+
+.list-main {
+    height: calc(100% - 80px);
+    overflow: auto;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+}
+
+/* clearfix */
+
+.clearfix::before,
+.clearfix::after {
+    content: ' ';
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}

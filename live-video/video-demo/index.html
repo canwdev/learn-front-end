@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video Demo</title>
+    <style>
+        .container {
+            width: 800px;
+            margin: 50px auto;
+        }
+
+        .container video {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 控制按钮组 controlslist -->
+    <!-- <div class="container"><video src="video.mp4" controls controlslist="nodownload nofullscreen"></video></div> -->
+
+    <!-- 视频封面 poster -->
+    <!-- <div class="container"><video src="video.mp4" controls poster="poster.jpg"></video></div> -->
+
+    <!-- 自动播放 autoplay -->
+    <!-- <div class="container"><video src="video.mp4" autoplay></video></div> -->
+
+    <!-- 静音 muted -->
+    <!-- <div class="container"><video src="video.mp4" controls muted></video></div> -->
+
+    <!-- 循环 loop -->
+    <!-- <div class="container"><video src="video.mp4" controls loop></video></div> -->
+
+    <!-- 预加载 preload -->
+    <!-- <div class="container"><video src="video.mp4" controls preload></video></div> -->
+
+    <!-- 音量 -->
+    <!-- <div class="container"><video id="_volume" src="video.mp4" controls poster="poster.jpg"></video></div>
+    <script>
+        var v = document.getElementById("_volume");
+        v.volume = 0.5;
+    </script> -->
+
+    <!-- 播放位置获取 -->
+    <!-- <div class="container">
+        <video id="_time" src="video.mp4" controls poster="poster.jpg"></video>
+        <span>打开控制台查看</span>
+        <button id="_getTime">获取当前时间</button>
+    </div>
+    <script>
+        var v = document.getElementById("_time");
+        v.currentTime = 2;
+        document.getElementById("_getTime").onclick = function () {
+            console.log(v.currentTime); // 单位：秒
+        }
+    </script> -->
+
+    <!-- 切换视频源 -->
+    <div class="container">
+        <video id="_video" src="video.mp4" controls></video>
+        <span>打开控制台查看</span>
+        <button id="_getTime">获取当前时间</button>
+        <button id="_changeSrc">换台</button>
+    </div>
+    <script>
+        var v = document.getElementById("_video");
+        
+        document.getElementById("_getTime").onclick = function () {
+            console.log(v.currentTime); // 单位：秒
+        }
+        
+        var lastSrc = null;
+        document.getElementById("_changeSrc").onclick = function () {
+            if (lastSrc == null) {
+                lastSrc = v.src;
+                v.src = 'video2.mp4';
+            } else {
+                var temp = v.src;
+                v.src = lastSrc;
+                lastSrc = temp;
+            }
+        }
+    </script>
+</body>
+
+</html>

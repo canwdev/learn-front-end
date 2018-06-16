@@ -1,0 +1,15 @@
+var liveData = [
+    {name:'NHK World',url:'http://nhkwtvglobal-i.akamaihd.net/hls/live/263941/nhkwtvglobal/index_1180.m3u8'},
+    {name:'CNN Live Event',url:'https://cnn-i.akamaihd.net/hls/live/253953/dotcomlive_1/v2/master.m3u8?__b__=650'},
+    {name:'osmflivech4',url:'http://live.streamingfast.net/osmflivech4.m3u8'},
+    {name:'osmflivech5',url:'http://live.streamingfast.net/osmflivech5.m3u8'},
+    {name:'live-ch2-3',url:'http://live.streamingfast.net/hls-live/goodtv/_definst_/liveevent/live-ch2-3.m3u8'},
+    {name:'live-ch5-2',url:'http://live.streamingfast.net/hls-live/goodtv/_definst_/liveevent/live-ch5-2.m3u8'},
+    {name:'CNN Live Event',url:'https://cnn-i.akamaihd.net/hls/live/253953/dotcomlive_1/v2/master.m3u8?__b__=650'},
+    {name:'HKS',url:'http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8'},
+    {name:'HKS(RMTP)',url:'rtmp://live.hkstv.hk.lxdns.com/live/hks'},
+    {name:'NHK',url:'http://203.162.235.41:17801'},
+    {name:'CCTV1',url:'http://hwottcdn.ln.chinamobile.com/PLTV/88888890/224/3221225556/index.m3u8'},
+    {name:'CCTV4',url:'http://hwottcdn.ln.chinamobile.com/PLTV/88888890/224/3221225521/index.m3u8'},
+    {name:'flv.js test',url:'http://127.0.0.1:8080/live-tv-project/big_video.flv'},
+]

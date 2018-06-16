@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video Source Demo</title>
+    <style>
+        .container {
+            width: 800px;
+            margin: 50px auto;
+        }
+
+        .container video {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 切换视频源 -->
+    <div class="container">
+        <video id="_video" controls>
+            <source src="video888.mp4" type="video/mp4">
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+    </div>
+    <script>
+        var v = document.getElementById("_video");
+        window.onload = function(){
+            console.log(v.currentSrc);
+        }
+    </script>
+</body>
+
+</html>

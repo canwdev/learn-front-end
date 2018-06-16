@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video Event Demo</title>
+    <style>
+        .container {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .container video {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>打开console查看事件</p>
+        <video id="_video" controls controlslist="nodownload nofullscreen">
+            <source src="https://v.mifile.cn/b2c-mimall-media/ed921294fb62caf889d40502f5b38147.mp4?v=1" type="video/mp4">
+            <source src="https://v.mifile.cn/b2c-mimall-media/acdf959034bad716e851ec2f22483661.mp4" type="video/mp4">
+            <source src="big_video.mp4?v=2" type="video/mp4">
+        </video>
+    </div>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        var v = document.getElementById('_video');
+
+        console.log('v.duration', v.duration);
+
+        // 开始加载，是第一个被触发的事件
+        v.addEventListener('loadstart', function (e) {
+            console.log(e.type, '开始加载视频');
+        });
+
+        // 时长变化,此时才能获取视频时长（此时视频元数据已经拿到）
+        v.addEventListener('durationchange', function (e) {
+            console.log(e.type, '视频时长已获取', v.duration);
+        });
+
+        // 视频元数据拿到事件触发
+        v.addEventListener('loadedmetadata', function (e) {
+            console.log(e.type, '元数据加载完成');
+        })
+
+        // loadeddata
+        v.addEventListener('loadeddata', function (e) {
+            console.log(e.type, '加载完成');
+        })
+
+        // progress 表示视频正在加载
+        v.addEventListener('progress', function (e) {
+            console.log(e.type, '视频正在加载...');
+        })
+
+        // canplay 可以播放了
+        v.addEventListener('canplay', function (e) {
+            console.log(e.type, '可以播放了');
+        })
+
+        // canplaythrough 可以流畅播放了
+        v.addEventListener('canplaythrough', function (e) {
+            console.log(e.type, '可以流畅播放了');
+        })
+
+        // play 播放
+        v.addEventListener('play', function (e) {
+            console.log(e.type, '播放');
+        })
+
+        // playing 播放中...
+        v.addEventListener('playing', function (e) {
+            console.log(e.type, '播放中...');
+        })
+
+        // pause 暂停
+        v.addEventListener('pause', function (e) {
+            console.log(e.type, '暂停');
+        })
+
+        // seeking 
+        v.addEventListener('seeking', function (e) {
+            console.log(e.type, '拖动进度条');
+        })
+
+        // seeked
+        v.addEventListener('seeked', function (e) {
+            console.log(e.type, '拖动结束');
+        })
+
+        // waiting
+        v.addEventListener('waiting', function (e) {
+            console.log(e.type, '等待');
+        })
+
+        // timeupdate
+        v.addEventListener('timeupdate', function (e) {
+            console.log(e.type, e.timeStamp);
+        })
+
+        // ended
+        v.addEventListener('ended', function (e) {
+            console.log(e.type, '播放结束，感谢观看');
+        })
+
+        // error
+        v.addEventListener('error', function (e) {
+            console.log(e.type, '错误!', e);
+        })
+    </script>
+</body>
+
+</html>
