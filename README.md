@@ -1,5 +1,7 @@
 # Web 前端学习笔记 · Learn web frontend
 
+这些代码仍然需要整理。
+
 ## 学习资源
 
 * IDE: JetBrains WebStorm
