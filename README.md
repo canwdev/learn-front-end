@@ -4,7 +4,7 @@
 
 ## 学习资源
 
-* IDE: JetBrains WebStorm
+* IDE: JetBrains WebStorm / VisualStudio Code
 * [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
 * [W3School](http://www.w3school.com.cn/js/index.asp)
 * [菜鸟教程](http://www.runoob.com/jsref/jsref-tutorial.html)

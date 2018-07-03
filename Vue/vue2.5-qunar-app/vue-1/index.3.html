@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue模板语法</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:title="title">{{message + Math.random()}}</div>
+        <div v-text="message + Math.random()"></div>
+        <div v-html="message + Math.random()"></div>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '<h1>hello world</h1>',
+                title: 'hello world'
+            }
+        })
+    </script>
+</body>
+
+</html>

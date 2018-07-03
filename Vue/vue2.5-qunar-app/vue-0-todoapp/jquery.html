@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TodoList jQuery MVP</title>
+</head>
+
+<body>
+    <img src="mvp.png" alt="MVP">
+    <div id="app">
+        <input type="text" id="input">
+        <button type="button" id="btn">提交</button>
+        <ul id="ulist">
+            <!-- <li></li> -->
+        </ul>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        // MVP
+        // Model=模型层（数据没有），View=视图层（DOM），Presenter=控制器（DOM操作）
+        // 使用jQuery开发，主要是面向DOM进行开发
+
+        function Page() {};
+        $.extend(Page.prototype, {
+            init: function () {
+                this.bindEvents()
+            },
+            bindEvents: function () {
+                $('#btn').on('click', $.proxy(this.handleBtnClick, this));
+            },
+            handleBtnClick: function () {
+                var inputElem = $('#input')
+                var ulElem = $('#ulist');
+                var value = inputElem.val();
+                ulElem.append('<li>' + value + '</li>');
+                inputElem.val('');
+            }
+        });
+
+        var page = new Page();
+        page.init();
+    </script>
+</body>
+
+</html>

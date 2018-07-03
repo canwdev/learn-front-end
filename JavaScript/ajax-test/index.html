@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX DEMO</title>
+</head>
+
+<body>
+    <button id="getData">获取数据</button>
+    <div id="result"></div>
+
+    <script>
+        function getData() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                // Chrome, Firefox, IE7+, Opera, Safari 浏览器执行代码
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            // 回调函数
+            xmlhttp.onreadystatechange = function () {
+                // 状态码检测
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.querySelector("#result").innerHTML = xmlhttp.responseText;
+                }
+                console.log(xmlhttp);
+            }
+            xmlhttp.open("GET", "data.txt", true);
+            xmlhttp.send();
+        }
+        document.querySelector('#getData').onclick = getData;
+    </script>
+</body>
+
+</html>

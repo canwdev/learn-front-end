@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的条件渲染</title>
+</head>
+
+<body>
+    <div id="app" style="height: 100px;">
+        <div v-if="show">1. Now you see me, soon you won't.</div>
+        <!-- <div v-else>Bye bye</div> -->
+        <div v-show="show">2. Now you see me, soon you won't.</div>
+    </div>
+
+    <div id="app2">
+        <div v-if="type === 'name'">用户名：
+            <input type="text" key="1">
+        </div>
+        <div v-else-if="type === 'email'">邮箱：
+            <input type="email" key="2">
+        </div>
+        <div v-else>类型：
+            <input type="text" key="3">
+        </div>
+        <pre>
+            // Vue 会尝试一些组件的复用，使用key可以区分这些类型相同但内容不同的组件
+            vm2.type = 'email'
+            vm2.type = 'other'
+            vm2.type = 'name'
+        </pre>
+    </div>
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+
+            }
+        })
+
+        setInterval(() => {
+            vm.show = !vm.show;
+        }, 5000);
+
+        var vm2 = new Vue({
+            el: '#app2',
+            data: {
+                type: 'name'
+            }
+
+        })
+    </script>
+</body>
+
+</html>

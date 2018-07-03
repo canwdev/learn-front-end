@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的列表渲染</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) of list" :key="index">{{item}} ----- {{index}}</li>
+        </ul>
+        <div>
+            <template v-for="(item, key, index) of userInfo">
+                <h1>{{index}}. {{key}}</h1>
+                <p>{{item}}</p>
+            </template>
+        </div>
+    </div>
+
+
+    <script src="../lib/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [],
+                userInfo: {
+                    name: 'Kane',
+                    age: 21,
+                    gender: 'male',
+                    salary: 'secret'
+                }
+            },
+            mounted: function() {
+                this.list = 'hello kane nice to meet you'.split(' ');
+            }
+        })
+
+        setTimeout(() => {
+            // set方法，用于更新数据的同时响应页面内容，数组同样适用
+            // Vue.set(vm.userInfo, 'address', 'ufvf');
+            vm.$set(vm.userInfo, 'address', 'ufvf');
+        }, 2000);
+    </script>
+</body>
+
+</html>
