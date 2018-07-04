@@ -1,0 +1,113 @@
+@import "global-variables.less";
+
+/* 通用工具类 */
+
+html {
+    font-size: 62.5%;
+    color: @black;
+    font-family: "Microsoft Yahei";
+}
+
+::selection {
+    background-color: @selection;
+    text-shadow: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: ' ';
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+/* end-通用工具类 */
+
+/* 头部 */
+
+.header {
+    width: 100%;
+    color: @white;
+    background: @mainColor;
+    height: 64px;
+
+    .logo-wrap {
+        float: left;
+    }
+    
+    .logo-wrap img {
+        float: left;
+        width: 48px;
+        margin-top: 8px;
+    }
+    
+    .logo-wrap a {
+        color: @white;
+    }
+    
+    .logo-wrap h1 {
+        margin: 0;
+        padding: 0;
+        line-height: 64px;
+        display: inline-block;
+    }
+    
+    .nav {
+        float: right;
+        line-height: 64px;
+        ul li {
+            display: inline-block;
+            min-width: 106px;
+            text-align: center;
+        }
+        
+        ul li+li {
+            border-left: 1px solid @transparentWhite;
+            margin-left: -4px;
+        }
+        
+        ul li:hover {
+            background-color: @transparentWhite;
+        }
+        
+        ul li a {
+            display: block;
+            font-size: 18px;
+            color: @white;
+            text-decoration: none;
+        }
+    }
+}
+
+/* end-头部 */
+
+/* 底部 */
+
+.footer {
+    background-color: @grey;
+
+    .copyright {
+        width: 100%;
+        text-align: center;
+        line-height: 32px;
+        font-size: 14px;
+    }
+}
+
+/* end-底部 */
