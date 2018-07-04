@@ -3,10 +3,13 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var watchPath = require('gulp-watch-path');
 var combiner = require('stream-combiner2');
-var uglify = require('gulp-uglify');
+
 // var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
+
 var minifycss = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
+
 var less = require('gulp-less');
 var imagemin = require('gulp-imagemin');
 
@@ -134,7 +137,7 @@ gulp.task('watchimage', function () {
         gutil.log(gutil.colors.green(ev.type) +
             ': ' + paths.srcPath + ' → ' + paths.distPath);
 
-        gulp.src(path.srcPath)
+        gulp.src(paths.srcPath)
             .pipe(imagemin({
                 progressive: true
             }))
@@ -142,4 +145,22 @@ gulp.task('watchimage', function () {
     })
 })
 
-gulp.task('default', ['watchjs', 'watchless', 'watchimage'])
+/* ---------- html ----------- */
+
+gulp.task('html', function () {
+    gulp.src('src/**/*.html')
+        .pipe(gulp.dest('dist/'))
+})
+
+gulp.task('watchhtml', function () {
+    gulp.watch('src/**/*.html', function (ev) {
+        var paths = watchPath(ev, 'src/', 'dist/');
+        gutil.log(gutil.colors.green(ev.type) +
+            ': ' + paths.srcPath + ' → ' + paths.distPath);
+
+        gulp.src(paths.srcPath)
+            .pipe(gulp.dest(paths.distDir));
+    })
+})
+
+gulp.task('default', ['watchjs', 'watchless', 'watchimage', 'watchhtml'])
