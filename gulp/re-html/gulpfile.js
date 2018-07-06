@@ -8,6 +8,7 @@ var combiner = require('stream-combiner2');
 var uglify = require('gulp-uglify');
 
 var minifycss = require('gulp-minify-css');
+
 var autoprefixer = require('gulp-autoprefixer');
 
 var less = require('gulp-less');
@@ -151,12 +152,15 @@ gulp.task('watchimage', function () {
 
 
 gulp.task('html', function () {
-    gulp.src('src/**/*.html')
+    var combined = combiner.obj([
+        gulp.src('src/**/*.html')
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
         }))
         .pipe(gulp.dest('dist/'))
+    ]);
+    combined.on('error', handleError);
 })
 
 gulp.task('watchhtmlonly', function () {
