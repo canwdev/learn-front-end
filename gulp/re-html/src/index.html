@@ -13,9 +13,7 @@
 </head>
 
 <body>
-    @@include('view/header/header.html',{
-        "index": "active"
-      })
+    @@include('view/header/header.html',{ "index": "active" })
 
     <!-- 首页内容 -->
     <div class="main clearfix container">
@@ -84,10 +82,8 @@
     </div>
     <!-- end-首页内容 -->
 
-    @@include('view/footer/footer.html')
+    @@include('view/footer/footer.html') @@include('@scripts.html')
 
-    @@include('@scripts.html')
-    
 </body>
 
 </html>
