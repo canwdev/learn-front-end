@@ -1,9 +1,3 @@
 $(function(){
-    var log = function (msg) {
-        console.log('--------');
-        console.log(msg)
-        console.log('--------');
-    }
-    log({a:1});
-    log('gulp-book1');
+    console.log('from global.js')
 })

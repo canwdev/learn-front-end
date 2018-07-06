@@ -4,7 +4,8 @@
   "description": "前端小白的传统HTML组件化探索。",
   "main": "index.js",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-file-include": "^2.0.1"
   },
   "devDependencies": {
     "gulp-autoprefixer": "^5.0.0",

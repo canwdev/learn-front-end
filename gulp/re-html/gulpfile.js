@@ -13,6 +13,8 @@ var autoprefixer = require('gulp-autoprefixer');
 var less = require('gulp-less');
 var imagemin = require('gulp-imagemin');
 
+var fileinclude = require('gulp-file-include');
+
 var handleError = function (err) {
     var colors = gutil.colors;
     gutil.log(colors.red(err));
@@ -147,12 +149,17 @@ gulp.task('watchimage', function () {
 
 /* ---------- html ----------- */
 
+
 gulp.task('html', function () {
     gulp.src('src/**/*.html')
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
         .pipe(gulp.dest('dist/'))
 })
 
-gulp.task('watchhtml', function () {
+gulp.task('watchhtmlonly', function () {
     gulp.watch('src/**/*.html', function (ev) {
         var paths = watchPath(ev, 'src/', 'dist/');
         gutil.log(gutil.colors.green(ev.type) +
@@ -163,4 +170,16 @@ gulp.task('watchhtml', function () {
     })
 })
 
-gulp.task('default', ['watchjs', 'watchless', 'watchimage', 'watchhtml'])
+gulp.task('watchhtml', function () {
+    gulp.watch('src/**/*.html', function (ev) {
+        var paths = watchPath(ev, 'src/', 'dist/');
+        gutil.log(gutil.colors.green(ev.type) +
+            ': ' + paths.srcPath + ' → ' + paths.distPath);
+
+        gulp.start('html');
+    })
+})
+
+gulp.task('default', ['watchjs', 'watchless', 'watchimage', 'watchhtml']);
+
+gulp.task('build', ['uglifyjs', 'minifycss', 'lessc', 'imagemin', 'html'])
