@@ -1,26 +1,68 @@
+/* 其他样式*/
+
 .bg-yellow {
-    background: yellow;
+    background: rgba(153, 205, 50, 0.911);
     width: 800px;
-    margin: 0 auto;
+    height: 400px;
+    margin: 10px auto;
     padding: 5px;
 }
 
 .item-white {
-    background-color: white;
-    height: 100px;
+    color: #333;
+    background: white;
+    /* height: 100px; */
     width: 100px;
     margin: 5px;
+    font-size: 50px;
+    text-align: center;
 }
 
 .item-white:hover {
-    background-color: #ccc;
+    background: #ccc;
 }
 
+/* end-其他样式*/
 
 .m-container {
-    display: -webkit-flex; /* Safari */
+    /* flex容器 */
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* flex-flow: row wrap; */
+    align-items: center;
+    /* align-content: center; */
+}
 
-    -webkit-flex-direction: row-reverse; /* Safari */
-    flex-direction: row-reverse;
+.m-item {
+    /* flex项目 */
+    order: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.m-item-first {
+    order: 0;
+    color: red;
+}
+
+.m-item-grow-2 {
+    flex-grow: 2;
+    color: green;
+}
+
+.m-item-shrink {
+    flex-shrink: 0;
+    width: 150px;
+    color: blue;
+}
+
+.m-item-basis {
+    flex-basis: 20px;
+    color: yellow;
+}
+
+.m-item-bottom {
+    align-self: flex-end;
+    color: purple;
 }
