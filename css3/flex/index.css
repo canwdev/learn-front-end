@@ -1,3 +1,26 @@
-.m-flex {
+.bg-yellow {
+    background: yellow;
+    width: 800px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.item-white {
+    background-color: white;
+    height: 100px;
+    width: 100px;
+    margin: 5px;
+}
+
+.item-white:hover {
+    background-color: #ccc;
+}
+
+
+.m-container {
+    display: -webkit-flex; /* Safari */
     display: flex;
+
+    -webkit-flex-direction: row-reverse; /* Safari */
+    flex-direction: row-reverse;
 }

@@ -4,6 +4,7 @@
 
 [Flex 布局语法教程](http://www.runoob.com/w3cnote/flex-grammar.html)
 [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+[A Visual Guide to CSS3 Flexbox Properties](https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties)
 
 ## 所以说什么是flex布局
 
@@ -23,3 +24,15 @@ span.item {
 }
 
 ```
+
+## 兼容性
+
+flex布局兼容以下版本的浏览器：
+
+- Chrome 21+
+- Firefox 22+
+- Safari 6.1+
+- IE 10+
+
+由于国内IE版本普遍偏低，所以目前flex布局适用于不需要兼容IE的主流浏览器，主要应用在移动设备上。
+
