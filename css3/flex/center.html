@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>几种水平+垂直居中方案</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 200px;
+            margin: 10px auto;
+            background-color: pink;
+            border-radius: 10px;
+        }
+
+        /* ------------------------------- */
+
+        .flex-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-box .item {
+            font-size: 45px;
+            color: #fff;
+            background-color: aquamarine;
+        }
+
+        /* ------------------------------- */
+
+        .img-box {
+            text-align: center;
+        }
+
+        .img-box::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .img-box .item {
+            vertical-align: middle;
+        }
+
+        /* ------------------------------- */
+
+        .img-box2 {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        /* ------------------------------- */
+
+        .img-box3 {
+            position: relative;
+        }
+
+        .img-box3 .item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box flex-box">
+        <span class="item" title="用flex布局进行居中">Flex Center</span>
+    </div>
+
+    <div class="box img-box">
+        <img class="item" src="center.png" title="使用after伪元素和vertical-align: middle进行居中">
+    </div>
+
+    <div class="box">
+        <div class="box img-box2">
+            <img class="item" src="center.png" title="使用table-cell和vertical-align: middle进行居中">
+        </div>
+    </div>
+
+
+    <div class="box img-box3">
+        <img class="item" src="center.png" title="使用绝对定位+transform进行居中">
+    </div>
+</body>
+
+</html>
