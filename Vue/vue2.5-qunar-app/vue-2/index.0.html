@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="../lib/vue.js"></script>
+
+</head>
+<body>
+    <div id="root">
+        <table>
+            <tbody>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // 如果直接在tbody里面写<row>组件，这样会产生问题，因为tbody里面只能有td>tr标签。
+        // 所以要使用is指令
+
+        Vue.component('row', {
+            data: function() {
+                return {    // 使用这种方式让组件拥有数据。
+                    content: 'this is content'
+                }
+            },
+            template: '<tr><td>{{ content }}</td></tr>'
+        });
+
+        var vm = new Vue({
+            el: '#root'
+        });
+    </script>
+
+    <div id="reftest">
+        <p>这个名为hello的参照保存在this.$refs中，它保存了这个button的DOM对象。</p>
+        <button ref="hello" @click="handleClick">点我</button>
+    </div>
+    <script>
+        var test = new Vue({
+            el: '#reftest',
+            methods: {
+                handleClick: function() {
+                    console.log(this.$refs);
+                    alert(this.$refs.hello.outerHTML);
+                }
+            }
+        })
+    </script>
+
+    <p id="reftest2">
+        <!-- 监听change事件，并向父组件触发handleChange方法，用ref传值 -->
+        <counter ref="one" @change="handleChange"></counter>
+        <counter ref="two" @change="handleChange"></counter>
+        求和：{{total}}
+    </p>
+    <script>
+        Vue.component('counter', {
+            template: '<button @click="handleClick">{{number}}</button>',
+            data: function() {
+                return {
+                    number: 0
+                }
+            },
+            methods: {
+                handleClick: function() {
+                    this.number++;
+                    // 子组件向外触发一个事件
+                    this.$emit('change');
+                }
+            }
+        })
+        var test2 = new Vue({
+            el: '#reftest2',
+            data: {
+                total: 0
+            },
+            methods: {
+                handleChange: function() {
+                    // this.total++;
+                    this.total = this.$refs.one.number + this.$refs.two.number;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
