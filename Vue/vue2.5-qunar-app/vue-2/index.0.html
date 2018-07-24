@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>组件使用的细节点</title>
 
     <script src="../lib/vue.js"></script>
 
@@ -38,7 +38,7 @@
     </script>
 
     <div id="reftest">
-        <p>这个名为hello的参照保存在this.$refs中，它保存了这个button的DOM对象。</p>
+        <p>这个名为hello的参照保存在this.$refs中，它保存了这个button的DOM对象和VM数据。</p>
         <button ref="hello" @click="handleClick">点我</button>
     </div>
     <script>
