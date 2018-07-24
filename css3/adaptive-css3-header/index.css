@@ -1,0 +1,239 @@
+
+body,ul,li {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+
+ 
+
+.clearfix::before,
+.clearfix::after {
+    content: ' ';
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+/* -------------- */
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    background: #283133;
+}
+
+.header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-logo {
+    float: left;
+    height: 100px;
+    padding: 0px 30px;
+    background-color: #1f2425;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 99;
+}
+
+.header-logo img {
+    width: 80px;
+    transition: all .3s;
+}
+
+.header-logo::after {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    display: block;
+    margin-left: -50px;
+    height: 2px;
+    width: 0;
+    background: #fe2a61;
+    content: '';
+    transition: all 0.3s;
+}
+.header-logo:hover::after {
+    width: 73%;
+    transition: all 0.3s;
+    animation: colorChange 1s forwards;
+}
+
+.header-logo:hover img {
+    transform: translateY(-10px);
+}
+
+
+.header-nav {
+    float: left;
+    margin-left: 20px;
+}
+
+.header-nav li,.header-user li {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px;
+    padding: 0 15px;
+    height: 100px;
+}
+
+
+.js-menu-toggle ul {
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    background-color: rgba(31, 36, 37, 0.842);
+    left: -30%;
+    transition: all .3s;
+    padding: 0 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.js-menu-toggle:hover ul {
+    visibility: visible;
+    height: auto;
+    opacity: 1;
+}
+
+.header-links-effect li:before {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    display: block;
+    height: 2px;
+    width: 0;
+    background: #fe2a61;
+    content: '';
+    transition: all 0.3s;
+}
+
+.header-links-effect li:hover:before, .header-links-effect li.active:before {
+    width: 100%;
+    transition: all 0.3s;
+    animation: colorChange 1s forwards;
+}
+
+.header-links-effect li:active a {
+    color: #2ebcf9;
+}
+
+.header-links-effect li:hover a {
+    color: #2ebcf9;
+    transform: translateY(-10px);
+}
+
+.header-nav li a,.header-user li a {
+    display: block;
+    font-family: "futura-pt",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: #fff;
+    transition: all 0.3s;
+    line-height: 100px;
+    backface-visibility: hidden;
+}
+
+.header-user {
+    float: right;
+}
+
+.header-nav-toggle {
+    float: right;
+    color: #ecf0f1;
+    text-align: center;
+    cursor: pointer;
+    height: 55px;
+    margin: 0 10px;
+    padding-top: 9px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.header-nav-toggle>span {
+    width: 32px;
+    height: 3px;
+    background-color: #ecf0f1;
+    display: block;
+    margin: 7px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.header-nav-toggle.active>span:nth-child(2){
+    opacity: 0;
+  }
+  
+  .header-nav-toggle.active>span:nth-child(1){
+    transform: translateY(10px) rotate(45deg);
+  }
+  
+  .header-nav-toggle.active>span:nth-child(3){
+    transform: translateY(-10px) rotate(-45deg);
+  }
+
+@keyframes colorChange {
+    0% {
+      background: #fe2a61
+    }
+    100% {
+      background: #2ebcf9
+    }
+  }
+/* -------------- */
+
+
+/* ----------responsive---------- */
+@media only screen and (max-width:768px) {
+    .header-logo,.header-nav li, .header-user li {
+        height: 55px;
+    }
+    .header-nav li a, .header-user li a {
+        line-height: 55px;
+    }
+    .header-links-effect li:before,.header-logo::after {
+        display: none;
+    }
+    .header-links-effect li:hover a {
+        transform: translateY(-2px);
+    }
+
+    .header-nav-toggle {
+        display: block;
+    }
+    .header-nav {
+        position: absolute;
+        background-color: rgba(31, 36, 37, 0.685);
+        width: 100%;
+        margin: 0; 
+        margin-top: 55px;
+        z-index: 1;
+        display: none;
+    }
+    .header-nav li{
+        padding: 0;
+        margin: 0;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .js-menu-toggle ul {
+        left: 0;
+        padding: 0;
+        width: 100%;
+        z-index: 999;
+    }
+}
+/* ----------end-responsive---------- */

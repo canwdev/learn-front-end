@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>adaptive-css3-header</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="header clearfix">
+        <div class="header-logo header-links-effect">
+            <a href="/">
+                <img src="img/logo.png">
+            </a>
+        </div>
+        <ul class="header-nav header-links-effect">
+            <li><a href="###">About US</a></li>
+            <li class="js-menu-toggle"><a href="javascript:">Menu</a>
+                <ul>
+                    <li><a href="###">AAA</a></li>
+                    <li><a href="###">BBB</a></li>
+                    <li><a href="###">CCC</a></li>
+                </ul>
+            </li>
+            <li><a href="###">Pricing</a></li>
+            <li><a href="###">FAQs</a></li>
+        </ul>
+        <div class="header-nav-toggle js-nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="header-user header-links-effect">
+            <li><a href="###">Login</a></li>
+        </ul>
+        
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $('.js-nav-toggle').click(
+            function() {
+                $(this).toggleClass('active');
+                $('.header-nav').slideToggle(300);
+            }
+        )
+    </script>
+</body>
+
+</html>
