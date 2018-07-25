@@ -39,7 +39,7 @@
                 var this_ = this;
                 this.bus.$on('change', function(msg) {
                     // 所有组件都能接收到的事件
-                    alert("当前组件content: "+this_.selfContent+"，接收到的信息："+msg);
+                    alert("当前组件selfContent："+this_.selfContent+"，接收到的信息："+msg);
                     // this_.selfContent = msg; 
                 })
             }
