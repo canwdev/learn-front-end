@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的作用域插槽</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <p>作用域插槽的作用是父组件给子组件传递模板，子组件向父组件传递数据</p>
+        <p>使用slot-scope，配合子组件的slot标签实现，myProps用来接收v-bind:item数据</p>
+        <child>
+            <!-- 作用域插槽必须使用template标签配合slot-scope来接收数据 -->
+            <template slot-scope="myProps">
+                <li>{{myProps.item}} - myProps</li>
+            </template>
+        </child>
+    </div>
+    <script>
+        Vue.component('child', {
+            data: function() {
+                return {
+                    list: [1,2,3,4]
+                }
+            },
+            // template: `<div><ul><li v-for="item of list">{{item}}</li></ul></div>`
+            template: `<div><ul>
+                            <slot v-for="item of list" v-bind:item="item">
+                            </slot>
+                       </ul></div>`
+        });
+        var vm = new Vue({
+            el: '#root'
+        })
+    </script>
+</body>
+</html>
