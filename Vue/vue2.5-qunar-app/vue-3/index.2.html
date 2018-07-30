@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+    <script src="../lib/vue.js"></script>
+
+    <style>
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+                color: blue;
+            }
+            25% {
+                transform: scale(2.5);
+                color: red;
+            }
+            100% {
+                transform: scale(1);
+                color: blue;
+
+            }
+        }
+
+        .enter {
+            transform-origin: left center;
+            animation: bounce-in 1s;
+        }
+
+        .leave {
+            transform-origin: left center;
+            animation: bounce-in 1s reverse;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <child></child>
+    </div>
+
+    <hr>
+
+    <div id="root2">
+        <button @click="toggleShow2">Toogle2</button>
+        <transition name="toggle2"
+                    enter-active-class="animated flipInX"
+                    leave-active-class="animated flipOutX">
+            <h1 v-if="show">test toggle 2 text animate.css</h1>
+        </transition>
+    </div>
+
+    <script>
+        Vue.component('child', {
+            data: function() {
+                return {
+                    show: true
+                }
+            },
+            template: '<div>\
+                            <button @click="handleClick">Toggle</button>\
+                            <transition name="bounce"\
+                                        enter-active-class="enter"\
+                                        leave-active-class="leave">\
+                                <p v-show="show">demo show hide text</p>\
+                            </transition>\
+                       </div>',
+            methods: {
+                handleClick: function() {
+                    this.show = !this.show;
+                }
+            }
+        });
+
+        var vm = new Vue({
+            el: '#root'
+        })
+
+        var vm2 = new Vue({
+            el: '#root2',
+            data: {
+                show: true
+            },
+            methods: {
+                toggleShow2: function() {
+                    this.show = !this.show;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

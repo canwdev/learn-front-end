@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的Js动画与Velocity.js的结合</title>
+    <script src="https://cdn.bootcss.com/velocity/2.0.4/velocity.min.js"></script>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <button @click="toggleShow">Toogle</button>
+        <transition name="test"
+                    @before-enter="beforeEnter"
+                    @enter="enter"
+                    @after-enter="afterEnter"
+                    @before-leave="beforeLeave"
+                    @leave="leave"
+                    @after-leave="afterLeave">
+            <h1 v-show="show">test toggle show hide</h1>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                toggleShow: function() {
+                    this.show = !this.show;
+                },
+                beforeEnter: function(el) {
+                    // el.style.opacity = 0;
+                },
+                enter: function(el, done) {
+                    Velocity(el, {
+                        opacity: 1
+                    }, {
+                        dutation: 1000,
+                        complete: done
+                    })
+                },
+                afterEnter: function(el) {
+                    console.log('done->afterEnter '+el);
+
+                },
+                beforeLeave: function(el) {
+                    el.style.opacity = 1;
+                },
+                leave: function(el, done) {
+                    Velocity(el, {
+                        opacity: 0
+                    }, {
+                        dutation: 1000,
+                        complete: done
+                    })
+                },
+                afterLeave: function(el) {
+                    console.log('done->afterEnter '+el);
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
