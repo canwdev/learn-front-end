@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue中的Js动画与Velocity.js的结合</title>
-    <script src="https://cdn.bootcss.com/velocity/2.0.4/velocity.min.js"></script>
+    <title>在Vue中同时使用过渡和动画</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
     <script src="../lib/vue.js"></script>
+    <style>
+        .test-enter, .test-leave-to {
+            opacity: 0;
+        }
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity 3s;
+        }
+    </style>
 </head>
+
 <body>
     <div id="root">
+        <p>定义播放时长，可以使用type="animation/transition"，或者:duration="1000", 或者:duration="{enter: 5000, leave: 1000}"</p>
         <button @click="toggleShow">Toogle</button>
         <transition name="test"
-                    @before-enter="beforeEnter"
-                    @enter="enter"
-                    @after-enter="afterEnter"
-                    @before-leave="beforeLeave"
-                    @leave="leave"
-                    @after-leave="afterLeave">
+                    type="animation"
+                    appear
+                    enter-active-class="animated swing fade-enter-active"
+                    leave-active-class="animated shake fade-leave-active"
+                    appear-active-class="animated swing">
             <h1 v-show="show">test toggle show hide</h1>
         </transition>
     </div>
@@ -28,41 +38,12 @@
                 show: true
             },
             methods: {
-                toggleShow: function() {
+                toggleShow: function () {
                     this.show = !this.show;
-                },
-                beforeEnter: function(el) {
-                    // el.style.opacity = 0;
-                },
-                enter: function(el, done) {
-                    Velocity(el, {
-                        opacity: 1
-                    }, {
-                        dutation: 1000,
-                        complete: done
-                    })
-                },
-                afterEnter: function(el) {
-                    console.log('done->afterEnter '+el);
-
-                },
-                beforeLeave: function(el) {
-                    el.style.opacity = 1;
-                },
-                leave: function(el, done) {
-                    Velocity(el, {
-                        opacity: 0
-                    }, {
-                        dutation: 1000,
-                        complete: done
-                    })
-                },
-                afterLeave: function(el) {
-                    console.log('done->afterEnter '+el);
-
                 }
             }
         })
     </script>
 </body>
+
 </html>
