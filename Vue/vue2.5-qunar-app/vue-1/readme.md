@@ -4,7 +4,7 @@
 
 - [Vue实例](index.1.html)
 - [实例组件](index.2.html)
-- [生命周期](index.3.lifecycle.html)
+- [生命周期](index.3.html)
 - [模板语法](index.4.html)
 - [计算属性、方法、侦听器](index.5.html)
 - [计算属性get和set](index.6.html)

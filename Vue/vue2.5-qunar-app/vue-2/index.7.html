@@ -1,85 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>动态组件与v-once指令</title>
+    <title>Vue中的作用域插槽</title>
     <script src="../lib/vue.js"></script>
-    <style>
-        .change {
-            font-size: 45px;
-            font-weight: 900;
-            font-family: '华文中宋', SIMSUN, serif;
-            border-radius: 50%;
-            outline: 0;
-        }
-
-        .change:active {
-            color: rgb(165, 0, 0);
-        }
-    </style>
 </head>
-
 <body>
     <div id="root">
-        <p>如果要点击切换DOM元素现隐，这是一般写法</p>
-        <child-one v-if="type==='child-one'"></child-one>
-        <child-two v-if="type==='child-two'"></child-two>
-        <button @click="handleChange" class="change">变</button>
+        <p>作用域插槽的作用是父组件给子组件传递模板，子组件向父组件传递数据</p>
+        <p>使用slot-scope，配合子组件的slot标签实现，myProps用来接收v-bind:item数据</p>
+        <child>
+            <!-- 作用域插槽必须使用template标签配合slot-scope来接收数据 -->
+            <template slot-scope="myProps">
+                <li>{{myProps.item}} - myProps</li>
+            </template>
+        </child>
     </div>
     <script>
-        Vue.component('child-one', {
-            template: '<div>child-one</div>'
-        })
-
-        Vue.component('child-two', {
-            template: '<div>child-two</div>'
-        })
-
-        var vm = new Vue({
-            el: '#root',
-            data: {
-                type: 'child-one'
-            },
-            methods: {
-                handleChange: function () {
-                    this.type = (this.type === 'child-one') ? 'child-two' : 'child-one';
+        Vue.component('child', {
+            data: function() {
+                return {
+                    list: [1,2,3,4]
                 }
-            }
-        });
-    </script>
-
-    <hr>
-
-    <div id="root2">
-        <p>Vue动态组件儿，使用:is语法绑定相应组件名，棒极了</p>
-        <component :is="type"></component>
-        <button @click="handleChange" class="change">变</button>
-    </div>
-    <script>
-        Vue.component('child-one', {
-            // 在子组件中加上v-once，这样组件现隐时不会频繁销毁重建，而是保存在内存中，提升组件性能
-            template: '<div v-once>child-one</div>'
-        })
-
-        Vue.component('child-two', {
-            template: '<div v-once>child-two</div>'
-        })
-
-        var vm = new Vue({
-            el: '#root2',
-            data: {
-                type: 'child-one'
             },
-            methods: {
-                handleChange: function () {
-                    this.type = (this.type === 'child-one') ? 'child-two' : 'child-one';
-                }
-            }
+            // template: `<div><ul><li v-for="item of list">{{item}}</li></ul></div>`
+            template: `<div><ul>
+                            <slot v-for="item of list" v-bind:item="item">
+                            </slot>
+                       </ul></div>`
         });
+        var vm = new Vue({
+            el: '#root'
+        })
     </script>
 </body>
-
 </html>

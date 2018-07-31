@@ -9,7 +9,11 @@
     * 使用v-bind指令、prop向子组件传值，使用data函数接收值并修改
     * 不可以直接修改父组件传递的值
     * 使用$emit向外触发事件，可携带参数以传值
-3. [章节视频缺失]
+3. [组件参数校验与非props特性](index.3.html)
+    * 使用props对象，使用简单的表达式约束content必须是一个字符串 `'content': String`
+    * 使用数组来进行多个约束规则 `'content':[String, Number]`
+    * 使用对象进行更复杂的规则约束 `'content': {type: String,required: false,default: 'default value'}`
+    * 只要子组件用props接收了父组件的content数据，父组件的content属性就不会显示在dom属性中
 4. [给组件绑定原生事件](index.4.html)
     * 使用@click.native触发原生点击事件
 5. [非父子组件的传值](index.5.html)
