@@ -5,23 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue模板语法</title>
+    <title>Vue实例生命周期函数</title>
 </head>
 
 <body>
     <div id="app">
-        <div v-bind:title="title">{{message + Math.random()}}</div>
-        <div v-text="message + Math.random()"></div>
-        <div v-html="message + Math.random()"></div>
+
     </div>
 
     <script src="../lib/vue.js"></script>
     <script>
+        // 生命周期函数就是vue实例在某一个时间点自动执行的函数
         var vm = new Vue({
             el: '#app',
+            template: `<div>
+                            <h1>{{test}}, open console.</h1>
+                            <img src="index.3.png" alt="生命周期">
+                            <p>bye bye</p>
+                        </div>`,
             data: {
-                message: '<h1>hello world</h1>',
-                title: 'hello world'
+                test: 'hello world'
+            },
+            beforeCreate: function () {
+                console.log('beforeCreate')
+            },
+            created: function () {
+                console.log('created')
+            },
+            beforeMount: function () {
+                console.log('beforeMount', this.$el)
+            },
+            mounted: function () {
+                console.log('mounted', this.$el)
+            },
+            // vm.$data.test = 'test'
+            beforeUpdate: function () {
+                console.log('beforeUpdate')
+            },
+            updated: function () {
+                console.log('updated')
+            },
+            // vm.$destroy()
+            beforeDestroy: function () {
+                console.log('beforeDestroy')
+            },
+            destroyed: function () {
+                console.log('destroyed')
             }
         })
     </script>

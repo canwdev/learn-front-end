@@ -5,32 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue中的条件渲染</title>
+    <title>Vue中的样式绑定</title>
+    <style>
+        .red {
+            color: #f00;
+        }
+
+        .green {
+            color: #0f0;
+        }
+
+        .greenBg {
+            background-color: rgb(240, 255, 242);
+        }
+
+        .blue {
+            color: #00f;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app" style="height: 100px;">
-        <div v-if="show">1. Now you see me, soon you won't.</div>
-        <!-- <div v-else>Bye bye</div> -->
-        <div v-show="show">2. Now you see me, soon you won't.</div>
-    </div>
-
-    <div id="app2">
-        <div v-if="type === 'name'">用户名：
-            <input type="text" key="1">
-        </div>
-        <div v-else-if="type === 'email'">邮箱：
-            <input type="email" key="2">
-        </div>
-        <div v-else>类型：
-            <input type="text" key="3">
-        </div>
-        <pre>
-            // Vue 会尝试一些组件的复用，使用key可以区分这些类型相同但内容不同的组件
-            vm2.type = 'email'
-            vm2.type = 'other'
-            vm2.type = 'name'
-        </pre>
+    <div id="app">
+        <h1 @click="handleH1Click" :class="{red: isActivated}">hello world</h1>
+        <h2 @click="handleH2Click" :class="[myClass, myClass1]">hello world</h2>
+        <h3 @click="handleH3Click" :style="[myStyle]">hello world</h3>
     </div>
 
     <script src="../lib/vue.js"></script>
@@ -38,23 +37,25 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                show: true
+                isActivated: false,
+                myClass: '',
+                myClass1: 'greenBg',
+                myStyle: {
+                    color: '#000',
+                    backgroundColor: 'rgb(240, 243, 255)'
+                }
             },
             methods: {
-
+                handleH1Click: function () {
+                    this.isActivated = !this.isActivated;
+                },
+                handleH2Click: function () {
+                    this.myClass = this.myClass === 'green' ? '' : 'green';
+                },
+                handleH3Click: function () {
+                    this.myStyle.color = this.myStyle.color === '#000' ? '#00f' : '#000';
+                }
             }
-        })
-
-        setInterval(() => {
-            vm.show = !vm.show;
-        }, 5000);
-
-        var vm2 = new Vue({
-            el: '#app2',
-            data: {
-                type: 'name'
-            }
-
         })
     </script>
 </body>

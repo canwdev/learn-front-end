@@ -2,15 +2,15 @@
 
 学习vue的各种特性：
 
-- [Vue实例](index.html)
-- [实例组件](index.1.html)
-- [生命周期](index.2.lifecycle.html)
-- [模板语法](index.3.html)
-- [计算属性、方法、侦听器](index.4.html)
-- [计算属性get和set](index.5.html)
-- [样式绑定](index.6.html)
-- [条件渲染](index.7.html)
-- [列表渲染、set](index.8.html)
+- [Vue实例](index.1.html)
+- [实例组件](index.2.html)
+- [生命周期](index.3.lifecycle.html)
+- [模板语法](index.4.html)
+- [计算属性、方法、侦听器](index.5.html)
+- [计算属性get和set](index.6.html)
+- [样式绑定](index.7.html)
+- [条件渲染](index.8.html)
+- [列表渲染、set](index.9.html)
 
 ## 备注
 

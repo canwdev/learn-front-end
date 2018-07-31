@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件的数据传递</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <p>使用v-bind指令、prop向子组件传值，使用data函数接收值并修改</p>
+        <p>
+            <!-- 使用@increase接收increase事件，触发父组件的handleIncrease函数。 -->
+            <counter v-bind:count="1" @increase="handleIncrease"></counter>
+            <counter :count="2" @increase="handleIncrease"></counter>
+            求和：{{total}}
+        </p>
+    </div>
+    <script>
+        Vue.component('counter', {
+            // count 是父组件传来的值
+            props: ['count'],
+            data: function() {
+                return {
+                    // 使用一个子组件数据来接收父组件传递过来的值
+                    number: this.count
+                }
+            },
+            template: '<button @click="handleClick">{{number}}</button>',
+            methods: {
+                handleClick: function() {
+                    var step = 2;
+                    // this.count++; // 不可以直接修改父组件传递的值
+                    this.number += step;
+                    // 使用$emit向外触发事件，可携带参数以传值
+                    this.$emit('increase', step);
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                total: 3
+            },
+            methods: {
+                handleIncrease: function(step) {
+                    this.total+=step;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

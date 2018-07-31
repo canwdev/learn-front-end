@@ -5,46 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue中的列表渲染、set</title>
+    <title>Vue中的条件渲染</title>
 </head>
 
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="(item, index) of list" :key="index">{{item}} ----- {{index}}</li>
-        </ul>
-        <div>
-            <template v-for="(item, key, index) of userInfo">
-                <h1>{{index}}. {{key}}</h1>
-                <p>{{item}}</p>
-            </template>
-        </div>
+    <div id="app" style="height: 100px;">
+        <div v-if="show">1. Now you see me, soon you won't.</div>
+        <!-- <div v-else>Bye bye</div> -->
+        <div v-show="show">2. Now you see me, soon you won't.</div>
     </div>
 
+    <div id="app2">
+        <div v-if="type === 'name'">用户名：
+            <input type="text" key="1">
+        </div>
+        <div v-else-if="type === 'email'">邮箱：
+            <input type="email" key="2">
+        </div>
+        <div v-else>类型：
+            <input type="text" key="3">
+        </div>
+        <pre>
+            // Vue 会尝试一些组件的复用，使用key可以区分这些类型相同但内容不同的组件
+            vm2.type = 'email'
+            vm2.type = 'other'
+            vm2.type = 'name'
+        </pre>
+    </div>
 
     <script src="../lib/vue.js"></script>
     <script>
         var vm = new Vue({
             el: '#app',
             data: {
-                list: [],
-                userInfo: {
-                    name: 'Kane',
-                    age: 21,
-                    gender: 'male',
-                    salary: 'secret'
-                }
+                show: true
             },
-            mounted: function() {
-                this.list = 'hello kane nice to meet you'.split(' ');
+            methods: {
+
             }
         })
 
-        setTimeout(() => {
-            // set方法，用于更新数据的同时响应页面内容，数组同样适用
-            // Vue.set(vm.userInfo, 'address', 'ufvf');
-            vm.$set(vm.userInfo, 'address', 'ufvf');
-        }, 2000);
+        setInterval(() => {
+            vm.show = !vm.show;
+        }, 5000);
+
+        var vm2 = new Vue({
+            el: '#app2',
+            data: {
+                type: 'name'
+            }
+
+        })
     </script>
 </body>
 

@@ -5,55 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue中的样式绑定</title>
-    <style>
-        .red {
-            color: #f00;
-        }
-
-        .green {
-            color: #0f0;
-        }
-
-        .greenBg {
-            background-color: rgb(240, 255, 242);
-        }
-
-        .blue {
-            color: #00f;
-        }
-    </style>
+    <title>Vue计算属性的get和set</title>
 </head>
 
 <body>
     <div id="app">
-        <h1 @click="handleH1Click" :class="{red: isActivated}">hello world</h1>
-        <h2 @click="handleH2Click" :class="[myClass, myClass1]">hello world</h2>
-        <h3 @click="handleH3Click" :style="[myStyle]">hello world</h3>
+        {{ fullName }} {{ age }}
     </div>
+    <pre>
+    // 打开console，输入：
+    vm.fullName = 'Dell Lee'
+    </pre>
 
     <script src="../lib/vue.js"></script>
     <script>
         var vm = new Vue({
             el: '#app',
             data: {
-                isActivated: false,
-                myClass: '',
-                myClass1: 'greenBg',
-                myStyle: {
-                    color: '#000',
-                    backgroundColor: 'rgb(240, 243, 255)'
-                }
+                firstName: 'Kane',
+                lastName: 'Wh',
+                age: '21'
             },
-            methods: {
-                handleH1Click: function () {
-                    this.isActivated = !this.isActivated;
-                },
-                handleH2Click: function () {
-                    this.myClass = this.myClass === 'green' ? '' : 'green';
-                },
-                handleH3Click: function () {
-                    this.myStyle.color = this.myStyle.color === '#000' ? '#00f' : '#000';
+            computed: {
+                fullName: {
+                    get: function() {
+                        return this.firstName + ' ' + this.lastName;
+                    },
+                    set: function(value) {
+                        var arr = value.split(" ");
+                        console.log(arr);
+                        this.firstName = arr[0];
+                        this.lastName = arr[1];
+                    }
                 }
             }
         })
