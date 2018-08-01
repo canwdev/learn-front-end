@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的列表过渡</title>
+    <script src="../lib/vue.js"></script>
+    <style>
+        .v-enter, .v-leave-to {
+            opacity: 0;
+            background-color: red;
+        }
+        .v-enter-active, .v-leave-active {
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <p>transition-group内部的标签，相当于在每个标签外面加了个transition</p>
+        <button @click="handleClick">Add</button>
+        <ul>
+            <transition-group>
+                <li v-for="(item, index) in list" :key="item.id">{{item.name}}</li>
+            </transition-group>
+        </ul>
+    </div>
+    <script>
+        var count = 0;
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                list: []
+            },
+            methods: {
+                handleClick: function() {
+                    this.list.push({
+                        id: count,
+                        name: 'Meet 二次 world again ' + count++
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -15,3 +15,7 @@
 5. [Vue中多个元素或组件的过渡](index.5.html)
     * 要对多个元素使用过渡，需要给每个元素加上key，如果使用了组件，就不需要加key
     * 可以使用mode语句定义过渡方式，in-out/out-in
+6. [Vue中的列表过渡](index.6.html)
+    * transition-group内部的标签，相当于在每个标签外面加了个transition
+7. [Vue中的动画封装](index.7.html)
+    * 为了让动画复用，使用组件和插槽封装动画
