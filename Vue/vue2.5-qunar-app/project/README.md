@@ -29,3 +29,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
    > cd <your_project_folder>
 4. 初始化vue项目（按默认配置就好）
    > vue init webpack
+
+## *说明
+
+- 用Vue写出的应用是一个单页应用
