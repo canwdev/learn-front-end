@@ -22,10 +22,10 @@ export default {
       },
       swiperList: [
         {
-          id: '1',
+          id: '0001',
           imgUrl: require('@/assets/img/slide1.jpg')
         }, {
-          id: '2',
+          id: '0002',
           imgUrl: require('@/assets/img/slide2.jpg')
         }
       ]

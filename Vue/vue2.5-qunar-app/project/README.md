@@ -33,3 +33,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## *说明
 
 - 用Vue写出的应用是一个单页应用
+- 使用的axios来执行ajax请求

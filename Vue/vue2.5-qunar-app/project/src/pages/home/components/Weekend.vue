@@ -43,8 +43,6 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@css/variables.styl'
-.weekend
-  margin .1rem auto
 .weekend-title
   line-height .8rem
   background #eee

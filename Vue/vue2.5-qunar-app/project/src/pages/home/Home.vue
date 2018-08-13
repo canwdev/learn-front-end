@@ -15,6 +15,8 @@ import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
+// 引入axios来发送ajax请求
+import axios from 'axios'
 export default {
   name: 'Home',
   components: {
@@ -24,6 +26,19 @@ export default {
     HomeIcons,
     HomeRecommend,
     HomeWeekend
+  },
+  mounted () {
+    this.getHomeInfo()
+  },
+  methods: {
+    getHomeInfo () {
+      // 转发机制 proxy，在/config/index.js
+      axios.get('/api/index.json').then(this.getHomeInfoSucc)
+    },
+    // ajax回调
+    getHomeInfoSucc (res) {
+      console.log(res)
+    }
   }
 }
 </script>

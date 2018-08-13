@@ -30,7 +30,7 @@ export default {
         title: '世界之窗',
         desc: '深圳的世界之窗要比长沙的世界之窗更具规模也更有名，花上半天或者一天游玩在各大洲各国家的微缩建筑之间，看看暂时还看不到的国外风景，也只能先这样一饱眼福啦。'
       }, {
-        id: '0002',
+        id: '0003',
         imgUrl: require('@/assets/img/recommend/1.jpg'),
         title: '世界之窗',
         desc: '深圳的世界之窗要比长沙的世界之窗更具规模也更有名，花上半天或者一天游玩在各大洲各国家的微缩建筑之间，看看暂时还看不到的国外风景，也只能先这样一饱眼福啦。'
@@ -42,8 +42,6 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@css/variables.styl'
-.recommend
-  margin .1rem auto
 .recommend-title
   line-height .8rem
   background #eee
