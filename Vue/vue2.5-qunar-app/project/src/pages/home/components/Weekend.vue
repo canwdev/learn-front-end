@@ -2,7 +2,7 @@
   <div class="weekend">
     <div class="weekend-title">周末去哪儿</div>
     <ul>
-      <li class="weekend-item" v-for="item in recommendList" :key="item.id">
+      <li class="weekend-item" v-for="item in weekendList" :key="item.id">
         <div class="img-wrapper">
           <img class="item-img" :src="item.imgUrl" :alt="item.title">
         </div>
@@ -18,9 +18,12 @@
 <script>
 export default {
   name: 'HomeWeekend',
+  props: {
+    weekendList: Array
+  },
   data () {
     return {
-      recommendList: [{
+      weekendListStatic: [{
         id: '0001',
         imgUrl: require('@/assets/img/weekend/1.jpg'),
         title: '当地人游深圳',

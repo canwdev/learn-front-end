@@ -1,6 +1,6 @@
 <template>
 <div class="wrapper">
-  <swiper :options="swiperOption" ref="mySwiper">
+  <swiper :options="swiperOption" ref="mySwiper" v-if="showSwiper">
     <swiper-slide v-for="item in swiperList" :key="item.index">
       <img class="swiper-img" :src="item.imgUrl" alt="">
     </swiper-slide>
@@ -12,6 +12,9 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    swiperList: Array
+  },
   data () {
     return {
       swiperOption: {
@@ -20,7 +23,7 @@ export default {
         },
         loop: true
       },
-      swiperList: [
+      swiperListStatic: [
         {
           id: '0001',
           imgUrl: require('@/assets/img/slide1.jpg')
@@ -29,6 +32,11 @@ export default {
           imgUrl: require('@/assets/img/slide2.jpg')
         }
       ]
+    }
+  },
+  computed: {
+    showSwiper () {
+      return this.swiperList.length
     }
   }
 }
@@ -41,7 +49,8 @@ export default {
     overflow hidden
     height 0
     width 100%
-    padding-bottom 45.03%
+    // padding-bottom 45.03%
+    padding-bottom 31.25%
     .swiper-img
       width 100%
 </style>

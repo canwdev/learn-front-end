@@ -1,10 +1,10 @@
 <template>
   <div>
-    <home-header></home-header>
-    <home-swiper></home-swiper>
-    <home-icons></home-icons>
-    <home-recommend></home-recommend>
-    <home-weekend></home-weekend>
+    <home-header :city="city"></home-header>
+    <home-swiper :swiperList="swiperList"></home-swiper>
+    <home-icons :iconList="iconList"></home-icons>
+    <home-recommend :recommendList="recommendList"></home-recommend>
+    <home-weekend :weekendList="weekendList"></home-weekend>
   </div>
 </template>
 
@@ -27,6 +27,15 @@ export default {
     HomeRecommend,
     HomeWeekend
   },
+  data () {
+    return {
+      city: '',
+      swiperList: [],
+      iconList: [],
+      weekendList: [],
+      recommendList: []
+    }
+  },
   mounted () {
     this.getHomeInfo()
   },
@@ -37,6 +46,15 @@ export default {
     },
     // ajax回调
     getHomeInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        let data = res.data
+        this.city = data.city
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
       console.log(res)
     }
   }

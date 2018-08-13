@@ -17,9 +17,12 @@
 <script>
 export default {
   name: 'HomeRecommend',
+  props: {
+    recommendList: Array
+  },
   data () {
     return {
-      recommendList: [{
+      recommendListStatic: [{
         id: '0001',
         imgUrl: require('@/assets/img/recommend/1.jpg'),
         title: '世界之窗',

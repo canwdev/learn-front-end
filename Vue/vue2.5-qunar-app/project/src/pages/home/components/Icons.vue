@@ -6,7 +6,7 @@
           <div class="icon-img">
             <img :src="item.imgUrl">
           </div>
-          <p>{{item.text}}</p>
+          <p>{{item.desc}}</p>
         </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -17,6 +17,9 @@
 <script>
 export default {
   name: 'HomeIcons',
+  props: {
+    iconList: Array
+  },
   data () {
     return {
       swiperOption: {
@@ -24,16 +27,16 @@ export default {
           el: '.swiper-pagination'
         }
       },
-      iconList: [
-        {id: '0001', imgUrl: require('@/assets/img/icons/icon1.png'), text: '景点门票'},
-        {id: '0002', imgUrl: require('@/assets/img/icons/icon2.png'), text: '水上乐园'},
-        {id: '0003', imgUrl: require('@/assets/img/icons/icon3.png'), text: '游乐场'},
-        {id: '0004', imgUrl: require('@/assets/img/icons/icon4.png'), text: '海洋馆'},
-        {id: '0005', imgUrl: require('@/assets/img/icons/icon1.png'), text: '动植物园动植物园动植物园'},
-        {id: '0006', imgUrl: require('@/assets/img/icons/icon2.png'), text: '玩转深圳'},
-        {id: '0007', imgUrl: require('@/assets/img/icons/icon3.png'), text: '城市风光'},
-        {id: '0008', imgUrl: require('@/assets/img/icons/icon4.png'), text: '海滨沙滩'},
-        {id: '0009', imgUrl: require('@/assets/img/icons/icon0.png'), text: '全部玩乐'}
+      iconListStatic: [
+        {id: '0001', imgUrl: require('@/assets/img/icons/icon1.png'), desc: '景点门票'},
+        {id: '0002', imgUrl: require('@/assets/img/icons/icon2.png'), desc: '水上乐园'},
+        {id: '0003', imgUrl: require('@/assets/img/icons/icon3.png'), desc: '游乐场'},
+        {id: '0004', imgUrl: require('@/assets/img/icons/icon4.png'), desc: '海洋馆'},
+        {id: '0005', imgUrl: require('@/assets/img/icons/icon1.png'), desc: '动植物园动植物园动植物园'},
+        {id: '0006', imgUrl: require('@/assets/img/icons/icon2.png'), desc: '玩转深圳'},
+        {id: '0007', imgUrl: require('@/assets/img/icons/icon3.png'), desc: '城市风光'},
+        {id: '0008', imgUrl: require('@/assets/img/icons/icon4.png'), desc: '海滨沙滩'},
+        {id: '0009', imgUrl: require('@/assets/img/icons/icon0.png'), desc: '全部玩乐'}
       ]
     }
   },
