@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="recommend">
     <div class="recommend-title">热门推荐</div>
     <ul>
       <li class="recommend-item border-bottom" v-for="item in recommendList" :key="item.id">
@@ -42,6 +42,8 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@css/variables.styl'
+.recommend
+  margin .1rem auto
 .recommend-title
   line-height .8rem
   background #eee
