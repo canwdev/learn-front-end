@@ -68,7 +68,7 @@ export default {
   // overflow hidden
   height 0
   width 100%
-  padding-bottom 50%
+  padding-bottom 55%
   // background-color #fafafa
   .icon
     float left
