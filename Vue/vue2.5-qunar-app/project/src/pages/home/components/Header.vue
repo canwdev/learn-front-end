@@ -6,9 +6,11 @@
     <div class="input">
       <span class="iconfont">&#xe741;</span>
       输入城市/景点/游玩主题</div>
-    <div class="right">{{city}}
-      <span class="iconfont">&#xe7ee;</span>
-    </div>
+    <router-link to="/City">
+      <div class="right">{{city}}
+        <span class="iconfont">&#xe7ee;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -32,9 +34,6 @@ export default {
       width .64rem
       float left
       text-align center
-      padding 0 .1rem
-      .iconfont
-        font-size .4rem
     .input
       flex 1
       height .64rem
@@ -49,4 +48,5 @@ export default {
       width 1.24rem
       float right
       text-align center
+      color #fff
 </style>
