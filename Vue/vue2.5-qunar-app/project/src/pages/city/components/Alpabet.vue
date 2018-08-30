@@ -20,7 +20,9 @@ export default {
   },
   data () {
     return {
-      touchStatus: false
+      touchStatus: false,
+      startY: 0,
+      timer: null
     }
   },
   watch: {
@@ -32,6 +34,10 @@ export default {
         this.cities[this.letter].isActive = true
       }
     }
+  },
+  updated () {
+    // 获取列表元素到搜索框下面的高度 ???
+    this.startY = this.$refs['listBody'].offsetTop - 278
   },
   computed: {
     letters () {
@@ -51,15 +57,19 @@ export default {
     },
     handleTouchMove (ev) {
       if (this.touchStatus) {
-        // 获取列表元素到搜索框下面的高度 ???
-        const startY = this.$refs['listBody'].offsetTop - 278
-        // 获取当前触摸到搜索框下面的高度
-        const touchY = ev.touches[0].clientY - 79
-        const index = Math.floor((touchY - startY) / 22)
-        if (index >= 0 && index < this.letters.length) {
-          var letter = this.letters[index]
-          this.$emit('letterChange', letter)
+        // 函数节流阀
+        if (this.timer) {
+          clearTimeout(this.timer)
         }
+        this.timer = setTimeout(() => {
+          // 获取当前触摸到搜索框下面的高度
+          const touchY = ev.touches[0].clientY - 79
+          const index = Math.floor((touchY - this.startY) / 22)
+          if (index >= 0 && index < this.letters.length) {
+            var letter = this.letters[index]
+            this.$emit('letterChange', letter)
+          }
+        }, 16)
       }
     },
     handleTouchEnd () {
@@ -82,7 +92,8 @@ export default {
   line-height .45rem
   color $themeColor
   .item.active
-    background: rgba(0, 0, 0, 0.5)
+    background: $themeColor
+    color: #fff
     border-radius 50%
 .list.active
   background: rgba(0, 0, 0, 0.5)
