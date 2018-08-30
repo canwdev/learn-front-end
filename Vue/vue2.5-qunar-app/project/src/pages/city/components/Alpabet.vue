@@ -96,7 +96,8 @@ export default {
     color: #fff
     border-radius 50%
 .list.active
-  background: rgba(0, 0, 0, 0.5)
+  background: $themeColor
+  color: #fff
   border-radius: 1rem
   padding: .1rem 0
 </style>
