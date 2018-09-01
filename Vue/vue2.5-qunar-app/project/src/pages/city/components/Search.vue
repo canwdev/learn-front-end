@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="search">
-      <input v-model="keyword" type="text" placeholder="输入城市名或拼音" class="search-input">
+      <input v-model="keyword" type="text" autofocus="false" placeholder="输入城市名或拼音" class="search-input">
     </div>
     <div class="search-content" ref="search" v-show="keyword">
       <ul>
@@ -16,6 +16,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import { mapMutations } from 'vuex'
 export default {
   name: 'CitySearch',
   props: {
@@ -30,9 +31,10 @@ export default {
   },
   methods: {
     handleCityClick (name) {
-      this.$store.commit('changeCity', name)
+      this.changeCity(name)
       this.$router.push('/')
-    }
+    },
+    ...mapMutations(['changeCity'])
   },
   mounted () {
     this.scroll = new BScroll(this.$refs.search, {click: true})

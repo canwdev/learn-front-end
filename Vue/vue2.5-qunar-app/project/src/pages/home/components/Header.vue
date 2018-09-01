@@ -3,11 +3,13 @@
     <div class="left">
       <span class="iconfont">&#xe7f1;</span>
     </div>
-    <div class="input">
+    <div class="input" @click="goCityList">
       <span class="iconfont">&#xe741;</span>
       输入城市/景点/游玩主题</div>
     <router-link to="/City">
-      <div class="right">{{this.$store.state.city}}
+      <div class="right">
+        <!-- {{this.$store.state.city}} -->
+        {{this.city}}
         <span class="iconfont">&#xe7ee;</span>
       </div>
     </router-link>
@@ -15,8 +17,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  computed: {
+    // 展开运算符。。。把city映射到计算属性之中
+    ...mapState(['city'])
+  },
+  methods: {
+    goCityList () {
+      this.$router.push('/city')
+    }
+  }
 }
 </script>
 
@@ -42,7 +54,7 @@ export default {
       color #ccc
     .right
       padding 0 .1rem
-      width 1.24rem
+      min-width 1.24rem
       float right
       text-align center
       color #fff

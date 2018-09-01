@@ -17,6 +17,7 @@ import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 // 引入axios来发送ajax请求
 import axios from 'axios'
+import { mapState } from 'vuex'
 export default {
   name: 'Home',
   components: {
@@ -27,21 +28,26 @@ export default {
     HomeRecommend,
     HomeWeekend
   },
+  computed: {
+    ...mapState(['city'])
+  },
   data () {
     return {
       swiperList: [],
       iconList: [],
       weekendList: [],
-      recommendList: []
+      recommendList: [],
+      lastCity: ''
     }
   },
   mounted () {
     this.getHomeInfo()
+    this.lastCity = this.city
   },
   methods: {
     getHomeInfo () {
       // 转发机制 proxy，在/config/index.js
-      axios.get('/api/index.json').then(this.getHomeInfoSucc)
+      axios.get('/api/index.json?city=' + this.city).then(this.getHomeInfoSucc)
     },
     // ajax回调
     getHomeInfoSucc (res) {
@@ -54,6 +60,12 @@ export default {
         this.weekendList = data.weekendList
       }
       // console.log(res)
+    }
+  },
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
     }
   }
 }
