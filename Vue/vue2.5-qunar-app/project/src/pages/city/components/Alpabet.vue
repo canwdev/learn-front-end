@@ -87,7 +87,7 @@ export default {
   transform translateY(-42%)
   // top: 2.58rem
   right .1rem
-  width .4rem
+  width .45rem
   text-align center
   line-height .45rem
   color $themeColor

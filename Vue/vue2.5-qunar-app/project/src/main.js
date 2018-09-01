@@ -14,6 +14,8 @@ import '@css/iconfont/iconfont.css'
 // 轮播组件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
+// 使用Vuex
+import store from './store'
 
 Vue.use(VueAwesomeSwiper)
 
@@ -24,6 +26,7 @@ fastClick.attach(document.body)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
