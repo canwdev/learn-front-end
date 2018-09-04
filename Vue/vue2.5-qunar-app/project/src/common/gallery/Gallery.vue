@@ -30,7 +30,7 @@ export default {
         observeParents: true,
         observer: true,
         loop: true,
-        effect : 'coverflow'
+        effect: 'coverflow'
       }
     }
   },
