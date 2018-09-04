@@ -1,12 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container" @click="handleGallaryClick">
     <div class="wrapper">
       <swiper :options="swiperOptions">
-        <swiper-slide class="gallery-img">
-          <img src="http://img1.qunarzz.com/sight/p0/1508/a5/4003f9dd7bebf61eccbf64046e26d487.water.jpg_r_800x800_4701d58f.jpg">
-        </swiper-slide>
-        <swiper-slide class="gallery-img">
-          <img src="http://img1.qunarzz.com/sight/p0/1508/89/895a1b7add84f23faca053ce9e3153db.water.jpg_r_800x800_087730c7.jpg">
+        <swiper-slide class="gallery-img" v-for="(item, index) of imgs" :key="index ">
+          <img :src="item">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -17,14 +14,29 @@
 <script>
 export default {
   name: 'CommonGallery',
+  props: {
+    imgs: Array,
+    default () {
+      return []
+    }
+  },
   data () {
     return {
       swiperOptions: {
         pagination: {
           el: '.swiper-pagination',
           type: 'fraction'
-        }
+        },
+        observeParents: true,
+        observer: true,
+        loop: true,
+        effect : 'coverflow'
       }
+    }
+  },
+  methods: {
+    handleGallaryClick () {
+      this.$emit('close')
     }
   }
 }
@@ -53,5 +65,5 @@ export default {
           width 100%
       .swiper-pagination
         position absolute
-        bottom -1rem      
+        bottom -1rem
 </style>

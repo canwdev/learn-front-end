@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="banner">
+    <div class="banner" @click="handleBannerClick">
       <img class="banner-img" src="//img1.qunarzz.com/sight/p0/1508/a5/4003f9dd7bebf61eccbf64046e26d487.water.jpg_600x330_a80ff353.jpg">
       <div class="banner-info">
         <div class="title">北京欢乐谷(AAAA景区)</div>
         <div class="image-count"><span class="iconfont">&#xe796;</span><span>39</span></div>
       </div>
     </div>
-    <common-gallery></common-gallery>
+    <common-gallery :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallery>
   </div>
 </template>
 
@@ -15,8 +15,23 @@
 import CommonGallery from '@common/gallery/Gallery'
 export default {
   name: 'Detail',
+  data () {
+    return {
+      showGallary: false,
+      bannerImgs: [
+        'http://img1.qunarzz.com/sight/p0/1508/a5/4003f9dd7bebf61eccbf64046e26d487.water.jpg_r_800x800_4701d58f.jpg', 'http://img1.qunarzz.com/sight/p0/1508/89/895a1b7add84f23faca053ce9e3153db.water.jpg_r_800x800_087730c7.jpg']
+    }
+  },
   components: {
     CommonGallery
+  },
+  methods: {
+    handleBannerClick () {
+      this.showGallary = true
+    },
+    handleGallaryClose () {
+      this.showGallary = false
+    }
   }
 }
 </script>
