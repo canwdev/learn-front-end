@@ -16,6 +16,8 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 // 使用Vuex
 import store from './store'
+// 解决兼容性问题
+import 'babel-polyfill'
 
 Vue.use(VueAwesomeSwiper)
 

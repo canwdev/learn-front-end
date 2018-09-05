@@ -2,7 +2,7 @@
   <div :class="touchStatus?'list active':'list'" ref="listBody">
     <div v-for="(item, key) of cities" :key="key" class="item" :class="{active: item.isActive}"
          @click="letterClick"
-         @touchstart="handleTouchStart"
+         @touchstart.prevent="handleTouchStart"
          @touchmove="handleTouchMove"
          @touchend="handleTouchEnd"
          >
