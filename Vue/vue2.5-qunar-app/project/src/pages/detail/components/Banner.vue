@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <img class="banner-img" src="//img1.qunarzz.com/sight/p0/1508/a5/4003f9dd7bebf61eccbf64046e26d487.water.jpg_600x330_a80ff353.jpg">
+      <img class="banner-img" :src="bannerImg">
       <div class="banner-info">
-        <div class="title">北京欢乐谷(AAAA景区)</div>
-        <div class="image-count"><span class="iconfont">&#xe796;</span><span>39</span></div>
+        <div class="title">{{title}}</div>
+        <div class="image-count"><span class="iconfont">&#xe796;</span><span>{{bannerImgs.length}}</span></div>
       </div>
     </div>
     <common-gallery :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallery>
@@ -15,11 +15,14 @@
 import CommonGallery from '@common/gallery/Gallery'
 export default {
   name: 'Detail',
+  props: {
+    title: String,
+    bannerImg: String,
+    bannerImgs: Array
+  },
   data () {
     return {
-      showGallary: false,
-      bannerImgs: [
-        'http://img1.qunarzz.com/sight/p0/1508/a5/4003f9dd7bebf61eccbf64046e26d487.water.jpg_r_800x800_4701d58f.jpg', 'http://img1.qunarzz.com/sight/p0/1508/89/895a1b7add84f23faca053ce9e3153db.water.jpg_r_800x800_087730c7.jpg']
+      showGallary: false
     }
   },
   components: {
