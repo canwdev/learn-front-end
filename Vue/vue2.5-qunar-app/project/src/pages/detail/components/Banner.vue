@@ -7,12 +7,15 @@
         <div class="image-count"><span class="iconfont">&#xe796;</span><span>{{bannerImgs.length}}</span></div>
       </div>
     </div>
-    <common-gallery :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallery>
+    <fade>
+      <common-gallery :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallery>
+    </fade>
   </div>
 </template>
 
 <script>
 import CommonGallery from '@common/gallery/Gallery'
+import Fade from '@common/animation/Fade'
 export default {
   name: 'Detail',
   props: {
@@ -26,7 +29,8 @@ export default {
     }
   },
   components: {
-    CommonGallery
+    CommonGallery,
+    Fade
   },
   methods: {
     handleBannerClick () {
