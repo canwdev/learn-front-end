@@ -17,6 +17,12 @@
             text-align: center;
         }
 
+        @media only screen and (max-width: 800px) {
+            .container {
+                width: 100%;
+            }
+        }
+
         /* --------------------------------- */
 
         .bouncing-loader {
@@ -46,6 +52,7 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
             to {
                 opacity: 0.1;
                 transform: translateY(-1rem);
@@ -67,7 +74,9 @@
         @keyframes dount-sping {
             0% {
                 transform: rotate(0deg);
-            } 100% {
+            }
+
+            100% {
                 transform: rotate(360deg);
             }
         }
