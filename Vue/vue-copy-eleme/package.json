@@ -1,7 +1,7 @@
 {
   "name": "elemeapp",
   "version": "1.0.0",
-  "description": "Copy Eleme App",
+  "description": "A copy of Eleme app",
   "author": "canwdev <c2097@live.com>",
   "private": true,
   "scripts": {
