@@ -10,6 +10,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+// --------- 数据模拟 ----------
+var express = require('express')
+var apiServer = express()
+var bodyParser = require('body-parser')
+apiServer.use(bodyParser.urlencoded({ extended: true }))
+apiServer.use(bodyParser.json())
+var apiRouter = express.Router()
+var fs = require('fs')
+
+
+let apiRoutes = express.Router();
+app.use('/api', apiRoutes)
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -42,6 +55,30 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    // --------- 数据模拟 ----------
+    before(apiServer){
+      apiRouter.route('/:apiName')
+      .all(function (req, res) {
+        fs.readFile('./db.json', 'utf8', function (err, data) {
+          if (err) throw err
+          var data = JSON.parse(data)
+          if (data[req.params.apiName]) {
+            res.json(data[req.params.apiName])  
+          }else {
+            res.send('no such api name')
+          }
+        })
+      })
+      apiServer.use('/api', apiRouter);
+    
+      apiServer.listen(3000, function (err) {
+        if (err) {
+          console.log(err)
+          return
+        }
+        console.log('Listening at http://localhost:3000' + '\n')
+      })
     }
   },
   plugins: [
