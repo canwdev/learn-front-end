@@ -11,5 +11,5 @@ export default {
 </script>
 
 <style>
-
+@import "common/stylus/iconfont.css"
 </style>
