@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
     <div class="tab">
       <router-link to="/goods" class="tab-item">商品</router-link>
       <router-link to="/ratings" class="tab-item">评论</router-link>
@@ -13,12 +13,14 @@
 <script>
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueResource from 'vue-resource'
 import vHeader from './components/Header'
 import vGoods from './components/Goods'
 import vRatings from './components/Ratings'
 import vSeller from './components/Seller'
 
-// 局部的路由
+Vue.use(VueResource)
+// VueRouter 局部的路由
 Vue.use(Router)
 
 const routes = [
@@ -35,10 +37,23 @@ const router = new Router({
 
 export default {
   name: 'Home',
+  router,
+  data () {
+    return {
+      seller: {}
+    }
+  },
   components: {
     vHeader
   },
-  router
+  created () {
+    this.$http.get('/api/seller').then((res) => {
+      console.log('GetSuccess', res.body)
+      this.seller = res.body
+    }, (res) => {
+      console.log('GetError!', res)
+    })
+  }
 }
 </script>
 

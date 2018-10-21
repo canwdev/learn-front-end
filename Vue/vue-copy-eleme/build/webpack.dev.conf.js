@@ -21,22 +21,13 @@ let ratings = appData.ratings;
 let apiRouters = express.Router();
 
 apiRouters.get('/seller', function(req, res) {
-  res.json({
-    errno: 0,
-    seller
-  })
+  res.json(seller)
 })
 apiRouters.get('/goods', function(req, res) {
-  res.json({
-    errno: 0,
-    goods
-  })
+  res.json(goods)
 })
 apiRouters.get('/ratings', function(req, res) {
-  res.json({
-    errno: 0,
-    ratings
-  })
+  res.json(ratings)
 })
 
 const HOST = process.env.HOST
