@@ -1,0 +1,9 @@
+body
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "微软雅黑", Tahoma, Arial, sans-serif
+
+bg-img($url)
+  background-repeat no-repeat
+  background-size 100%
+  background-image url($url+'@2x.png')
+  @media (min-device-pixel-ratio: 3)
+    background-image url($url+'@3x.png')

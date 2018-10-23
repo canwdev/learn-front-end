@@ -14,7 +14,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueResource from 'vue-resource'
-import vHeader from './components/Header'
+import vHeader from './components/Header/Header'
 import vGoods from './components/Goods'
 import vRatings from './components/Ratings'
 import vSeller from './components/Seller'
@@ -58,6 +58,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 .app
   .tab
     display flex

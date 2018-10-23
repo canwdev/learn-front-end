@@ -66,7 +66,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // --------- 数据模拟 ----------
     before(appServer){
       appServer.use('/api', apiRouters)
-    }
+    },
+    // 允许外部访问
+    disableHostCheck: true
   },
   plugins: [
     new webpack.DefinePlugin({
