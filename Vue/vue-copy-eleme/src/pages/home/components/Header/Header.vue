@@ -6,7 +6,7 @@
       </div>
       <div class="info-main">
         <div class="brand"><span class="brand-img"></span>{{seller.name}}</div>
-        <div class="description">蜂鸟专送/{{seller.deliveryTime}}分钟送达</div>
+        <div class="description">{{seller.description}}/{{seller.deliveryTime}}分钟送达</div>
         <div v-if="seller.supports" class="supports">
           <div class="text">
             <span class="icon" :class="classMap[seller.supports[0].type]"></span>
@@ -16,8 +16,13 @@
         </div>
       </div>
     </div>
-    <div class="tips">
-
+    <div class="tips-wrap">
+      <span class="tips-img"></span>
+      <span class="tips-text">{{seller.bulletin}}</span>
+      <i class="icon-keyboard_arrow_right"></i>
+    </div>
+    <div class="background">
+      <img :src="seller.avatar">
     </div>
   </div>
 </template>
@@ -37,12 +42,16 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/common/stylus/base.styl';
 .header
-  background #ccc
+  background: rgba(7,17,27,.2)
   color #fff
-  padding 24px
+  padding-top 24px
+  padding-bottom 1px
+  position relative
+  overflow hidden
   .info-wrap
     display flex
     flex-direction row
+    padding 0 24px
     .logo
       img
         height 64px
@@ -103,4 +112,34 @@ export default {
           i
             margin-left 2px
             margin-top 2px
+  .tips-wrap
+    display flex
+    align-items center
+    margin-top 10px
+    padding 5px 10px
+    background rgba(0,0,0,0.3)
+    .tips-img
+      display inline-block
+      width 22px
+      height 12px
+      margin-right 5px
+      bg-img('bulletin')
+    .tips-text
+      display inline-block
+      overflow hidden
+      white-space nowrap
+      text-overflow ellipsis
+      flex 1
+      font-size 12px
+  .background
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    z-index -1
+    filter blur(5px)
+    img
+      width 100%
+      height 100%
 </style>

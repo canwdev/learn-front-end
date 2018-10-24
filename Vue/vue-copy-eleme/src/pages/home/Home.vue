@@ -12,32 +12,13 @@
 
 <script>
 import Vue from 'vue'
-import Router from 'vue-router'
 import VueResource from 'vue-resource'
 import vHeader from './components/Header/Header'
-import vGoods from './components/Goods'
-import vRatings from './components/Ratings'
-import vSeller from './components/Seller'
 
 Vue.use(VueResource)
-// VueRouter 局部的路由
-Vue.use(Router)
-
-const routes = [
-  { path: '/goods', component: vGoods },
-  { path: '/ratings', component: vRatings },
-  { path: '/seller', component: vSeller }
-]
-
-const router = new Router({
-  mode: 'abstract', // 在地址栏不显示变化
-  linkActiveClass: 'active',
-  routes
-})
 
 export default {
   name: 'Home',
-  router,
   data () {
     return {
       seller: {}
