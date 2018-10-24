@@ -4,7 +4,7 @@
       <div class="logo">
         <img :src="seller.avatar">
       </div>
-      <div class="info-main">
+      <div class="info-main" @click="toggleDetail">
         <div class="brand"><span class="brand-img"></span>{{seller.name}}</div>
         <div class="description">{{seller.description}}/{{seller.deliveryTime}}分钟送达</div>
         <div v-if="seller.supports" class="supports">
@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="tips-wrap">
+    <div class="tips-wrap" @click="toggleDetail">
       <span class="tips-img"></span>
       <span class="tips-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
@@ -24,6 +24,7 @@
     <div class="background">
       <img :src="seller.avatar">
     </div>
+    <div class="detail-wrap" v-show="detail_show" @click="toggleDetail"></div>
   </div>
 </template>
 
@@ -33,8 +34,18 @@ export default {
   props: {
     seller: Object
   },
+  data () {
+    return {
+      detail_show: false
+    }
+  },
   created () {
     this.classMap = ['decrease', 'discount', 'guarantee', 'invoice', 'special']
+  },
+  methods: {
+    toggleDetail () {
+      this.detail_show = !this.detail_show
+    }
   }
 }
 </script>
@@ -142,4 +153,13 @@ export default {
     img
       width 100%
       height 100%
+  .detail-wrap
+    position fixed
+    z-index 100
+    width 100%
+    height 100%
+    top 0
+    left 0
+    overflow auto
+    background rgba(7,17,27,.8)
 </style>
