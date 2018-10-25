@@ -7,3 +7,10 @@ bg-img($url)
   background-image url($url+'@2x.png')
   @media (min-device-pixel-ratio: 3)
     background-image url($url+'@3x.png')
+
+.clearfix
+  &:before,&:after 
+    content ''
+    display table
+  &:after 
+    clear both

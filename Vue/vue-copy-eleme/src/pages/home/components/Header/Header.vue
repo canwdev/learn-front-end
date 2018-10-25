@@ -24,19 +24,35 @@
     <div class="background">
       <img :src="seller.avatar">
     </div>
-    <div class="detail-wrap" v-show="detail_show" @click="toggleDetail"></div>
+    <div class="detail-wrap" v-show="detail_show">
+      <div class="detail-main-outer clearfix">
+        <div class="detail-main">
+          <div class="title">{{seller.name}}</div>
+          <div class="star">
+            <v-star :size="48" :score="seller.score"></v-star>
+          </div>
+        </div>
+      </div>
+      <div class="detail-close" @click="toggleDetail">
+        <i class="icon-close"></i>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import vStar from '@/components/star/Star'
 export default {
   name: 'Header',
+  components: {
+    vStar
+  },
   props: {
     seller: Object
   },
   data () {
     return {
-      detail_show: false
+      detail_show: true
     }
   },
   created () {
@@ -51,7 +67,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/common/stylus/base.styl';
+@import '~@/common/stylus/base.styl'
 .header
   background: rgba(7,17,27,.2)
   color #fff
@@ -162,4 +178,17 @@ export default {
     left 0
     overflow auto
     background rgba(7,17,27,.8)
+    .detail-main-outer
+      min-height 100%
+      .detail-main
+        margin-top 64px
+        padding-bottom 64px
+        text-align center
+        .title
+          font-size 24px
+    .detail-close
+      width 32px
+      height 32px
+      font-size 32px
+      margin -64px auto 0
 </style>
