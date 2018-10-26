@@ -1,13 +1,7 @@
 <template>
   <div class="star" :class="star_type">
-    {{score}}
-    <span class="star-item on"></span>
-    <span class="star-item on"></span>
-    <span class="star-item on"></span>
-    <span class="star-item half"></span>
-    <span class="star-item off"></span>
-    <!-- <span v-for="(item_class, index) in star_classes" :class="item_class" :key="index">
-    </span> -->
+    <span v-for="(item_class, index) in star_classes" class="star-item" :class="item_class" :key="index">
+    </span>
   </div>
 </template>
 
@@ -30,7 +24,22 @@ export default {
       return 'star-' + this.size
     },
     star_classes () {
-      return this.score      
+      let result = []
+      // 得出包括整数或0.5的数字
+      // let score = Math.floor(this.score * 2) / 2
+      let score = this.score
+      let has_decimal = score % 1 != 0
+      let int_score = Math.floor(score)
+      for (let i=0; i<int_score; i++) {
+        result.push(CLS_ON)
+      }
+      if (has_decimal) {
+        result.push(CLS_HALF)
+      }
+      while (result.length < LENGTH) {
+        result.push(CLS_OFF)
+      }
+      return result
     }
   }
 }

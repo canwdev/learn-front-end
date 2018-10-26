@@ -186,6 +186,8 @@ export default {
         text-align center
         .title
           font-size 24px
+        .star
+          margin 10px auto
     .detail-close
       width 32px
       height 32px
