@@ -1,0 +1,21 @@
+{
+  "name": "warthunder-web-node",
+  "version": "1.0.0",
+  "description": "Node.js 实现 warthunder-web 后端",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/canwdev/warthunder-web-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
