@@ -24,19 +24,30 @@
     <div class="background">
       <img :src="seller.avatar">
     </div>
-    <div class="detail-wrap" v-show="detail_show">
-      <div class="detail-main-outer clearfix">
-        <div class="detail-main">
-          <div class="title">{{seller.name}}</div>
-          <div class="star">
-            <v-star :size="48" :score="seller.score"></v-star>
+    <transition name="fade">
+      <div class="detail-wrap" v-show="detail_show">
+        <div class="detail-main-outer clearfix">
+          <div class="detail-main">
+            <div class="title">{{seller.name}}</div>
+            <div class="star">
+              <v-star :size="48" :score="seller.score"></v-star>
+            </div>
+            <div class="line-title">优惠信息</div>
+            <div class="supports-info">
+              <div class="item" v-for="(item, index) in seller.supports" :key="index">
+                <span class="icon" :class="classMap[item.type]"></span>
+                <span>{{item.description}}</span>
+              </div>
+            </div>
+            <div class="line-title">商家公告</div>
+            <div class="bulletin">{{seller.bulletin}}</div>
           </div>
         </div>
+        <div class="detail-close" @click="toggleDetail">
+          <i class="icon-close"></i>
+        </div>
       </div>
-      <div class="detail-close" @click="toggleDetail">
-        <i class="icon-close"></i>
-      </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -52,7 +63,7 @@ export default {
   },
   data () {
     return {
-      detail_show: true
+      detail_show: false
     }
   },
   created () {
@@ -177,7 +188,13 @@ export default {
     top 0
     left 0
     overflow auto
+    transition all .3s
     background rgba(7,17,27,.8)
+    -webkit-backdrop-filter blur(10px)
+    &.fade-enter-active, &.fade-leave-active
+      opacity 1
+    &.fade-enter, &.fade-leave-to
+      opacity 0
     .detail-main-outer
       min-height 100%
       .detail-main
@@ -185,9 +202,51 @@ export default {
         padding-bottom 64px
         text-align center
         .title
-          font-size 24px
+          font-size 20px
         .star
-          margin 10px auto
+          margin 20px auto
+        .line-title
+          display flex
+          justify-content center
+          align-items center
+          font-size 20px
+          font-weight bold
+          margin 30px auto
+          &:before, &:after
+            display block
+            content: ""
+            height 2px
+            width 30%
+            background rgba(255,255,255,0.2)
+            margin 0 10px
+        .supports-info
+          width 80%
+          margin 20px auto
+          font-size 16px
+          text-align left
+          .icon
+            display inline-block
+            height 14px
+            width 14px
+            margin-right 5px
+            &.decrease
+              bg-img('decrease_1')
+            &.discount
+              bg-img('discount_1')
+            &.guarantee
+              bg-img('guarantee_1')
+            &.invoice
+              bg-img('invoice_1')
+            &.special
+              bg-img('special_1')
+          .item
+            margin 10px auto
+        .bulletin
+          line-height 24px
+          width 80%
+          margin 20px auto
+          font-size 16px
+          text-align left
     .detail-close
       width 32px
       height 32px

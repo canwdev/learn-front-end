@@ -12,7 +12,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
       component: Home,
       // VueRouter 子路由
       children: [
