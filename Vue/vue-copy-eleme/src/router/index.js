@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/home/Home'
-import vGoods from '@/pages/home/components/Goods'
+import vGoods from '@/pages/home/components/Goods/Goods'
 import vRatings from '@/pages/home/components/Ratings'
 import vSeller from '@/pages/home/components/Seller'
 

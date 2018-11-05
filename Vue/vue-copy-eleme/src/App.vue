@@ -10,6 +10,9 @@ export default {
 }
 </script>
 
-<style>
-@import "common/stylus/iconfont.css"
+<style lang="stylus">
+@import 'common/stylus/iconfont.css'
+
+#app
+  height 100%
 </style>

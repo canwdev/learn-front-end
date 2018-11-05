@@ -29,7 +29,7 @@ export default {
   },
   created () {
     this.$http.get('/api/seller').then((res) => {
-      console.log('GetSuccess', res.body)
+      console.log('seller', res.body)
       this.seller = res.body
     }, (res) => {
       console.log('GetError!', res)
@@ -41,6 +41,7 @@ export default {
 <style lang="stylus" scoped>
 
 .app
+  height 100%
   .tab
     display flex
     justify-content space-around
