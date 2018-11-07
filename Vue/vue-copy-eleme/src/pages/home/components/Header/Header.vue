@@ -9,7 +9,7 @@
         <div class="description">{{seller.description}}/{{seller.deliveryTime}}分钟送达</div>
         <div v-if="seller.supports" class="supports">
           <div class="text">
-            <span class="icon" :class="classMap[seller.supports[0].type]"></span>
+            <spec-icon :typeId="seller.supports[0].type"></spec-icon>
             <span class="text">{{seller.supports[0].description}}</span>
           </div>
           <div class="count">{{seller.supports.length}}个<i class="icon-keyboard_arrow_right"></i></div>
@@ -35,7 +35,7 @@
             <div class="line-title">优惠信息</div>
             <div class="supports-info">
               <div class="item" v-for="(item, index) in seller.supports" :key="index">
-                <span class="icon" :class="classMap[item.type]"></span>
+                <spec-icon :typeId="item.type"></spec-icon>
                 <span>{{item.description}}</span>
               </div>
             </div>
@@ -53,10 +53,12 @@
 
 <script>
 import vStar from '@/components/star/Star'
+import SpecIcon from '@/components/spec_icon/SpecIcon'
 export default {
   name: 'Header',
   components: {
-    vStar
+    vStar,
+    SpecIcon
   },
   props: {
     seller: Object
@@ -67,7 +69,6 @@ export default {
     }
   },
   created () {
-    this.classMap = ['decrease', 'discount', 'guarantee', 'invoice', 'special']
   },
   methods: {
     toggleDetail () {
@@ -125,21 +126,6 @@ export default {
         .text
           display flex
           align-items center
-          .icon
-            display inline-block
-            height 12px
-            width 12px
-            margin-right 5px
-            &.decrease
-              bg-img('decrease_1')
-            &.discount
-              bg-img('discount_1')
-            &.guarantee
-              bg-img('guarantee_1')
-            &.invoice
-              bg-img('invoice_1')
-            &.special
-              bg-img('special_1')
         .count
           background rgba(0, 0, 0, .2)
           padding 5px 10px
@@ -224,21 +210,6 @@ export default {
           margin 20px auto
           font-size 16px
           text-align left
-          .icon
-            display inline-block
-            height 14px
-            width 14px
-            margin-right 5px
-            &.decrease
-              bg-img('decrease_1')
-            &.discount
-              bg-img('discount_1')
-            &.guarantee
-              bg-img('guarantee_1')
-            &.invoice
-              bg-img('invoice_1')
-            &.special
-              bg-img('special_1')
           .item
             margin 10px auto
         .bulletin
