@@ -5,7 +5,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <div class="action">
+      <a href="/">Home</a>
+      <a href="/userlist">userlist</a>
+      <a href="/about">about</a>
+      <a href="/api">api</a>
+    </div>
     <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
   </body>
 </html>

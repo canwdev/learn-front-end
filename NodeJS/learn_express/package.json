@@ -1,9 +1,10 @@
 {
-  "name": "learn-nodejs",
+  "name": "testproject",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -11,8 +12,8 @@
     "express": "~4.16.0",
     "hjs": "~0.0.6",
     "http-errors": "~1.6.2",
+    "monk": "^6.0.6",
     "morgan": "~1.9.0",
-    "nodemon": "^1.18.5",
     "stylus": "0.54.5"
   }
 }

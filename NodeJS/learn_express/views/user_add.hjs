@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <div class="action">
+      <a href="/">Home</a>
+      <a href="/userlist">userlist</a>
+    </div>
+    <h1>{{title}}</h1>
+    
+    <form name="adduser" action="/adduser" method="post">
+      <div>Username: <input type="text" name="username" placeholder="Enter Username"></div>
+      <div>Email: <input type="text" name="email" placeholder="Enter Email"></div>
+      <div><button type="submit">Submit</button></div>
+    </form>
+  </body>
+</html>

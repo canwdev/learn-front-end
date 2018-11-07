@@ -5,6 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var stylus = require('stylus');
 
+// 连接MongoDB
+var mongodb = require('mongodb');
+var monk = require('monk');
+var db = monk('127.0.0.1:27017/testproject');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -20,6 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(stylus.middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Allow router to access db
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
