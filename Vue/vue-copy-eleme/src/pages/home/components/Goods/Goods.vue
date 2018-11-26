@@ -1,30 +1,32 @@
 <template>
   <div class="goods">
-    <div class="menu-wrap">
+    <div class="menu-wrap" ref="menu_wrap">
       <div class="items-list">
-        <div class="type-title" v-for="(item, index) in goods" :key="index">
+        <div class="type-title" v-for="(item, index) in goods" :key="index" :class="currentIndex===index?'active':''" @click.stop="selectMenu(index, $event)">
           <span><spec-icon :typeId="item.type"></spec-icon>{{item.name}}</span>
         </div>
       </div>
     </div>
-    <div class="main-wrap">
-      <div class="items-list" v-for="(item, index) in goods" :key="index">
-        <div class="type-title">{{item.name}}</div>
-        <div class="foods-list">
-          <div class="food-item" v-for="(food, index2) in item.foods" :key="index2">
-            <div class="img-box">
-              <img src="">
-            </div>
-            <div class="main-box">
-              <div class="name">{{food.name}}</div>
-              <div class="description">{{food.description}}</div>
-              <div class="sell">月售{{food.sellCount}}份  好评率{{food.rating}}%</div>
-              <div class="price-box">
-                <div class="price">￥<span class="bigger">{{food.price}}</span></div>
-                <div class="price del" v-show="food.oldPrice">￥<span class="bigger">{{food.oldPrice}}</span></div>
+    <div class="main-wrap" ref="main_wrap">
+      <div class="croll-list">
+        <div class="items-list foods-item-hook" v-for="(item, index) in goods" :key="index">
+          <div class="type-title">{{item.name}}</div>
+          <div class="foods-list">
+            <div class="food-item" v-for="(food, index2) in item.foods" :key="index2">
+              <div class="img-box">
+                <img :src="food.icon">
               </div>
-              <div class="action-box">
+              <div class="main-box">
+                <div class="name">{{food.name}}</div>
+                <div class="description">{{food.description}}</div>
+                <div class="sell">月售{{food.sellCount}}份  好评率{{food.rating}}%</div>
+                <div class="price-box">
+                  <div class="price">￥<span class="bigger">{{food.price}}</span></div>
+                  <div class="price del" v-show="food.oldPrice">￥<span class="bigger">{{food.oldPrice}}</span></div>
+                </div>
+                <div class="action-box">
 
+                </div>
               </div>
             </div>
           </div>
@@ -36,6 +38,8 @@
 
 <script>
 import SpecIcon from '@/components/spec_icon/SpecIcon'
+import Bscroll from 'better-scroll'
+
 export default {
   components: {
     SpecIcon
@@ -47,16 +51,71 @@ export default {
   },
   data () {
     return {
-      goods: []
+      goods: [],
+      listHeights: [],
+      scrollY: 0
+    }
+  },
+  computed: {
+    currentIndex () {
+      // 左侧菜单当前选中index
+      for (let i=0; i<this.listHeights.length; i++) {
+        let height1 = this.listHeights[i]
+        let height2 =  this.listHeights[i+1]
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+          return i
+        }
+      }
+      return 0
     }
   },
   created () {
     this.$http.get('/api/goods').then((res) => {
       console.log('goods', res.body)
       this.goods = res.body
-    }, (res) => {
-      console.log('GetError!', res)
+      // vue DOM更新回调
+      this.$nextTick(() => {
+        this._initScroll()
+        this._calcHeight()
+      })
+    }, (err) => {
+      console.log('GetError!', err)
     })
+  },
+  methods: {
+    _initScroll () {
+      this.menuScroll = new Bscroll(this.$refs.menu_wrap, {
+        click: true
+      })
+      this.foodScroll = new Bscroll(this.$refs.main_wrap, {
+        probeType: 3 // 滚动时实时返回滚动位置
+      })
+      // 滚动监听
+      this.foodScroll.on('scroll', (pos) => {
+        this.scrollY = Math.abs(Math.round(pos.y))
+      })
+    },
+    _calcHeight () {
+      let foodList = this.$refs.main_wrap.getElementsByClassName('foods-item-hook')
+
+      // 获取Goods列表每个类别的高度值（递增），存入数组
+      let height = 0
+      this.listHeights.push(height)
+      for (let i=0; i<foodList.length; i++) {
+        let item = foodList[i]
+        height += item.clientHeight
+        this.listHeights.push(height)
+      }
+      console.log('listHeights', this.listHeights)
+    },
+    selectMenu (index, event) {
+      if (!event._constructed) {
+        return; // 防止重复点击
+      }
+      let foodList = this.$refs.main_wrap.getElementsByClassName('foods-item-hook')
+
+      this.foodScroll.scrollToElement(foodList[index], 300)
+    }
   }
 }
 </script>
@@ -74,7 +133,6 @@ export default {
   .menu-wrap
     background #f3f5f7
     width 25%
-    overflow auto
     .items-list
       .type-title
         display flex
@@ -85,6 +143,13 @@ export default {
         padding 12px
         font-size 12px
         box-sizing border-box
+        &.active
+          color #000
+          font-weight bold
+          background #fff
+          box-shadow 0 0 0 1px #f00 inset
+          &:after
+            opacity 0
         &:after
           content: ''
           position absolute
@@ -96,7 +161,6 @@ export default {
           background #dbdee1
   .main-wrap
     flex 1
-    overflow auto
     .type-title
       height 26px
       line-height 26px
@@ -117,6 +181,10 @@ export default {
         background #eeeeee
         border-radius 2px
         margin-right 10px
+        img
+          width 100%
+          height 100%
+          boject-fit contain
       .main-box
         flex 1
         .name
