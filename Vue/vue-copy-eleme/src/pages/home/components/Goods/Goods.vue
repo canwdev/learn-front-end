@@ -1,31 +1,33 @@
 <template>
-  <div class="goods">
-    <div class="menu-wrap" ref="menu_wrap">
-      <div class="items-list">
-        <div class="type-title" v-for="(item, index) in goods" :key="index" :class="currentIndex===index?'active':''" @click.stop="selectMenu(index, $event)">
-          <span><spec-icon :typeId="item.type"></spec-icon>{{item.name}}</span>
+  <div class="goods-wrap">
+    <div class="goods">
+      <div class="menu-wrap" ref="menu_wrap">
+        <div class="items-list">
+          <div class="type-title" v-for="(item, index) in goods" :key="index" :class="currentIndex===index?'active':''" @click.stop="selectMenu(index, $event)">
+            <span><spec-icon :typeId="item.type"></spec-icon>{{item.name}}</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="main-wrap" ref="main_wrap">
-      <div class="croll-list">
-        <div class="items-list foods-item-hook" v-for="(item, index) in goods" :key="index">
-          <div class="type-title">{{item.name}}</div>
-          <div class="foods-list">
-            <div class="food-item" v-for="(food, index2) in item.foods" :key="index2">
-              <div class="img-box">
-                <img :src="food.icon">
-              </div>
-              <div class="main-box">
-                <div class="name">{{food.name}}</div>
-                <div class="description">{{food.description}}</div>
-                <div class="sell">月售{{food.sellCount}}份  好评率{{food.rating}}%</div>
-                <div class="price-box">
-                  <div class="price">￥<span class="bigger">{{food.price}}</span></div>
-                  <div class="price del" v-show="food.oldPrice">￥<span class="bigger">{{food.oldPrice}}</span></div>
+      <div class="main-wrap" ref="main_wrap">
+        <div class="croll-list">
+          <div class="items-list foods-item-hook" v-for="(item, index) in goods" :key="index">
+            <div class="type-title">{{item.name}}</div>
+            <div class="foods-list">
+              <div class="food-item" v-for="(food, index2) in item.foods" :key="index2">
+                <div class="img-box">
+                  <img :src="food.icon">
                 </div>
-                <div class="action-box">
+                <div class="main-box">
+                  <div class="name">{{food.name}}</div>
+                  <div class="description">{{food.description}}</div>
+                  <div class="sell">月售{{food.sellCount}}份  好评率{{food.rating}}%</div>
+                  <div class="price-box">
+                    <div class="price">￥<span class="bigger">{{food.price}}</span></div>
+                    <div class="price del" v-show="food.oldPrice">￥<span class="bigger">{{food.oldPrice}}</span></div>
+                  </div>
+                  <div class="action-box">
 
+                  </div>
                 </div>
               </div>
             </div>
@@ -33,16 +35,19 @@
         </div>
       </div>
     </div>
+    <shop-cart></shop-cart>
   </div>
 </template>
 
 <script>
 import SpecIcon from '@/components/spec_icon/SpecIcon'
+import ShopCart from '@/components/shop_cart/ShopCart'
 import Bscroll from 'better-scroll'
 
 export default {
   components: {
-    SpecIcon
+    SpecIcon,
+    ShopCart
   },
   props: {
     seller: {
@@ -110,7 +115,7 @@ export default {
     },
     selectMenu (index, event) {
       if (!event._constructed) {
-        return; // 防止重复点击
+        return; // 防止pc重复点击
       }
       let foodList = this.$refs.main_wrap.getElementsByClassName('foods-item-hook')
 
@@ -153,12 +158,13 @@ export default {
         &:after
           content: ''
           position absolute
-          bottom 0
+          top 0
           left 15%
           margin 0 auto
           width 70%
           height 1px
           background #dbdee1
+          transform: scaleY(0.5);
   .main-wrap
     flex 1
     .type-title
@@ -213,4 +219,10 @@ export default {
               transform scale(0.8)
     .food-item+.food-item
       border-top 1px solid #d9dde1
+.shopcart
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  height 46px
 </style>
