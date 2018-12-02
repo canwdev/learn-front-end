@@ -6,7 +6,10 @@
       <router-link to="/ratings" class="tab-item">评论</router-link>
       <router-link to="/seller" class="tab-item">商家</router-link>
     </div>
-    <router-view></router-view>
+    <!-- 切tab时，保持路由页面存活 -->
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 

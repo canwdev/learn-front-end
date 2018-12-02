@@ -15,6 +15,16 @@
         {{payDesc.msg}}
       </div>
     </div>
+    <div class="ball-container">
+      <div v-for="(ball, index) in balls" :key="index">
+        <!-- 小球掉落动画 -->
+        <transition name="drop" @before-enter="beforeDrop" @enter="dropping" @after-enter="afterDrop">
+          <div class="ball" v-show="ball.show">
+            <div class="inner js-inner"></div>
+          </div>
+        </transition>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -38,25 +48,38 @@
         default: 0
       }
     },
+    data () {
+      return {
+        balls: [
+          {show:false},
+          {show:false},
+          {show:false},
+          {show:false},
+          {show:false}
+        ],
+        // 掉落中的小球，引用balls
+        dropBalls: []
+      }
+    },
     computed: {
+      // 总价
       totalPrice () {
-        // 总价
         let total = 0
         this.selectedFoods.forEach((food)=>{
           total += food.price * food.count
         })
         return total
       },
+      // 总个数
       totalCount () {
-        // 总个数
         let total = 0
         this.selectedFoods.forEach((food)=>{
           total += food.count
         })
         return total
       },
+      // 结算按钮
       payDesc () {
-        // 结算按钮
         let ret = {
           msg: '',
           green: false
@@ -73,6 +96,67 @@
         }
 
         return ret
+      }
+    },
+    methods: {
+      // 小球掉落动画
+      drop (el) {
+        for (let i=0; i< this.balls.length; i++) {
+          let ball = this.balls[i]
+          if (!ball.show) {
+            ball.show = true
+            ball.el = el
+            this.dropBalls.push(ball)
+            return
+          }
+        }
+      },
+      // 动画执行前
+      beforeDrop (el) {
+        let count = this.balls.length
+        // 动画每一个小球
+        while (count--) {
+          let ball = this.balls[count];
+          if (ball.show) {
+            // 获取该元素相对于视口的坐标
+            let rect = ball.el.getBoundingClientRect()
+            let x = rect.left - 48  // 减去偏移值
+            let y = -(window.innerHeight - rect.top - 50)
+            
+            el.style.display = ''
+            // 动画初始坐标y轴
+            el.style.transform = `translate3d(0,${y}px,0)`
+
+            let inner = el.getElementsByClassName('js-inner')[0]
+            // 动画初始坐标x轴
+            inner.style.transform = `translate3d(${x}px,0,0)`
+          }
+        }
+      },
+      // 动画执行
+      dropping (el, done) {
+        // 触发浏览器重绘
+        // let rf = el.offsetHeight
+
+        this.$nextTick(()=>{
+          el.style.transform = `translate3d(0,0,0)`
+          let inner = el.getElementsByClassName('js-inner')[0]
+          inner.style.transform = `translate3d(0,0,0)`
+
+          // 动画完成回调调用
+          el.addEventListener('transitionend', done)
+        })
+      },
+      // 动画执行结束
+      afterDrop (el) {
+        console.log('ok')
+        // 获取执行结束的那个ball引用，并将其推出dropBalls
+        let ball = this.dropBalls.shift()
+        if (ball) {
+          // 隐藏
+          ball.show = false
+          el.style.display = 'none'
+        }
       }
     }
   }
@@ -154,4 +238,22 @@
       &.green
         background #4CAF50
         color #fff
+  .ball-container
+    
+    .ball
+      position fixed
+      left 48px
+      bottom 40px
+      z-index 200
+      transition: transform 0.8s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+      .inner
+        width 16px
+        height 16px
+        border-radius 50%
+        background: rgb(0, 160, 220)
+        transition: transform 0.8s linear
+    // .drop-enter, .drop-leave-to
+    //   background red
+    // .drop-enter-active, .drop-leave-active
+    //   color red
 </style>

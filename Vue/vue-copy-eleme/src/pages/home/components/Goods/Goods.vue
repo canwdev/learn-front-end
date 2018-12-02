@@ -26,7 +26,7 @@
                     <div class="price del" v-show="food.oldPrice">￥<span class="bigger">{{food.oldPrice}}</span></div>
                   </div>
                   <div class="action-box">
-
+                    <cart-control @eventAdd="addFood" :food="food"></cart-control>
                   </div>
                 </div>
               </div>
@@ -35,19 +35,22 @@
         </div>
       </div>
     </div>
-    <shop-cart></shop-cart>
+    <shop-cart ref="shopchart" :selected-foods="selectedFoods"></shop-cart>
   </div>
 </template>
 
 <script>
 import SpecIcon from '@/components/spec_icon/SpecIcon'
 import ShopCart from '@/components/shop_cart/ShopCart'
+import CartControl from '@/components/cart_control/CartControl'
+
 import Bscroll from 'better-scroll'
 
 export default {
   components: {
     SpecIcon,
-    ShopCart
+    ShopCart,
+    CartControl
   },
   props: {
     seller: {
@@ -62,8 +65,8 @@ export default {
     }
   },
   computed: {
+    // 左侧菜单当前选中index
     currentIndex () {
-      // 左侧菜单当前选中index
       for (let i=0; i<this.listHeights.length; i++) {
         let height1 = this.listHeights[i]
         let height2 =  this.listHeights[i+1]
@@ -72,6 +75,18 @@ export default {
         }
       }
       return 0
+    },
+    // 计算选中的foods
+    selectedFoods () {
+      let foods = []
+      this.goods.forEach((good)=> {
+        good.foods.forEach((food)=> {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   created () {
@@ -88,11 +103,13 @@ export default {
     })
   },
   methods: {
+    // 初始化better-scroll
     _initScroll () {
       this.menuScroll = new Bscroll(this.$refs.menu_wrap, {
-        click: true
+        click: true   // 允许点击
       })
       this.foodScroll = new Bscroll(this.$refs.main_wrap, {
+        click: true,
         probeType: 3 // 滚动时实时返回滚动位置
       })
       // 滚动监听
@@ -100,6 +117,7 @@ export default {
         this.scrollY = Math.abs(Math.round(pos.y))
       })
     },
+    // 计算滚动列表高度
     _calcHeight () {
       let foodList = this.$refs.main_wrap.getElementsByClassName('foods-item-hook')
 
@@ -111,8 +129,8 @@ export default {
         height += item.clientHeight
         this.listHeights.push(height)
       }
-      console.log('listHeights', this.listHeights)
     },
+    // 点击左侧菜单
     selectMenu (index, event) {
       if (!event._constructed) {
         return; // 防止pc重复点击
@@ -120,6 +138,13 @@ export default {
       let foodList = this.$refs.main_wrap.getElementsByClassName('foods-item-hook')
 
       this.foodScroll.scrollToElement(foodList[index], 300)
+    },
+    // 添加+按钮点击事件
+    addFood (target) {
+      // 体验优化,异步执行下落动画
+      this.$nextTick(()=>{
+        this.$refs.shopchart.drop(target)
+      })
     }
   }
 }
@@ -130,7 +155,7 @@ export default {
 .goods
   width 100%
   position absolute
-  top 179px
+  top 181px
   bottom 46px
   display flex
   flex-direction row
@@ -152,7 +177,7 @@ export default {
           color #000
           font-weight bold
           background #fff
-          box-shadow 0 0 0 1px #f00 inset
+          // box-shadow 0 0 0 1px #f00 inset
           &:after
             opacity 0
         &:after
@@ -164,7 +189,7 @@ export default {
           width 70%
           height 1px
           background #dbdee1
-          transform: scaleY(0.5);
+          transform: scaleY(0.5)
   .main-wrap
     flex 1
     .type-title
@@ -175,6 +200,7 @@ export default {
       border-left 2px solid #d9dde1
       padding-left 10px
     .food-item
+      position relative
       padding 18px
       padding-left 0
       margin-left 18px
@@ -191,6 +217,10 @@ export default {
           width 100%
           height 100%
           boject-fit contain
+      .action-box
+        position absolute
+        right 10px
+        bottom 10px
       .main-box
         flex 1
         .name
