@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-    <div class="icon-wrap">
+    <div class="icon-wrap" @click="toggleCartList">
       <div class="icon-content" :class="totalCount?'highlight':''">
         <span class="icon-shopping_cart"></span>
       </div>
@@ -25,11 +25,34 @@
         </transition>
       </div>
     </div>
+    <div class="shopchart-list-mask" v-show="showList" @click="toggleCartList"></div>
+    <div class="shopchart-list-wrap" v-show="showList">
+      <div class="list-header">
+        <h1>购物车</h1>
+        <a href="javascript:void(0)">清空</a>
+      </div>
+      <div class="list-content">
+        <ul>
+          <li class="food-item" v-for="(item, index) in selectedFoods" :key="index">
+            <div class="title">{{item.name}}</div>
+            <div class="action-box">
+              <div class="money">￥{{item.price * item.count}}</div>
+              <cart-control @eventAdd="addFood" :food="item"></cart-control>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  import CartControl from '@/components/cart_control/CartControl'
+
   export default {
+    components: {
+      CartControl
+    },
     props: {
       selectedFoods: {
         type: Array,
@@ -58,7 +81,8 @@
           {show:false}
         ],
         // 掉落中的小球，引用balls
-        dropBalls: []
+        dropBalls: [],
+        showList: false
       }
     },
     computed: {
@@ -136,7 +160,7 @@
       // 动画执行
       dropping (el, done) {
         // 触发浏览器重绘
-        // let rf = el.offsetHeight
+        let rf = el.offsetHeight
 
         this.$nextTick(()=>{
           el.style.transform = `translate3d(0,0,0)`
@@ -157,6 +181,15 @@
           ball.show = false
           el.style.display = 'none'
         }
+      },
+      addFood (target) {
+        // 体验优化,异步执行下落动画
+        this.$nextTick(()=>{
+          this.drop(target)
+        })
+      },
+      toggleCartList () {
+        this.showList = !this.showList
       }
     }
   }
@@ -239,21 +272,66 @@
         background #4CAF50
         color #fff
   .ball-container
-    
     .ball
       position fixed
       left 48px
       bottom 40px
       z-index 200
-      transition: transform 0.8s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+      transition: transform 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41)
       .inner
         width 16px
         height 16px
         border-radius 50%
         background: rgb(0, 160, 220)
-        transition: transform 0.8s linear
-    // .drop-enter, .drop-leave-to
-    //   background red
-    // .drop-enter-active, .drop-leave-active
-    //   color red
+        transition: transform 0.4s linear
+  .shopchart-list-mask
+    position fixed
+    top 0
+    left 0
+    right 0
+    bottom 46px
+    background black
+    z-index -1
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 1;
+    background: rgba(7,17,27,0.6);
+  .shopchart-list-wrap
+    position absolute
+    bottom 46px
+    left 0
+    width 100%
+    z-index -1
+    background #fff
+    color #000
+    .list-header
+      background #F4F5F7
+      display flex
+      justify-content space-between
+      padding 15px
+      box-sizing border-box
+      border-bottom 1px solid #E3E5E8
+      a
+        color #00a0dc
+    .list-content
+      padding 0px 15px 20px
+      max-height 217px
+      overflow auto
+      ul>li
+        position: relative
+        padding 15px 0
+        .title
+          flex 1
+        .action-box
+          position: absolute
+          right 0
+          top: 15px
+          line-height: 22px
+          display flex
+          .money
+            line-height 24px
+            font-size 14px
+            color #f01414
+            margin-right 10px
+      ul>li+li
+        border-top 1px solid rgba(7, 17, 27, 0.1)
 </style>

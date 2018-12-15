@@ -36,6 +36,7 @@
       </div>
     </div>
     <shop-cart ref="shopchart" :selected-foods="selectedFoods"></shop-cart>
+
   </div>
 </template>
 
@@ -255,4 +256,5 @@ export default {
   left 0
   right 0
   height 46px
+  z-index 1
 </style>
