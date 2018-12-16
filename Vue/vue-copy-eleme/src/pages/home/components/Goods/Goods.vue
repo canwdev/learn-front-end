@@ -2,41 +2,41 @@
   <div class="goods-wrap">
     <div class="goods">
       <div class="menu-wrap" ref="menu_wrap">
-        <div class="items-list">
-          <div class="type-title" v-for="(item, index) in goods" :key="index" :class="currentIndex===index?'active':''" @click.stop="selectMenu(index, $event)">
+        <ul class="items-list">
+          <li class="type-title" v-for="(item, index) in goods" :key="index" :class="currentIndex===index?'active':''" @click.stop="selectMenu(index, $event)">
             <span><spec-icon :typeId="item.type"></spec-icon>{{item.name}}</span>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
       <div class="main-wrap" ref="main_wrap">
-        <div class="croll-list">
-          <div class="items-list foods-item-hook" v-for="(item, index) in goods" :key="index">
+        <ul class="croll-list">
+          <li class="items-list foods-item-hook" v-for="(item, index) in goods" :key="index">
             <div class="type-title">{{item.name}}</div>
-            <div class="foods-list">
-              <div class="food-item" v-for="(food, index2) in item.foods" :key="index2">
+            <ul class="foods-list">
+              <li class="food-item" v-for="(food, index2) in item.foods" :key="index2" @click="onSelectOneFood(food, $event)">
                 <div class="img-box">
                   <img :src="food.icon">
                 </div>
                 <div class="main-box">
-                  <div class="name">{{food.name}}</div>
-                  <div class="description">{{food.description}}</div>
-                  <div class="sell">月售{{food.sellCount}}份  好评率{{food.rating}}%</div>
+                  <p class="name">{{food.name}}</p>
+                  <p class="description">{{food.description}}</p>
+                  <p class="sell">月售{{food.sellCount}}份  好评率{{food.rating}}%</p>
                   <div class="price-box">
-                    <div class="price">￥<span class="bigger">{{food.price}}</span></div>
-                    <div class="price del" v-show="food.oldPrice">￥<span class="bigger">{{food.oldPrice}}</span></div>
+                    <p class="price">￥<span class="bigger">{{food.price}}</span></p>
+                    <p class="price del" v-show="food.oldPrice">￥<span class="bigger">{{food.oldPrice}}</span></p>
                   </div>
-                  <div class="action-box">
+                  <div class="action-box" @click.stop="">
                     <cart-control @eventAdd="addFood" :food="food"></cart-control>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
     <shop-cart ref="shopchart" :selected-foods="selectedFoods"></shop-cart>
-
+    <food-detail @eventAdd="addFood" :food="selectedOneFood" ref="foodDetail"></food-detail>
   </div>
 </template>
 
@@ -44,6 +44,7 @@
 import SpecIcon from '@/components/spec_icon/SpecIcon'
 import ShopCart from '@/components/shop_cart/ShopCart'
 import CartControl from '@/components/cart_control/CartControl'
+import FoodDetail from '@/components/food_detail/FoodDetail'
 
 import Bscroll from 'better-scroll'
 
@@ -51,7 +52,8 @@ export default {
   components: {
     SpecIcon,
     ShopCart,
-    CartControl
+    CartControl,
+    FoodDetail
   },
   props: {
     seller: {
@@ -62,7 +64,8 @@ export default {
     return {
       goods: [],
       listHeights: [],
-      scrollY: 0
+      scrollY: 0,
+      selectedOneFood: {}
     }
   },
   computed: {
@@ -146,6 +149,14 @@ export default {
       this.$nextTick(()=>{
         this.$refs.shopchart.drop(target)
       })
+    },
+    // 选择一个食物
+    onSelectOneFood (food, event) {
+      if (!event._constructed) {
+        return; // 防止pc重复点击
+      }
+      this.selectedOneFood = food
+      this.$refs.foodDetail.show()
     }
   }
 }

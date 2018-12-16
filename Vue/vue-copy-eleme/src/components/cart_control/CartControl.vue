@@ -44,7 +44,7 @@ export default {
 .cart-control
   display flex
   line-height 24px
-  .animate-enter, .animate-leave-to
+  .animate-enter, .animate-leave-active
     opacity 0
     transform translate3d(24px, 0, 0) rotate(180deg)
   .animate-enter-active, .animate-leave-active
