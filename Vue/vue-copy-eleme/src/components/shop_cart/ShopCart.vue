@@ -25,11 +25,16 @@
         </transition>
       </div>
     </div>
+
+    <transition name="fade">
     <div class="shopchart-list-mask" v-show="showList" @click="toggleCartList"></div>
+    </transition>
+
+    <transition name="fold">
     <div class="shopchart-list-wrap" v-show="showList">
       <div class="list-header">
         <h1>购物车</h1>
-        <a href="javascript:void(0)">清空</a>
+        <a href="javascript:void(0)" @click="clearList">清空</a>
       </div>
       <div class="list-content">
         <ul>
@@ -43,6 +48,7 @@
         </ul>
       </div>
     </div>
+    </transition>
   </div>
 </template>
 
@@ -82,7 +88,7 @@
         ],
         // 掉落中的小球，引用balls
         dropBalls: [],
-        showList: false
+        listFold: true
       }
     },
     computed: {
@@ -120,6 +126,15 @@
         }
 
         return ret
+      },
+      showList () {
+        if (this.totalCount <= 0) {
+          this.listFold = true
+          return false
+        }
+
+        let show = !this.listFold;
+        return show;
       }
     },
     methods: {
@@ -189,7 +204,15 @@
         })
       },
       toggleCartList () {
-        this.showList = !this.showList
+        if (this.totalCount <= 0) {
+          return
+        }
+        this.listFold = !this.listFold
+      },
+      clearList () {
+        this.selectedFoods.forEach((i)=>{
+          i.count = 0;
+        })
       }
     }
   }
@@ -243,7 +266,8 @@
     display flex
     justify-content space-between
     align-items stretch
-    margin-left 62px
+    padding-left 62px
+    background #131D26
     .price-wrap
       flex 1
       display flex
@@ -292,9 +316,9 @@
     bottom 46px
     background black
     z-index -1
-    -webkit-backdrop-filter: blur(10px);
-    opacity: 1;
-    background: rgba(7,17,27,0.6);
+    -webkit-backdrop-filter: blur(10px)
+    opacity: 1
+    background: rgba(7,17,27,0.6)
   .shopchart-list-wrap
     position absolute
     bottom 46px
@@ -334,4 +358,12 @@
             margin-right 10px
       ul>li+li
         border-top 1px solid rgba(7, 17, 27, 0.1)
+  .fade-enter-active, .fade-leave-active
+    transition all .5s
+  .fade-enter, .fade-leave-active
+    opacity 0
+  .fold-enter-active, .fold-leave-active
+    transition all .5s
+  .fold-enter, .fold-leave-active
+    transform translate3d(0,100%,0)
 </style>
