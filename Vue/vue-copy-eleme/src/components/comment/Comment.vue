@@ -42,7 +42,9 @@
     props: {
       comments: {
         type: Array,
-        default: []
+        default () {
+          return []
+        }
       }
     },
     data () {
@@ -52,7 +54,6 @@
       }
     },
     methods: {
-      select
       toggleOnlyContent () {
         this.onlyHasContent = !this.onlyHasContent
       }
