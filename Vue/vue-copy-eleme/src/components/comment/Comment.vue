@@ -3,40 +3,41 @@
     <div class="header">
       <h1>商品评价</h1>
       <ul class="tags">
-        <li class="blue">全部 11</li>
-        <li class="blue">推荐 11</li>
-        <li>吐槽 11</li>
+        <li class="blue" :class="{'active':selectedType===ALL}" @click="changeType(ALL)">全部 <span class="number">{{comments.length}}</span>
+        </li>
+        <li class="blue" :class="{'active':selectedType===GOOD}" @click="changeType(GOOD)">推荐 <span class="number">{{commentsGood.length}}</span>
+        </li>
+        <li :class="{'active':selectedType===BAD}" @click="changeType(BAD)">吐槽 <span class="number">{{commentsBad.length}}</span>
+        </li>
       </ul>
-      <div class="comment-switch">
-        <span class="icon-check_circle"></span>
+      <div class="comment-switch" @click="toggleOnlyContent">
+        <span class="icon icon-check_circle" :class="{'active':onlyHasContent}"></span>
         <span class="text">只看有内容的评价</span>
       </div>
     </div>
     <div class="comment-list">
-      <ul>
-        <li v-for="(item, index) in comments" :key="index">
+      <ul v-show="comments && comments.length">
+        <li v-for="(item, index) in comments" :key="index" v-show="commentsListShow(item.rateType, item.text)">
           <div class="user-info">
-            <div class="time">2018-12-16 14:48:54</div>
+            <div class="time">{{item.rateTime | _formatDate}}</div>
             <div class="avatar">
               <span class="user-name">{{item.username}}</span>
               <img :src="item.avatar">
             </div>
           </div>
           <div class="cmt-info">
-            <span class="icon icon-thumb_up"></span>
+            <span class="icon" :class="{'icon-thumb_up':item.rateType===0,'icon-thumb_down':item.rateType===1}"></span>
             <span>{{item.text}}</span>
           </div>
         </li>
       </ul>
+      <div class="no-comment" v-show="!comments || !comments.length">暂无评价</div>
     </div>
   </div>
 </template>
 
 <script>
-
-  const ALL = 2;
-  const GOOD = 0;
-  const BAD = 1;
+  import {formatDate} from '@/common/js/util'
 
   export default {
     props: {
@@ -49,13 +50,49 @@
     },
     data () {
       return {
-        selectedType: ALL,
-        onlyHasContent: false,
+        ALL: 2,
+        GOOD: 0,
+        BAD: 1,
+        onlyHasContent: true,
+        selectedType: 2,
+      }
+    },
+    filters: {
+      _formatDate(time) {
+        return formatDate(new Date(time), 'yyyy-MM-dd hh:mm');
+      }
+    },
+    computed: {
+      // good 筛选器
+      commentsGood () {
+        return this.comments.filter((obj)=> obj.rateType === this.GOOD)
+      },
+      commentsBad () {
+        return this.comments.filter((obj) => obj.rateType === this.BAD)
       }
     },
     methods: {
+      init () {
+        this.selectedType = this.ALL
+        this.onlyHasContent = true
+      },
       toggleOnlyContent () {
         this.onlyHasContent = !this.onlyHasContent
+      },
+      changeType (type) {
+        this.selectedType = type
+      },
+      commentsListShow (type, text) {
+        // 只显示有内容的评价
+        if (this.onlyHasContent && !text) {
+          return false
+        }
+
+        if (this.selectedType === this.ALL) {
+          return true
+        } else {
+          return this.selectedType === type
+        }
       }
     }
   }
@@ -79,10 +116,26 @@
         font-size 12px
         padding 12px
         margin-right 8px
+        .number
+          font-size 10px
+        &.active
+          background #4d555d
+          color: #fff
+      .blue
+        background rgba(0, 160, 220, 0.2)
+        &.active
+          background #00A0DC
     .comment-switch
       padding 15px 0
       color: #B7BBBF
       font-size 14px
+      display flex
+      align-items center
+      .icon
+        font-size 24px
+        margin-right: 2px
+        &.active
+          color: #00c850
   .comment-list
     border-top 1px solid #EDEDEE
     &>ul>li
@@ -107,4 +160,7 @@
         color #00A0DC
     &>ul>li+li
       border-top 1px solid #F9F9F9
+    .no-comment
+      text-align: center
+      margin: 20px auto
 </style>

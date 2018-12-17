@@ -27,7 +27,7 @@
           <p>{{food.info}}</p>
         </div>
         <div class="food-comment card">
-          <comment :comments="food.ratings"></comment>
+          <comment :comments="food.ratings" ref="comment"></comment>
         </div>
       </div>
     </div>
@@ -56,6 +56,7 @@
     methods: {
       show () {
         this.showFlag = true
+        this.$refs.comment.init()
       },
       hide () {
         this.showFlag = false
