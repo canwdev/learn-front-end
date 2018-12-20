@@ -17,8 +17,8 @@
               <p class="money-old" v-show="food.oldPrice">￥{{food.oldPrice}}</p>
             </div>
             <div class="btn-action">
-              <a href="javascript:void(0)" class="addcart" @click="addFirst(food)" v-show="food.count == 0">加入购物车</a>
-              <cart-control @eventAdd="addFood" :food="food" v-show="food.count != 0"></cart-control>
+              <a href="javascript:void(0)" class="addcart" @click="addFirst(food)" v-show="food.count === 0">加入购物车</a>
+              <cart-control @eventAdd="addFood" :food="food" v-show="food.count !== 0"></cart-control>
             </div>
           </div>
         </div>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import CartControl from '@/components/cart_control/CartControl'
   import Comment from '@/components/comment/Comment'
 
@@ -51,6 +52,13 @@
     data () {
       return {
         showFlag: false
+      }
+    },
+    watch: {
+      food (nv, ov) {
+        if (typeof this.food.count === 'undefined') {
+          Vue.set(this.food, 'count', 0)
+        }
       }
     },
     methods: {

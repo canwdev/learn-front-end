@@ -8,7 +8,7 @@
     </div>
     <!-- 切tab时，保持路由页面存活 -->
     <keep-alive>
-      <router-view></router-view>
+      <router-view :seller="seller"></router-view>
     </keep-alive>
   </div>
 </template>

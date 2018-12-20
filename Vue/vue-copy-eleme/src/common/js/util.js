@@ -1,4 +1,5 @@
 export function formatDate(date, fmt) {
+  // 匹配yyyy，替换成年
   if (/(y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
   }

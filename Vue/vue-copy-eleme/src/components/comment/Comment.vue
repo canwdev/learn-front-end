@@ -27,7 +27,7 @@
           </div>
           <div class="cmt-info">
             <span class="icon" :class="{'icon-thumb_up':item.rateType===0,'icon-thumb_down':item.rateType===1}"></span>
-            <span>{{item.text}}</span>
+            <span class="text">{{item.text}}</span>
           </div>
         </li>
       </ul>
@@ -154,6 +154,9 @@
       .cmt-info
         margin-top: 12px
         color: #07111B
+        font-size 14px
+      .text
+        line-height: 18px
       .icon
         color: #B7BBBF
       .icon-thumb_up
