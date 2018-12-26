@@ -1,5 +1,5 @@
 <template>
-  <div class="comment">
+  <div class="comment" :class="{'complex':ComplexStyle}">
     <div class="header">
       <h1>商品评价</h1>
       <ul class="tags">
@@ -21,13 +21,20 @@
           <div class="user-info">
             <div class="time">{{item.rateTime | _formatDate}}</div>
             <div class="avatar">
-              <span class="user-name">{{item.username}}</span>
+              <span v-show="item.deliveryTime" style="margin-left: 5px;">🕓{{item.deliveryTime}}分钟</span>
+              <span class="user-rank">
+                <span class="user-name">{{item.username}}</span>
+                <star v-if="ComplexStyle" :size="24" :score="item.score"></star>
+              </span>
               <img :src="item.avatar">
             </div>
           </div>
           <div class="cmt-info">
             <span class="icon" :class="{'icon-thumb_up':item.rateType===0,'icon-thumb_down':item.rateType===1}"></span>
             <span class="text">{{item.text}}</span>
+            <div class="recommend-wrap" v-show="item.recommend">
+              <span class="recommend-item" v-for="(recoItem, index) in item.recommend">{{recoItem}}</span>
+            </div>
           </div>
         </li>
       </ul>
@@ -38,13 +45,23 @@
 
 <script>
   import {formatDate} from '@/common/js/util'
+  import Star from '@/components/star/Star'
 
   export default {
+    components: {
+      Star
+    },
     props: {
       comments: {
         type: Array,
         default () {
           return []
+        }
+      },
+      ComplexStyle: {
+        type: Boolean,
+        default() {
+          return false;
         }
       }
     },
@@ -155,6 +172,18 @@
         margin-top: 12px
         color: #07111B
         font-size 14px
+        .recommend-wrap
+          display flex
+          flex-wrap wrap
+          .recommend-item
+            padding: 0 6px;
+            border: 1px solid rgba(7,17,27,0.1);
+            border-radius: 1px;
+            color: #93999f;
+            background: #fff;
+            font-size 9px
+            margin-right: 10px
+            margin-top: 8px
       .text
         line-height: 18px
       .icon
@@ -166,4 +195,27 @@
     .no-comment
       text-align: center
       margin: 20px auto
+  &.complex
+    .header
+      &>h1
+        display none
+      .tags
+        padding-top: 0
+    .comment-list
+      .user-info
+        flex-direction row-reverse
+        .avatar
+          display flex
+          align-items center
+          flex-direction row-reverse
+          &>img
+            width 28px
+            height 28px
+          .user-rank
+            margin-left: 10px;
+            >>>.star-item
+              margin-top: 5px
+              margin-right: 2px;
+      .cmt-info
+        padding-left: 40px
 </style>

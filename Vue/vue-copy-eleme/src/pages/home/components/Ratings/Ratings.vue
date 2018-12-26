@@ -26,7 +26,7 @@
     </div>
 
     <div class="comment-wrap">
-      <comment :comments="ratings"></comment>
+      <comment :comments="ratings" :ComplexStyle="true"></comment>
     </div>
 
   </div>
