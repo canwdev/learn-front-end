@@ -5,13 +5,13 @@
         <div class="rank-box">
           <h1 class="title">{{seller.name}}</h1>
           <div class="ranks">
-            <star :size="24" :score="seller.score"></star>
-            ({{seller.ratingCount}}) 月售{{seller.sellCount}}单
+            <star :size="36" :score="seller.score"></star>
+            ({{seller.ratingCount}})   月售{{seller.sellCount}}单
           </div>
         </div>
-        <div class="collection-box">
-          <span class="icon-favorite"></span>
-          收藏
+        <div class="collection-box" @click="toggleFavorite">
+          <span class="icon-favorite" :class="{'active':favorite}"></span>
+          {{favorite?'已收藏':'收藏'}}
         </div>
       </div>
 
@@ -46,8 +46,8 @@
 
     <div class="seller-photos-wrap card-view">
       <h5>商家实景</h5>
-      <div class="photos-box">
-        <ul>
+      <div class="photos-box" ref="picBox">
+        <ul ref="picList" class="picList">
           <li v-for="(pic, index) in seller.pics">
             <img :src="pic">
           </li>
@@ -68,6 +68,8 @@
 <script>
 import Star from '@/components/star/Star'
 import SpecIcon from '@/components/spec_icon/SpecIcon'
+import Bscroll from 'better-scroll'
+import {saveToLocal, loadFromLocal} from '@/common/js/util'
 
 export default {
   components: {
@@ -77,6 +79,42 @@ export default {
   props: {
     seller: {
       type: Object
+    }
+  },
+  data () {
+    return {
+      favorite: false
+    }
+  },
+  watch: {
+    seller () {
+      this.favorite = loadFromLocal(this.seller.id, 'favorite', false)
+      this.$nextTick(() => {
+        this._initPics()
+      })
+    }
+  },
+  mounted() {
+  },
+  methods: {
+    _initPics () {
+      if (this.seller.pics) {
+        let picList = this.$refs.picList
+        let width = picList.scrollWidth
+        picList.style.width = width+'px'
+
+        console.log(picList)
+
+        this.picScroll = new Bscroll(this.$refs.picBox, {
+          scrollX: true,
+          eventPassthrough: 'vertical'
+        })
+
+      }
+    },
+    toggleFavorite () {
+      this.favorite = !this.favorite
+      saveToLocal(this.seller.id, 'favorite', this.favorite)
     }
   }
 }
@@ -97,6 +135,32 @@ export default {
         justify-content space-between
         padding-bottom: 18px
         border-bottom 1px solid #EBECED
+        .rank-box
+          .title
+            margin-bottom: 8px;
+            line-height: 14px;
+            color: #07111b;
+            font-size: 14px;
+          .ranks
+            display flex
+            align-items center
+            font-size 10px
+            .star
+              margin-right: 10px
+            >>>.star-item
+              margin-right: 2px
+        .collection-box
+          display flex
+          flex-direction column
+          align-items center
+          font-size: 10px;
+          min-width 50px
+          .icon-favorite
+            margin-bottom: 4px;
+            font-size: 24px;
+            color: #d4d6d9;
+            &.active
+              color: #f01414
       .composite-rank
         display flex
         justify-content space-around
@@ -123,10 +187,15 @@ export default {
         line-height: 24px;
         font-size: 12px;
         color: #f01414;
+      .activities-box>li
+        display flex
+        padding: 16px 12px;
+        font-size 10px
+      .activities-box>li+li
+        border-top 1px solid #EBECED
     .seller-photos-wrap
       .photos-box
-        overflow-y hidden
-        overflow-x: auto
+        overflow hidden
       .photos-box>ul
         display flex
         flex-direction row
@@ -136,6 +205,13 @@ export default {
         height: 90px
         width 120px
         object-fit cover
+    .seller-info-wrap
+      .info-box>li
+        display flex
+        padding: 16px 12px;
+        font-size 10px
+      .info-box>li+li
+        border-top 1px solid #EBECED
     .card-view
       background #fff
       border-top 1px solid #EBECED

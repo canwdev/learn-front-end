@@ -19,6 +19,36 @@ export function formatDate(date, fmt) {
   return fmt;
 }
 
+export function saveToLocal(id, key, value) {
+  let data = window.localStorage.m_data
+  if (!data) {
+    data = {}
+    data[id] = {}
+  } else {
+    data = JSON.parse(data)
+    if (!data[id]) {
+      data[id] = {}
+    }
+  }
+  data[id][key] = value
+
+  window.localStorage.m_data = JSON.stringify(data)
+}
+
+export function loadFromLocal(id, key, def) {
+  let data = window.localStorage.m_data
+
+  if (!data) {
+    return def
+  }
+  let obj = JSON.parse(data)[id]
+  if (!obj) {
+    return def
+  }
+
+  return obj[key] || def
+}
+
 function padLeftZero(str) {
   // return ('00' + str).substr(str.length);
   return str.padStart(2,'0')
