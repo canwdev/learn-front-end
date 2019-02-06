@@ -3,9 +3,11 @@
 https://nodejust.com/nodejs-routing-request/zh-cn/
 
 ## 创建express项目：
-  
-  npm install --global express
-  express testproject --hogan -c stylus
+
+```
+npm install --global express
+express testproject --hogan -c stylus
+```
 
 ## MongoDB基础语句
 
