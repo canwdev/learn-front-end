@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Javascript 面向对象编程（一）：封装</title>
+  <style>
+    .red {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+  <a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html" target="_blank">Javascript
+    面向对象编程（一）：封装</a>
+
+  <script>
+    // 单例模式创建对象
+    let dog = {
+      name: '二哈',
+      many: '黄色'
+    }
+
+    // 工厂函数模式
+    function Cat1(name, color) {
+      return {
+        name: name,
+        color: color
+      }
+    }
+    var cat1_1 = Cat1('chocola', 'brown');
+    var cat1_2 = Cat1('vanilla', 'white');
+
+    // 构造函数模式
+    function Cat2(name, color) {
+      this.name = name;
+      this.color = color;
+      this.type = '猫科动物';
+      this.speak = () => {
+        alert('喵啊!~')
+      }
+    }
+    var cat2_1 = new Cat2('chocola', 'brown');
+    var cat2_2 = new Cat2('vanilla', 'white');
+
+    // console.log(cat2_1.constructor == cat2_2.constructor);
+    // console.log(cat2_2 instanceof Cat2);
+
+    // Prototype模式
+    function Cat3(name, color) {
+      this.name = name;
+      this.color = color;
+    }
+    Cat3.prototype.type = '猫科动物';
+    Cat3.prototype.speak = () => {
+      alert('喵啊!~')
+    };
+
+    var cat3_1 = new Cat3('chocola', 'brown');
+    var cat3_2 = new Cat3('vanilla', 'white');
+
+    // console.log(Cat3.prototype.isPrototypeOf(cat3_2));
+    // console.log(cat3_1.hasOwnProperty('name'));
+    // console.log(cat3_1.hasOwnProperty('type'));
+    // console.log('type' in cat3_1);
+
+    /* for (var prop in cat3_1) {
+      console.log(prop, cat3_1[prop])
+    } */
+  </script>
+</body>
+
+</html>
