@@ -147,3 +147,54 @@ HTTP报文的结构：报文首部+空行（CR+LF）+报文主体
 ![隧道](https://ws3.sinaimg.cn/large/005BYqpggy1g1cq5e5c8wj30md0703zn.jpg)
 
 隧道可按要求建立起一条与其他服务器的通信线路，使用SSL等加密进行通信，保证客户端与服务端的安全通信
+
+
+
+## 第六章 HTTP首部
+
+![请求报文和响应报文的首部](https://ws3.sinaimg.cn/large/005BYqpgly1g1cooeomnvj31350rgqcb.jpg)
+
+请求报文由方法、URI、HTTP版本、HTTP首部字段构成
+
+响应报文由HTTP版本、状态码（数字和原因短语）、HTTP首部字段构成
+
+HTTP首部字段传递许多重要信息，首部字段由字段名和字段值构成，中间用冒号分隔
+
+```Content-Type: text/html```
+
+首部字段可以有多个值：
+
+```Keep-Alive: timeout=5, max=100```
+
+### 4种首部字段类型
+
+![响应报文和请求报文首部](https://ws3.sinaimg.cn/large/005BYqpggy1g1crnhd4b1j30mi0gi75x.jpg)
+
+通用首部字段：请求报文和响应报文都会使用的首部
+
+请求首部字段：客户端向服务端发送请求报文时使用的首部
+
+响应首部字段：从服务端向客户端返回响应报文时使用的首部
+
+实体首部字段：补充了资源内容更新时间等与实体有关的信息
+
+Cookie、Set-Cookie等首部字段属于非HTTP/1.1正式的首部字段，使用频率很高
+
+通过Cache-Control首部字段控制缓存
+
+![权重值](https://ws3.sinaimg.cn/large/005BYqpgly1g1cooeomnvj31350rgqcb.jpg)
+
+上图中，Accept首部字段告知服务器客户端能处理的媒体类型，以及优先级，其中`q=`代表权重，权重的范围在0~1之间（可精确到小数点后3位），默认权重是1，用分号`;`隔开
+
+使用Host首部字段可以区分虚拟主机中指定的主机
+
+User-Agent首部字段用于传达浏览器的种类
+
+### Cookie
+
+目前使用的Cookie标准是网景公司制定的标准的扩展，是一种事实上的标准
+
+Set-Cookie：响应首部字段，开始状态管理所使用的Cookie信息
+Cookie：请求首部字段，服务器接收到的Cookie信息
+
+通过在Set-Cookie中设置HttpOnly属性可以让JS不能访问cookie，从而阻止XSS（跨站脚本攻击）
