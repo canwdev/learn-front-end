@@ -130,3 +130,20 @@ HTTP报文的结构：报文首部+空行（CR+LF）+报文主体
 [HTTP状态码](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)
 
 
+## 第五章 与HTTP协作的Web服务器
+
+使用单台虚拟主机（Virtual Host）实现多个域名，域名通过DNS服务映射到IP地址，由于虚拟主机可以寄存多个不同主机名和域名的网站，因此在发送HTTP请求时，必须在Host首部指定主机名或域名的URI
+
+### 通信数据转发程序：代理、网关、隧道
+
+![代理](https://ws3.sinaimg.cn/large/005BYqpgly1g1cq0ksamlj30m209eac4.jpg)
+
+代理可以做到对指定URI的访问控制；**缓存代理**通过将资源缓存到代理服务器加快客户端访问速度；**透明代理**不会对报文进行任何加工处理
+
+![网关](https://ws3.sinaimg.cn/large/005BYqpggy1g1cq56aav6j30ku06k3zf.jpg)
+
+网关的工作机制与代理十分相似，网关能使通信线路上的服务器提供非HTTP协议的服务，使用网关能提高通信的安全性
+
+![隧道](https://ws3.sinaimg.cn/large/005BYqpggy1g1cq5e5c8wj30md0703zn.jpg)
+
+隧道可按要求建立起一条与其他服务器的通信线路，使用SSL等加密进行通信，保证客户端与服务端的安全通信
