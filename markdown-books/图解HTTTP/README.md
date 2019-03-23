@@ -77,3 +77,35 @@ HTTP协议初始版本不支持持久连接，就是说每进行一次HTTP通信
 HTTP/1.1和一部分HTTP/1.0支持了持久连接，使用管线化可以并发请求
 
 由于HTTP是无状态协议，节约了服务器的消耗。Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户端的状态
+
+
+
+## 第三章 HTTP报文中的HTTP信息
+
+请求端（Client）的报文称为请求报文，响应端（Server）的报文称为响应报文，HTTP报文是由多行（使用CR+LF换行）字符串文本
+
+HTTP报文的结构：报文首部+空行（CR+LF）+报文主体
+
+可以使用Fiddler查看原始报文内容
+
+![Fiddler](https://ws3.sinaimg.cn/large/005BYqpgly1g1cooeomnvj31350rgqcb.jpg)
+
+报文主体和实体主体的差异：
+1. 报文是HTTP通信的基本单位，通过HTTP通信传输
+2. 实体作为请求或响应的有效载荷数据被传输，器内容由实体首部和实体主体组成
+
+压缩传输的内容编码
+
+通过服务器压缩后发送，客户端接收并解码
+
+![gizp](https://ws3.sinaimg.cn/large/005BYqpggy1g1coprlhdmj31350rg489.jpg)
+
+常用的内容编码方式：gzip（GNU）、compress（UNIX）、deflate（zlib）、identity（不进行编码）
+
+可以通过分割发送的分块传输编码，让浏览器逐步显示页面；而不是全部传输完成，解码之后再显示页面。
+
+通过MIME和Multipart方式，发送多种数据的多部分对象集合
+
+范围请求：Range，请求一部分的文件内容
+
+内容协商返回最适合的内容，通过请求报文某些首部字段，服务器自动返回最适合的内容（例如语言）
