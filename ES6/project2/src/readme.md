@@ -34,6 +34,10 @@ package.json 配置文件示例
 
 ## 目录 Contents
 
-1. [let 和 const 命令](let/)
+1. [let 和 const 命令](http://es6.ruanyifeng.com/#docs/let)
 1. [变量的解构赋值](destructuring/readme.md)
-1. [正则的扩展](regex/)
+1. [字符串的扩展](string/readme.md)
+1. [正则的扩展](regex/readme.md)
+1. [数值的扩展](http://es6.ruanyifeng.com/#docs/number)
+1. [函数的扩展](function/readme.md)
+1. [数组的扩展](array/readme.md)
