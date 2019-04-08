@@ -14,7 +14,7 @@ module.exports = {
     proxyTable: {
       // webpack 地址自动重定向，转发
       '/api': {
-        target: 'http://localhost:8081',
+        target: 'http://localhost:8082',
         pathRewrite: {
           '^/api': '/static/mock'
         }
